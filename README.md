@@ -42,6 +42,13 @@ Settings → Appearance → Themes.
 - For the three-pane Tolaria layout, install Notebook Navigator and the
   [gogoga-icons](plugins/gogoga-icons/) companion plugin.
 
+### Full setup guide
+
+[docs/setup.md](docs/setup.md) (Chinese) walks through building a whole vault
+around this theme from scratch: core-plugin choices, folder layout, Notebook
+Navigator settings, Templater automation for auto-populated properties, daily
+notes with date subfolders, plus the non-obvious gotchas found along the way.
+
 ## Development
 
 The theme is a single hand-written `theme.css`: Tolaria's tokens

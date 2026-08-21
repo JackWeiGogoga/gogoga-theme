@@ -79,6 +79,12 @@ body {
   --code-size: 0.9333em;
   --code-radius: 3px;
 
+  /* Tables — column width floor: sparse tables stay airy, but kept
+     modest so a long-content column can still claim most of the
+     measure before wrapping (Tolaria's fixed columns always wrap;
+     this is a softer compromise) */
+  --table-column-min-width: 100px;
+
   /* Blockquote — 3px accent rail */
   --blockquote-border-thickness: 3px;
 
@@ -223,8 +229,8 @@ body {
   --bold-color: #37352F;
   --italic-color: #37352F;
 
-  /* Code — inline uses the subtle hover surface */
-  --code-normal: #787774;
+  /* Code — inline: dark red text on the subtle hover surface */
+  --code-normal: #8E2726;
   --code-background: #F0F0EF;
   --code-comment: #6A737D;
   --code-keyword: #D73A49;
@@ -411,8 +417,8 @@ body {
   --bold-color: #E6E1D8;
   --italic-color: #E6E1D8;
 
-  /* Code */
-  --code-normal: #B8B1A6;
+  /* Code — inline: Tolaria's dark monospace red on the subtle surface */
+  --code-normal: #FFA6A3;
   --code-background: #262520;
   --code-comment: #8E877D;
   --code-keyword: #FF9BA0;
@@ -745,6 +751,16 @@ body {
 .markdown-rendered table {
   font-size: 0.9333em;
 }
+
+/* Tolaria-like adaptive tables: not forced full-width — each column
+   simply gets a generous minimum (BlockNote's default-column-width
+   feel), so sparse tables still breathe. The LP widget already
+   applies --table-column-min-width to its cells; mirror it in
+   reading mode. */
+.markdown-rendered th,
+.markdown-rendered td {
+  min-width: var(--table-column-min-width);
+}
 .markdown-rendered th,
 .markdown-rendered td {
   padding: 8px 12px;
@@ -814,8 +830,20 @@ body {
   border-radius: var(--radius-l);
   box-shadow: 0 8px 24px var(--gg-dialog-shadow);
 }
-.prompt-input {
+/* Palette input is borderless with a bottom divider (Tolaria's cmdk
+   style) — the global focus ring would get clipped by the prompt's
+   rounded corners anyway */
+.prompt-input,
+.prompt-input:focus,
+.prompt-input:focus-visible {
   font-size: 15px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+.prompt-input-container {
+  border-bottom: 1px solid var(--background-modifier-border);
 }
 .suggestion-item {
   font-size: 13px;
