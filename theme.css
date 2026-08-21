@@ -169,9 +169,9 @@ body {
   --gg-accent-tint: rgba(21, 93, 255, 0.08);
 
   /* Surfaces */
-  --background-primary: #FFFFFF;
-  --background-primary-alt: #F7F6F3;
-  --background-secondary: #F7F6F3;
+  --background-primary: #FCFCFB;
+  --background-primary-alt: #F9F8F6;
+  --background-secondary: #F9F8F6;
   --background-secondary-alt: #F0F0EF;
   --background-modifier-hover: #EBEBEA;
   --background-modifier-active-hover: #E8F4FE;
@@ -270,13 +270,13 @@ body {
   --nav-item-color-hover: #37352F;
   --nav-item-color-active: #37352F;
   --nav-item-background-hover: #EBEBEA;
-  --nav-item-background-active: #E8F4FE;
+  --nav-item-background-active: #EBEBEA;
   --nav-collapse-icon-color: #B4B4B4;
   --nav-collapse-icon-color-collapsed: #B4B4B4;
   --nav-indentation-guide-color: #E9E9E7;
 
   /* Tabs */
-  --tab-background-active: #FFFFFF;
+  --tab-background-active: #FCFCFB;
   --tab-text-color: #787774;
   --tab-text-color-active: #787774;
   --tab-text-color-focused: #787774;
@@ -288,13 +288,13 @@ body {
   --tab-curve: 0px;
 
   /* Titlebar / ribbon / status bar */
-  --titlebar-background: #F7F6F3;
-  --titlebar-background-focused: #F7F6F3;
+  --titlebar-background: #F9F8F6;
+  --titlebar-background-focused: #F9F8F6;
   --titlebar-text-color: #787774;
   --titlebar-text-color-focused: #37352F;
-  --ribbon-background: #F7F6F3;
-  --ribbon-background-collapsed: #F7F6F3;
-  --status-bar-background: #FFFFFF;
+  --ribbon-background: #F9F8F6;
+  --ribbon-background-collapsed: #F9F8F6;
+  --status-bar-background: #FCFCFB;
   --status-bar-border-color: #E9E9E7;
   --status-bar-border-width: 1px 0 0 0;
   --status-bar-text-color: #787774;
@@ -458,7 +458,7 @@ body {
   --nav-item-color-hover: #E6E1D8;
   --nav-item-color-active: #E6E1D8;
   --nav-item-background-hover: #2D2B27;
-  --nav-item-background-active: #1E344C;
+  --nav-item-background-active: #2D2B27;
   --nav-collapse-icon-color: #7F776D;
   --nav-collapse-icon-color-collapsed: #7F776D;
   --nav-indentation-guide-color: #2A2925;
@@ -547,20 +547,24 @@ body {
 }
 
 /* Reading mode margins: h1 32/12, h2 28/10, h3 24/8, h4 20/6 */
-.markdown-rendered h1 { margin-top: 32px; margin-bottom: 12px; }
+.markdown-rendered h1 { margin-top: 24px; margin-bottom: 12px; }
 .markdown-rendered h2 { margin-top: 28px; margin-bottom: 10px; }
 .markdown-rendered h3 { margin-top: 24px; margin-bottom: 8px; }
 .markdown-rendered h4 { margin-top: 20px; margin-bottom: 6px; }
 .markdown-rendered h5,
 .markdown-rendered h6 { margin-top: 20px; margin-bottom: 6px; }
 
-/* Live Preview: approximate block spacing with line padding */
-.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-1 { padding-top: 32px; }
-.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-2 { padding-top: 28px; }
-.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-3 { padding-top: 24px; }
+/* Live Preview: approximate block spacing with line padding.
+   Unlike reading mode, LP renders the blank source line above a
+   heading as a real ~22px line — so these values are Tolaria's
+   margins minus one blank line, keeping the VISUAL gap equal to
+   reading mode (32/28/24/20). */
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-1 { padding-top: 2px; }
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-2 { padding-top: 6px; }
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-3 { padding-top: 2px; }
 .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-4,
 .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-5,
-.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-6 { padding-top: 20px; }
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-6 { padding-top: 0px; }
 
 /* An H1 at the very top of the note (right below the properties panel /
    inline title) drops its block spacing — Tolaria's Title sits flush */
@@ -583,8 +587,10 @@ body {
 /* The first H1 is the note's Title — it hugs the top of the note
    (or the properties block) instead of carrying the 32px gap that
    body H1s get. */
-.markdown-source-view.mod-cm6 .cm-content > .cm-line.HyperMD-header-1:first-child,
-.markdown-source-view.mod-cm6 .cm-content > .metadata-container + .cm-line.HyperMD-header-1 {
+/* :nth-child(1 of .cm-line) = the first rendered line, regardless of
+   the properties widget and the .cm-widgetBuffer elements CodeMirror
+   inserts around it (those broke a plain adjacent-sibling selector) */
+.markdown-source-view.mod-cm6 .cm-content > .cm-line.HyperMD-header-1:nth-child(1 of .cm-line) {
   padding-top: 4px;
 }
 .markdown-reading-view .markdown-preview-sizer > div:first-child > h1,
@@ -930,7 +936,7 @@ body {
      (typeColors.ts DEFAULT_COLOR/DEFAULT_LIGHT_COLOR); blue is reserved
      for the nav pane */
   --nn-theme-file-selected-bg: var(--background-secondary-alt);
-  --nn-theme-file-selected-inactive-bg: var(--background-modifier-hover);
+  --nn-theme-file-selected-inactive-bg: var(--background-secondary-alt);
 
   /* Line rhythm: plugin defaults (20/19/18px) already equal Tolaria's
      1.5 ratio at 13/12px — and they MUST stay px values, because the
@@ -960,7 +966,8 @@ body {
   --nn-theme-navitem-name-font-weight: 500;
   --nn-theme-navitem-icon-color: var(--text-muted);
   --nn-theme-navitem-hover-bg: var(--background-modifier-hover);
-  --nn-theme-navitem-selected-bg: var(--background-modifier-active-hover);
+  /* Focused selection matches the unfocused gray — no accent tint */
+  --nn-theme-navitem-selected-bg: var(--background-modifier-hover);
 
   /* List pane header title — Tolaria: 14px semibold */
   --nn-list-title-font-size: 14px;
