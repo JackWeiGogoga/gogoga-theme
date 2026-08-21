@@ -1,0 +1,9 @@
+{
+  "id": "gogoga-icons",
+  "name": "gogoga icons",
+  "version": "0.1.0",
+  "minAppVersion": "1.0.0",
+  "description": "Companion plugin for the gogoga theme: replaces Obsidian's built-in Lucide icons with Phosphor icons (the set used by Tolaria).",
+  "author": "jackwei",
+  "isDesktopOnly": false
+}

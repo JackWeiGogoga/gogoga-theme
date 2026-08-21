@@ -1,0 +1,1008 @@
+/* ============================================================
+   gogoga — an Obsidian theme replicating the design language of
+   Tolaria (https://github.com/refactoringhq/tolaria, AGPL-3.0)
+
+   Design tokens ported from Tolaria's src/index.css + src/theme.json:
+   Notion-flavored light palette, warm dark palette, #155DFF accent,
+   Inter typography, 15px/1.5 editor scale, blue list markers.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   Shared (non-color) variables — typography, sizing, spacing
+   ------------------------------------------------------------ */
+body {
+  /* Fonts */
+  --font-interface-theme: "Inter", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-text-theme: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-monospace-theme: "SF Mono", ui-monospace, "IBM Plex Mono",
+    "Fira Code", "JetBrains Mono", Menlo, monospace;
+
+  /* Editor scale — Tolaria: 15px base / 1.5 line-height / 740px measure */
+  --line-height-normal: 1.5;
+  --file-line-width: 740px;
+  --p-spacing: 8px;
+
+  /* Headings — Tolaria px sizes expressed relative to a 15px base:
+     h1 32 / h2 27 / h3 20 / h4 17 */
+  --heading-spacing: 24px;
+  --h1-size: 2.1333em;
+  --h1-weight: 700;
+  --h1-line-height: 1.2;
+  --h2-size: 1.8em;
+  --h2-weight: 600;
+  --h2-line-height: 1.4;
+  --h3-size: 1.3333em;
+  --h3-weight: 600;
+  --h3-line-height: 1.4;
+  --h4-size: 1.1333em;
+  --h4-weight: 600;
+  --h4-line-height: 1.4;
+  --h5-size: 1em;
+  --h5-weight: 600;
+  --h5-line-height: 1.4;
+  --h6-size: 0.9333em;
+  --h6-weight: 600;
+  --h6-line-height: 1.4;
+
+  /* Inline title = Tolaria's note "Title" (H1 with divider underneath) */
+  --inline-title-size: 2.1333em;
+  --inline-title-weight: 700;
+  --inline-title-line-height: 1.2;
+  --inline-title-margin-bottom: 12px;
+
+  /* Emphasis */
+  --bold-weight: 700;
+
+  /* Lists — indent 24px @15px base, blue markers */
+  --list-indent: 1.6em;
+  --list-spacing: 4px;
+
+  /* Tolaria hides the vertical nesting guide lines in lists */
+  --indentation-guide-color: transparent;
+  --indentation-guide-color-active: transparent;
+
+  /* Checkboxes — 18px, 3px radius */
+  --checkbox-size: 18px;
+  --checkbox-radius: 3px;
+
+  /* Inline code — 14px @15px base, 3px radius */
+  --code-size: 0.9333em;
+  --code-radius: 3px;
+
+  /* Blockquote — 3px accent rail */
+  --blockquote-border-thickness: 3px;
+
+  /* HR */
+  --hr-thickness: 1px;
+
+  /* Tags — rounded chips, medium weight */
+  --tag-size: 0.8667em;
+  --tag-weight: 500;
+  --tag-radius: 4px;
+  --tag-padding-x: 6px;
+  --tag-padding-y: 2px;
+  --tag-decoration: none;
+  --tag-decoration-hover: none;
+
+  /* Links — internal links use a dotted rail instead (see below) */
+  --link-decoration: none;
+  --link-decoration-hover: none;
+  --link-external-decoration: underline;
+
+  /* Sidebar / nav — 13px medium rows */
+  --nav-item-size: 13px;
+  --nav-item-weight: 500;
+  --nav-item-weight-hover: 500;
+  --nav-item-weight-active: 500;
+  --nav-item-padding: 6px 8px 6px 12px;
+
+  /* Tabs */
+  --tab-font-size: 13px;
+  --tab-font-weight: 500;
+
+  /* Status bar — 12px medium */
+  --status-bar-font-size: 12px;
+
+  /* Properties panel — Tolaria: 12px labels/values, compact rows */
+  --metadata-label-font-size: 12px;
+  --metadata-label-font-weight: 400;
+  --metadata-input-font-size: 12px;
+  --metadata-property-radius: 4px;
+  --metadata-property-padding: 2px 6px;
+  --metadata-input-height: 24px;
+  --metadata-gap: 2px;
+
+  /* Property chips — Tolaria: 24px tall, r6, 12px medium */
+  --pill-radius: 6px;
+  --pill-padding-x: 8px;
+  --pill-padding-y: 4px;
+  --pill-weight: 500;
+  --pill-border-width: 0px;
+  --pill-decoration: none;
+  --pill-decoration-hover: none;
+
+  /* Radii — Tolaria --radius: 0.5rem */
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-l: 10px;
+
+  /* Vault name / titlebar */
+  --vault-name-font-size: 13px;
+  --vault-name-font-weight: 500;
+
+  /* Icons — Tolaria uses Phosphor (16px, fine strokes); thin Obsidian's
+     Lucide set to 1.5px strokes for a similarly refined look */
+  --icon-xs: 14px;
+  --icon-s: 16px;
+  --icon-m: 16px;
+  --icon-l: 16px;
+  --icon-xs-stroke-width: 1.5px;
+  --icon-s-stroke-width: 1.5px;
+  --icon-m-stroke-width: 1.5px;
+  --icon-l-stroke-width: 1.5px;
+  --icon-xl-stroke-width: 1.25px;
+}
+
+/* ------------------------------------------------------------
+   Light palette — Tolaria light tokens
+   ------------------------------------------------------------ */
+.theme-light {
+  color-scheme: light;
+
+  /* Accent: #155DFF */
+  --accent-h: 222;
+  --accent-s: 100%;
+  --accent-l: 54%;
+
+  /* gogoga tokens */
+  --gg-heading-color: #37352F;
+  --gg-code-block-bg: #F7F6F3;
+  --gg-code-block-border: #E9E9E7;
+  --gg-code-block-text: #37352F;
+  --gg-code-block-lang: #787774;
+  --gg-popover-bg: #FFFFFF;
+  --gg-popover-border: #E9E9E7;
+  --gg-dialog-bg: #FFFFFF;
+  --gg-dialog-shadow: rgba(0, 0, 0, 0.15);
+  --gg-accent-tint: rgba(21, 93, 255, 0.08);
+
+  /* Surfaces */
+  --background-primary: #FFFFFF;
+  --background-primary-alt: #F7F6F3;
+  --background-secondary: #F7F6F3;
+  --background-secondary-alt: #F0F0EF;
+  --background-modifier-hover: #EBEBEA;
+  --background-modifier-active-hover: #E8F4FE;
+  --background-modifier-border: #E9E9E7;
+  --background-modifier-border-hover: #D9D9D6;
+  --background-modifier-border-focus: #155DFF;
+  --background-modifier-form-field: #FFFFFF;
+  --background-modifier-error: #E53E3E;
+  --background-modifier-error-hover: #C53030;
+  --background-modifier-error-rgb: 229, 62, 62;
+  --background-modifier-success: rgba(56, 161, 105, 0.1);
+  --background-modifier-cover: rgba(0, 0, 0, 0.3);
+
+  /* Text */
+  --text-normal: #37352F;
+  --text-muted: #787774;
+  --text-faint: #B4B4B4;
+  --text-on-accent: #FFFFFF;
+  --text-accent: #155DFF;
+  --text-accent-hover: #0D4AD6;
+  --text-selection: #E8F4FE;
+  --text-highlight-bg: #FEF3C7;
+  --text-error: #E53E3E;
+  --text-success: #38A169;
+  --text-warning: #92400E;
+
+  /* Interactive */
+  --interactive-normal: #EBEBEA;
+  --interactive-hover: #E2E2E0;
+  --interactive-accent: #155DFF;
+  --interactive-accent-hover: #0D4AD6;
+
+  /* Dividers / icons */
+  --divider-color: #E9E9E7;
+  --icon-color: #787774;
+  --icon-color-hover: #37352F;
+  --icon-color-active: #37352F;
+  --icon-color-focused: #37352F;
+
+  /* Emphasis colors */
+  --bold-color: #37352F;
+  --italic-color: #37352F;
+
+  /* Code — inline uses the subtle hover surface */
+  --code-normal: #787774;
+  --code-background: #F0F0EF;
+  --code-comment: #6A737D;
+  --code-keyword: #D73A49;
+  --code-tag: #D73A49;
+  --code-string: #032F62;
+  --code-value: #005CC5;
+  --code-property: #005CC5;
+  --code-function: #6F42C1;
+  --code-important: #E36209;
+  --code-punctuation: #636C76;
+
+  /* Links */
+  --link-color: #155DFF;
+  --link-color-hover: #0D4AD6;
+  --link-external-color: #155DFF;
+  --link-external-color-hover: #0D4AD6;
+  --link-unresolved-color: #787774;
+  --link-unresolved-opacity: 0.8;
+
+  /* Lists / checkboxes */
+  --list-marker-color: #155DFF;
+  --checkbox-color: #155DFF;
+  --checkbox-color-hover: #0D4AD6;
+  --checkbox-border-color: #B4B4B4;
+  --checkbox-border-color-hover: #787774;
+  --checkbox-marker-color: #FFFFFF;
+
+  /* Blockquote */
+  --blockquote-border-color: #155DFF;
+
+  /* Tables — white header on light, per theme.json */
+  --table-border-color: #E9E9E7;
+  --table-header-background: #FFFFFF;
+  --table-header-background-hover: #F7F6F3;
+  --table-header-weight: 600;
+  --table-row-background-hover: #F0F0EF;
+  --table-row-alt-background: transparent;
+
+  /* HR / embeds */
+  --hr-color: #E9E9E7;
+  --embed-border-left: 2px solid #155DFF;
+
+  /* Tags — blue chip on blue-tinted bg */
+  --tag-color: #155DFF;
+  --tag-color-hover: #0D4AD6;
+  --tag-background: rgba(21, 93, 255, 0.08);
+  --tag-background-hover: rgba(21, 93, 255, 0.14);
+
+  /* Nav (file explorer) */
+  --nav-item-color: #37352F;
+  --nav-item-color-hover: #37352F;
+  --nav-item-color-active: #37352F;
+  --nav-item-background-hover: #EBEBEA;
+  --nav-item-background-active: #E8F4FE;
+  --nav-collapse-icon-color: #B4B4B4;
+  --nav-collapse-icon-color-collapsed: #B4B4B4;
+  --nav-indentation-guide-color: #E9E9E7;
+
+  /* Tabs */
+  --tab-background-active: #FFFFFF;
+  --tab-text-color: #787774;
+  --tab-text-color-active: #787774;
+  --tab-text-color-focused: #787774;
+  --tab-text-color-focused-active: #37352F;
+  --tab-text-color-focused-active-current: #37352F;
+  --tab-text-color-focused-highlighted: #37352F;
+  --tab-divider-color: #E9E9E7;
+  --tab-outline-color: transparent;
+  --tab-curve: 0px;
+
+  /* Titlebar / ribbon / status bar */
+  --titlebar-background: #F7F6F3;
+  --titlebar-background-focused: #F7F6F3;
+  --titlebar-text-color: #787774;
+  --titlebar-text-color-focused: #37352F;
+  --ribbon-background: #F7F6F3;
+  --ribbon-background-collapsed: #F7F6F3;
+  --status-bar-background: #FFFFFF;
+  --status-bar-border-color: #E9E9E7;
+  --status-bar-border-width: 1px 0 0 0;
+  --status-bar-text-color: #787774;
+
+  /* Modals / prompts */
+  --modal-border-color: #E9E9E7;
+  --prompt-border-color: #E9E9E7;
+
+  /* Scrollbars */
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: rgba(0, 0, 0, 0.12);
+  --scrollbar-active-thumb-bg: rgba(0, 0, 0, 0.22);
+
+  /* Shadows — Tolaria dialog shadow */
+  --shadow-s: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-l: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+  /* Properties */
+  --metadata-label-text-color: #787774;
+  --metadata-label-text-color-hover: #787774;
+  --metadata-input-text-color: #37352F;
+  --metadata-property-background: transparent;
+  --metadata-property-background-hover: #F0F0EF;
+  --metadata-property-background-active: #EBEBEA;
+  --metadata-label-background-hover: transparent;
+  --metadata-label-background-active: transparent;
+  --metadata-input-background: transparent;
+  --metadata-input-background-hover: transparent;
+  --metadata-input-background-active: #F0F0EF;
+  --pill-color: #37352F;
+  --pill-color-hover: #37352F;
+  --pill-color-remove: #787774;
+  --pill-background: #F0F0EF;
+  --pill-background-hover: #EBEBEA;
+  --pill-border-color: transparent;
+  --pill-border-color-hover: transparent;
+}
+
+/* ------------------------------------------------------------
+   Dark palette — Tolaria dark tokens (warm charcoal)
+   ------------------------------------------------------------ */
+.theme-dark {
+  color-scheme: dark;
+
+  /* Accent: #78A4FF */
+  --accent-h: 220;
+  --accent-s: 100%;
+  --accent-l: 74%;
+
+  /* gogoga tokens */
+  --gg-heading-color: #F1ECE3;
+  --gg-code-block-bg: #161616;
+  --gg-code-block-border: transparent;
+  --gg-code-block-text: #FFFFFF;
+  --gg-code-block-lang: rgba(255, 255, 255, 0.7);
+  --gg-popover-bg: #292823;
+  --gg-popover-border: #3A3832;
+  --gg-dialog-bg: #272622;
+  --gg-dialog-shadow: rgba(0, 0, 0, 0.42);
+  --gg-accent-tint: rgba(120, 164, 255, 0.16);
+
+  /* Surfaces */
+  --background-primary: #1F1E1B;
+  --background-primary-alt: #23221F;
+  --background-secondary: #191814;
+  --background-secondary-alt: #262520;
+  --background-modifier-hover: #2D2B27;
+  --background-modifier-active-hover: #1E344C;
+  --background-modifier-border: #34322D;
+  --background-modifier-border-hover: #46433B;
+  --background-modifier-border-focus: #78A4FF;
+  --background-modifier-form-field: #1F1E1B;
+  --background-modifier-error: #E53E3E;
+  --background-modifier-error-hover: #C53030;
+  --background-modifier-error-rgb: 255, 138, 134;
+  --background-modifier-success: rgba(121, 216, 157, 0.16);
+  --background-modifier-cover: rgba(8, 8, 7, 0.58);
+
+  /* Text */
+  --text-normal: #E6E1D8;
+  --text-muted: #B8B1A6;
+  --text-faint: #7F776D;
+  --text-on-accent: #151411;
+  --text-accent: #78A4FF;
+  --text-accent-hover: #9BBEFF;
+  --text-selection: #1E344C;
+  --text-highlight-bg: rgba(245, 195, 107, 0.16);
+  --text-error: #FF8A86;
+  --text-success: #79D89D;
+  --text-warning: #F5C36B;
+
+  /* Interactive */
+  --interactive-normal: #34322D;
+  --interactive-hover: #3D3B35;
+  --interactive-accent: #78A4FF;
+  --interactive-accent-hover: #9BBEFF;
+
+  /* Dividers / icons */
+  --divider-color: #34322D;
+  --icon-color: #B8B1A6;
+  --icon-color-hover: #E6E1D8;
+  --icon-color-active: #E6E1D8;
+  --icon-color-focused: #E6E1D8;
+
+  /* Emphasis colors */
+  --bold-color: #E6E1D8;
+  --italic-color: #E6E1D8;
+
+  /* Code */
+  --code-normal: #B8B1A6;
+  --code-background: #262520;
+  --code-comment: #8E877D;
+  --code-keyword: #FF9BA0;
+  --code-tag: #FF9BA0;
+  --code-string: #A9D6FF;
+  --code-value: #8BB7FF;
+  --code-property: #8BB7FF;
+  --code-function: #C2AAFF;
+  --code-important: #F3B175;
+  --code-punctuation: #9C9488;
+
+  /* Links */
+  --link-color: #78A4FF;
+  --link-color-hover: #9BBEFF;
+  --link-external-color: #78A4FF;
+  --link-external-color-hover: #9BBEFF;
+  --link-unresolved-color: #B8B1A6;
+  --link-unresolved-opacity: 0.8;
+
+  /* Lists / checkboxes */
+  --list-marker-color: #78A4FF;
+  --checkbox-color: #78A4FF;
+  --checkbox-color-hover: #9BBEFF;
+  --checkbox-border-color: #7F776D;
+  --checkbox-border-color-hover: #9C9488;
+  --checkbox-marker-color: #151411;
+
+  /* Blockquote */
+  --blockquote-border-color: #78A4FF;
+
+  /* Tables */
+  --table-border-color: #34322D;
+  --table-header-background: #23221F;
+  --table-header-background-hover: #2D2B27;
+  --table-header-weight: 600;
+  --table-row-background-hover: #262520;
+  --table-row-alt-background: transparent;
+
+  /* HR / embeds */
+  --hr-color: #34322D;
+  --embed-border-left: 2px solid #78A4FF;
+
+  /* Tags */
+  --tag-color: #78A4FF;
+  --tag-color-hover: #9BBEFF;
+  --tag-background: rgba(120, 164, 255, 0.16);
+  --tag-background-hover: rgba(120, 164, 255, 0.24);
+
+  /* Nav (file explorer) */
+  --nav-item-color: #E6E1D8;
+  --nav-item-color-hover: #E6E1D8;
+  --nav-item-color-active: #E6E1D8;
+  --nav-item-background-hover: #2D2B27;
+  --nav-item-background-active: #1E344C;
+  --nav-collapse-icon-color: #7F776D;
+  --nav-collapse-icon-color-collapsed: #7F776D;
+  --nav-indentation-guide-color: #2A2925;
+
+  /* Tabs */
+  --tab-background-active: #1F1E1B;
+  --tab-text-color: #B8B1A6;
+  --tab-text-color-active: #B8B1A6;
+  --tab-text-color-focused: #B8B1A6;
+  --tab-text-color-focused-active: #E6E1D8;
+  --tab-text-color-focused-active-current: #E6E1D8;
+  --tab-text-color-focused-highlighted: #E6E1D8;
+  --tab-divider-color: #34322D;
+  --tab-outline-color: transparent;
+  --tab-curve: 0px;
+
+  /* Titlebar / ribbon / status bar */
+  --titlebar-background: #191814;
+  --titlebar-background-focused: #191814;
+  --titlebar-text-color: #B8B1A6;
+  --titlebar-text-color-focused: #E6E1D8;
+  --ribbon-background: #191814;
+  --ribbon-background-collapsed: #191814;
+  --status-bar-background: #1F1E1B;
+  --status-bar-border-color: #34322D;
+  --status-bar-border-width: 1px 0 0 0;
+  --status-bar-text-color: #B8B1A6;
+
+  /* Modals / prompts */
+  --modal-border-color: #3A3832;
+  --prompt-border-color: #3A3832;
+
+  /* Scrollbars */
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: rgba(255, 255, 255, 0.1);
+  --scrollbar-active-thumb-bg: rgba(255, 255, 255, 0.2);
+
+  /* Shadows */
+  --shadow-s: 0 1px 4px rgba(0, 0, 0, 0.22);
+  --shadow-l: 0 12px 26px rgba(0, 0, 0, 0.3);
+
+  /* Properties */
+  --metadata-label-text-color: #B8B1A6;
+  --metadata-label-text-color-hover: #B8B1A6;
+  --metadata-input-text-color: #E6E1D8;
+  --metadata-property-background: transparent;
+  --metadata-property-background-hover: #262520;
+  --metadata-property-background-active: #2D2B27;
+  --metadata-label-background-hover: transparent;
+  --metadata-label-background-active: transparent;
+  --metadata-input-background: transparent;
+  --metadata-input-background-hover: transparent;
+  --metadata-input-background-active: #262520;
+  --pill-color: #E6E1D8;
+  --pill-color-hover: #E6E1D8;
+  --pill-color-remove: #7F776D;
+  --pill-background: #2D2B27;
+  --pill-background-hover: #34322D;
+  --pill-border-color: transparent;
+  --pill-border-color-hover: transparent;
+}
+
+/* ------------------------------------------------------------
+   Headings — Tolaria margins, letter-spacing, and the H1 divider
+   ------------------------------------------------------------ */
+.markdown-rendered h1,
+.markdown-rendered h2,
+.markdown-rendered h3,
+.markdown-rendered h4,
+.markdown-rendered h5,
+.markdown-rendered h6,
+.markdown-source-view.mod-cm6 .cm-line[class*="HyperMD-header"] {
+  color: var(--gg-heading-color);
+}
+
+.markdown-rendered h1,
+.markdown-source-view.mod-cm6 .HyperMD-header-1,
+.inline-title {
+  letter-spacing: -0.5px;
+}
+.markdown-rendered h2,
+.markdown-rendered h3,
+.markdown-source-view.mod-cm6 .HyperMD-header-2,
+.markdown-source-view.mod-cm6 .HyperMD-header-3 {
+  letter-spacing: -0.5px;
+}
+
+/* Reading mode margins: h1 32/12, h2 28/10, h3 24/8, h4 20/6 */
+.markdown-rendered h1 { margin-top: 32px; margin-bottom: 12px; }
+.markdown-rendered h2 { margin-top: 28px; margin-bottom: 10px; }
+.markdown-rendered h3 { margin-top: 24px; margin-bottom: 8px; }
+.markdown-rendered h4 { margin-top: 20px; margin-bottom: 6px; }
+.markdown-rendered h5,
+.markdown-rendered h6 { margin-top: 20px; margin-bottom: 6px; }
+
+/* Live Preview: approximate block spacing with line padding */
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-1 { padding-top: 32px; }
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-2 { padding-top: 28px; }
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-3 { padding-top: 24px; }
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-4,
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-5,
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-6 { padding-top: 20px; }
+
+/* An H1 at the very top of the note (right below the properties panel /
+   inline title) drops its block spacing — Tolaria's Title sits flush */
+.markdown-source-view.mod-cm6 .cm-content > .cm-line.HyperMD-header-1:first-child {
+  padding-top: 0;
+}
+.markdown-preview-section > .mod-header + div h1,
+.markdown-preview-section > .metadata-container + div h1 {
+  margin-top: 0;
+}
+
+/* Tolaria draws a divider under every H1 block (its "Title" treatment) */
+.inline-title,
+.markdown-rendered h1,
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-1 {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--divider-color);
+}
+
+/* The first H1 is the note's Title — it hugs the top of the note
+   (or the properties block) instead of carrying the 32px gap that
+   body H1s get. */
+.markdown-source-view.mod-cm6 .cm-content > .cm-line.HyperMD-header-1:first-child,
+.markdown-source-view.mod-cm6 .cm-content > .metadata-container + .cm-line.HyperMD-header-1 {
+  padding-top: 4px;
+}
+.markdown-reading-view .markdown-preview-sizer > div:first-child > h1,
+.markdown-reading-view .markdown-preview-sizer > .metadata-container + div > h1,
+.markdown-reading-view .markdown-preview-sizer > .mod-header + div > h1 {
+  margin-top: 4px;
+}
+
+/* Properties block sits close to the content below it */
+.markdown-source-view.mod-cm6 .cm-content > .metadata-container,
+.markdown-rendered .metadata-container {
+  margin-bottom: 4px;
+}
+
+/* ------------------------------------------------------------
+   Lists — Obsidian already renders Live Preview bullets and
+   numbers with --list-marker-color; no extra drawing needed.
+   ------------------------------------------------------------ */
+
+/* ------------------------------------------------------------
+   Inline code + code blocks
+   Tolaria: inline = subtle gray chip; block = sidebar-tinted panel
+   (light) / near-black #161616 panel (dark)
+   ------------------------------------------------------------ */
+.markdown-rendered :not(pre) > code,
+.cm-s-obsidian span.cm-inline-code {
+  color: var(--code-normal);
+  background-color: var(--code-background);
+  border-radius: var(--code-radius);
+  padding: 1px 4px;
+}
+
+.markdown-rendered pre {
+  background-color: var(--gg-code-block-bg);
+  border: 1px solid var(--gg-code-block-border);
+  border-radius: 6px;
+}
+.markdown-rendered pre code {
+  color: var(--gg-code-block-text);
+}
+.markdown-rendered .copy-code-button {
+  background-color: transparent;
+  color: var(--gg-code-block-lang);
+  box-shadow: none;
+}
+.markdown-rendered .copy-code-button:hover {
+  background-color: transparent;
+  color: var(--gg-code-block-text);
+}
+
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
+  background-color: var(--gg-code-block-bg);
+  color: var(--gg-code-block-text);
+  border-left: 1px solid var(--gg-code-block-border);
+  border-right: 1px solid var(--gg-code-block-border);
+}
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock-begin {
+  border-top: 1px solid var(--gg-code-block-border);
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock-end {
+  border-bottom: 1px solid var(--gg-code-block-border);
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.markdown-source-view.mod-cm6 .code-block-flair {
+  color: var(--gg-code-block-lang);
+}
+
+/* ------------------------------------------------------------
+   Links — external underlined, wikilinks with a dotted rail
+   ------------------------------------------------------------ */
+.markdown-rendered a.external-link,
+.cm-s-obsidian .cm-link .cm-underline {
+  text-decoration: underline;
+}
+
+.markdown-rendered a.internal-link,
+.markdown-source-view.mod-cm6 .cm-hmd-internal-link {
+  color: var(--link-color);
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+}
+.markdown-source-view.mod-cm6 .cm-hmd-internal-link .cm-underline {
+  text-decoration: none;
+}
+.markdown-rendered a.internal-link.is-unresolved,
+.markdown-source-view.mod-cm6 .cm-hmd-internal-link.is-unresolved {
+  color: var(--link-unresolved-color);
+  border-bottom-color: currentColor;
+}
+
+/* ------------------------------------------------------------
+   Blockquote — 3px accent rail, italic, secondary text
+   ------------------------------------------------------------ */
+.markdown-rendered blockquote {
+  padding-inline-start: 16px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-quote {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ------------------------------------------------------------
+   Strikethrough, highlight, tables, hr
+   ------------------------------------------------------------ */
+.markdown-rendered del,
+.markdown-rendered s,
+.cm-s-obsidian .cm-strikethrough {
+  color: var(--text-muted);
+}
+
+.markdown-rendered mark,
+.cm-s-obsidian .cm-highlight {
+  border-radius: 2px;
+  padding: 0 0.12em;
+}
+
+.markdown-rendered table {
+  font-size: 0.9333em;
+}
+.markdown-rendered th,
+.markdown-rendered td {
+  padding: 8px 12px;
+}
+
+.markdown-rendered hr {
+  margin: 24px 0;
+}
+
+/* ------------------------------------------------------------
+   Workspace chrome
+   ------------------------------------------------------------ */
+.status-bar {
+  font-weight: 500;
+}
+
+.workspace-tab-header-container {
+  border-bottom: 1px solid var(--divider-color);
+}
+
+.view-header-title {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Sidebar section headers — Tolaria's 11px medium labels */
+.nav-folder-title.mod-root > .nav-folder-title-content,
+.workspace-leaf-content .tree-item-self.is-clickable.mod-collapsible.is-root {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: none;
+}
+
+/* Rounded nav rows like Tolaria's sidebar items */
+.nav-file-title,
+.nav-folder-title {
+  border-radius: var(--radius-s);
+}
+
+/* ------------------------------------------------------------
+   Menus, popovers, modals, command palette
+   ------------------------------------------------------------ */
+.menu {
+  background-color: var(--gg-popover-bg);
+  border: 1px solid var(--gg-popover-border);
+  border-radius: var(--radius-m);
+  box-shadow: 0 2px 8px var(--gg-dialog-shadow);
+  padding: 4px;
+}
+.menu-item {
+  font-size: 13px;
+  border-radius: var(--radius-s);
+  padding: 6px 10px;
+}
+
+.modal {
+  background-color: var(--gg-dialog-bg);
+  border: 1px solid var(--modal-border-color);
+  border-radius: var(--radius-l);
+  box-shadow: 0 8px 24px var(--gg-dialog-shadow);
+}
+
+.prompt {
+  background-color: var(--gg-dialog-bg);
+  border: 1px solid var(--prompt-border-color);
+  border-radius: var(--radius-l);
+  box-shadow: 0 8px 24px var(--gg-dialog-shadow);
+}
+.prompt-input {
+  font-size: 15px;
+}
+.suggestion-item {
+  font-size: 13px;
+  border-radius: var(--radius-s);
+}
+.suggestion-item.is-selected {
+  background-color: var(--background-modifier-hover);
+}
+
+/* Hover editor / page preview popover */
+.popover.hover-popover {
+  background-color: var(--gg-popover-bg);
+  border: 1px solid var(--gg-popover-border);
+  border-radius: var(--radius-m);
+  box-shadow: 0 8px 24px var(--gg-dialog-shadow);
+}
+
+/* ------------------------------------------------------------
+   Inputs — white field, #155DFF focus ring
+   ------------------------------------------------------------ */
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea {
+  background-color: var(--background-modifier-form-field);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+}
+input[type="text"]:focus,
+input[type="search"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  border-color: var(--background-modifier-border-focus);
+  box-shadow: 0 0 0 2px hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.15);
+}
+
+/* ------------------------------------------------------------
+   Properties (frontmatter) panel — Tolaria property rows:
+   12px muted labels, borderless inputs, quiet row hover,
+   24px chips. See Tolaria's propertyPanelLayout.ts.
+   ------------------------------------------------------------ */
+/* Neutralize the global form-field styling inside the panel —
+   Tolaria's key/value fields are borderless text */
+.metadata-container input,
+.metadata-container input:focus {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+/* "Properties" heading — Tolaria's 11px medium section label */
+.metadata-properties-heading .metadata-properties-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.metadata-property-icon {
+  color: var(--text-muted);
+}
+
+/* Pills get Tolaria's fixed chip height: 24px tall with the 12px
+   text centered — otherwise height collapses to text + padding
+   and chips look squat */
+.multi-select-pill {
+  min-height: 24px;
+  align-items: center;
+}
+
+/* Tags pills in Properties: quiet gray chips (matching the note
+   list) instead of Obsidian's accent-colored tag treatment */
+.metadata-property[data-property-key="tags"] .multi-select-pill {
+  color: var(--text-muted);
+  background-color: var(--background-modifier-hover);
+}
+.metadata-property[data-property-key="tags"] .multi-select-pill:hover {
+  color: var(--text-normal);
+  background-color: var(--background-modifier-border-hover);
+}
+/* The remove "x" gets Obsidian's accent tag color — mute it too */
+.metadata-property[data-property-key="tags"] .multi-select-pill-remove-button {
+  color: var(--text-muted);
+}
+.metadata-property[data-property-key="tags"] .multi-select-pill-remove-button:hover {
+  color: var(--text-normal);
+}
+
+/* Add property — quiet 12px text button */
+.metadata-add-button {
+  font-size: 12px;
+  color: var(--text-muted);
+  background: transparent;
+  box-shadow: none;
+  border-radius: var(--radius-s);
+}
+.metadata-add-button:hover {
+  color: var(--text-normal);
+  background: var(--background-modifier-hover);
+}
+
+/* Frontmatter source colors — Tolaria raw editor */
+.theme-light .cm-s-obsidian .cm-hmd-frontmatter.cm-atom,
+.theme-light .cm-s-obsidian .cm-hmd-frontmatter.cm-meta { color: #C9383E; }
+.theme-light .cm-s-obsidian .cm-hmd-frontmatter.cm-string { color: #2A7E4F; }
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-atom,
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-meta { color: #FFA6A3; }
+.theme-dark .cm-s-obsidian .cm-hmd-frontmatter.cm-string { color: #8EDFAE; }
+
+/* ------------------------------------------------------------
+   Notebook Navigator adaptation — styles the plugin's note list
+   like Tolaria's middle column (specs from Tolaria NoteItem.tsx):
+   14x16 row padding, square full-width rows, 13px medium titles,
+   12px muted previews, accent-tinted selection with a 3px rail.
+   The plugin defines its --nn-theme-* API on body; the theme
+   loads later, so these overrides win.
+   ------------------------------------------------------------ */
+body {
+  /* Panes: gray folder tree, white note list (Tolaria's 3-column depth) */
+  --nn-theme-nav-bg: var(--background-secondary);
+  --nn-theme-list-bg: var(--background-primary);
+
+  /* Text ramp: solid Tolaria grays instead of alpha mixes */
+  --nn-theme-foreground-muted: var(--text-muted);
+  --nn-theme-foreground-faded: var(--text-faint);
+
+  /* File rows. NOTE: row heights are frozen constants in the plugin's
+     JS (basePadding:16 + section line heights, no gap terms), so CSS
+     can never ADD vertical space — it can only redistribute it. Here:
+     trim padding 8px -> 5px (frees 6px) and spend it as 2px gaps
+     between title/preview/tags/metadata (worst case 3 gaps = 6px). */
+  --nn-file-padding-vertical: 5px;
+  --nn-file-item-padding-horizontal: 16px;
+  --nn-theme-file-border-radius: 0px;
+  --nn-file-name-size: 13px;
+  --nn-file-small-size: 12px;
+  --nn-theme-file-name-font-weight: 500;
+  --nn-theme-file-preview-color: var(--text-muted);
+  --nn-theme-file-date-color: var(--text-muted);
+  --nn-theme-list-separator-color: var(--divider-color);
+
+  /* Selection: Tolaria's default (untyped) note = gray tint + gray rail
+     (typeColors.ts DEFAULT_COLOR/DEFAULT_LIGHT_COLOR); blue is reserved
+     for the nav pane */
+  --nn-theme-file-selected-bg: var(--background-secondary-alt);
+  --nn-theme-file-selected-inactive-bg: var(--background-modifier-hover);
+
+  /* Line rhythm: plugin defaults (20/19/18px) already equal Tolaria's
+     1.5 ratio at 13/12px — and they MUST stay px values, because the
+     plugin computes preview max-height as calc(line-height * rows). */
+
+  /* Tags in rows -> quiet neutral chips (muted text on subtle gray),
+     matching the selected-state tag look instead of accent blue */
+  --nn-theme-file-tag-color: var(--text-muted);
+  --nn-theme-file-tag-bg: var(--background-modifier-hover);
+  --nn-theme-file-selected-tag-color: var(--text-muted);
+  /* One step darker than the selected card bg so chips stay legible —
+     including the inactive (editor-focused) state, whose card bg
+     otherwise equals the chip gray exactly */
+  --nn-theme-file-selected-tag-bg: var(--background-modifier-border-hover);
+  --nn-theme-file-selected-inactive-tag-color: var(--text-muted);
+  --nn-theme-file-selected-inactive-tag-bg: var(--background-modifier-border-hover);
+  --nn-theme-file-tag-border-color: transparent;
+  --nn-theme-file-property-border-color: transparent;
+  --nn-theme-file-tag-border-radius: 6px;
+  --nn-theme-file-tag-font-weight: 500;
+
+  /* Date-group headers -> muted section labels */
+  --nn-theme-list-group-header-color: var(--text-muted);
+  --nn-theme-list-group-header-font-weight: 500;
+
+  /* Folder tree rows: 13px-medium look, muted icons */
+  --nn-theme-navitem-name-font-weight: 500;
+  --nn-theme-navitem-icon-color: var(--text-muted);
+  --nn-theme-navitem-hover-bg: var(--background-modifier-hover);
+  --nn-theme-navitem-selected-bg: var(--background-modifier-active-hover);
+
+  /* List pane header title — Tolaria: 14px semibold */
+  --nn-list-title-font-size: 14px;
+}
+
+/* Selected row: semibold title + 3px accent rail, like Tolaria */
+.nn-file.nn-selected .nn-file-name {
+  font-weight: 600;
+}
+.nn-file.nn-selected .nn-file-content {
+  /* Rail color = Tolaria's default type color (muted-foreground) */
+  box-shadow: inset 3px 0 0 var(--text-muted);
+}
+
+/* Row separators run edge to edge (Tolaria draws a full border-b) */
+.nn-virtual-file-item:not(.nn-last-file)::after {
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+}
+
+/* Date-group headers ("Today", …) as small muted labels */
+.nn-list-group-header {
+  font-size: 12px;
+}
+
+/* Tolaria has no leading icon column in the note list — drop the
+   16px icon slot (+6px gap) the plugin reserves at the start of
+   every row. Width-only: safe for the virtualized row heights. */
+.nn-file-icon-slot {
+  display: none;
+}
+
+/* Section gaps inside a row, funded by the padding trim above —
+   see the budget note on --nn-file-padding-vertical. */
+.nn-file-text-content {
+  gap: 2px;
+}
+
+/* Full-bleed rows: remove the 10px white gutter around the list
+   scroller so selection backgrounds and separators reach the pane
+   edges (Tolaria rows are edge to edge). Scoped to the list pane
+   only — the nav pane keeps its default gutter. */
+.nn-list-pane {
+  --nn-scroller-padding: 0px;
+}
