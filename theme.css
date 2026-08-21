@@ -7,6 +7,98 @@
    Inter typography, 15px/1.5 editor scale, blue list markers.
    ============================================================ */
 
+/* Options for the Style Settings plugin. Every toggle below is opt-IN,
+   so the theme keeps its intended defaults when the plugin is absent. */
+
+/* @settings
+
+name: gogoga
+id: gogoga
+settings:
+    -
+        id: gg-colors
+        title: 配色 Colors
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: gg-accent
+        title: 强调色 Accent
+        description: 链接、列表符号、复选框、引用块边栏等都跟随这个颜色
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#155DFF'
+        default-dark: '#78A4FF'
+    -
+        id: gg-accent-hover
+        title: 强调色（悬停态）
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#0D4AD6'
+        default-dark: '#9BBEFF'
+    -
+        id: code-normal
+        title: 行内代码文字颜色
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#8E2726'
+        default-dark: '#FFA6A3'
+    -
+        id: gg-typography
+        title: 排版 Typography
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: gg-font-text
+        title: 正文字体
+        description: 留空则使用 Inter。系统字体栈会自动作为后备，无需填写。
+        type: variable-text
+        default: Inter
+        quotes: true
+    -
+        id: file-line-width
+        title: 正文行宽
+        description: Tolaria 的编辑区测量宽度是 740px
+        type: variable-number
+        default: 740
+        format: px
+    -
+        id: table-column-min-width
+        title: 表格最小列宽
+        description: 调大让稀疏表格更舒展，调小让长内容更早占满行宽
+        type: variable-number
+        default: 100
+        format: px
+    -
+        id: gg-features
+        title: 特性开关 Features
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: gogoga-hide-h1-divider
+        title: 隐藏一级标题下方的分隔线
+        description: Tolaria 在每个 H1 下画一条分隔线，把它当作笔记标题
+        type: class-toggle
+        default: false
+    -
+        id: gogoga-uniform-bullets
+        title: 统一嵌套列表符号
+        description: 默认按 Tolaria 的实心点 / 空心圆 / 方块区分层级，开启后全部使用实心点
+        type: class-toggle
+        default: false
+    -
+        id: gogoga-subpixel-text
+        title: 使用系统字体渲染
+        description: 默认使用灰度抗锯齿（与 Tolaria 一致，字重看起来更细），开启后回到系统默认的次像素渲染
+        type: class-toggle
+        default: false
+*/
+
 /* ------------------------------------------------------------
    Shared (non-color) variables — typography, sizing, spacing
    ------------------------------------------------------------ */
@@ -22,8 +114,11 @@ body {
   /* Fonts */
   --font-interface-theme: "Inter", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  --font-text-theme: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  /* Style Settings can override the first family; the fallback stack
+     survives either way */
+  --font-text-theme: var(--gg-font-text, "Inter"), -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    sans-serif;
   --font-monospace-theme: "SF Mono", ui-monospace, "IBM Plex Mono",
     "Fira Code", "JetBrains Mono", Menlo, monospace;
 
@@ -171,6 +266,8 @@ body {
   --accent-l: 54%;
 
   /* gogoga tokens */
+  --gg-accent: #155DFF;
+  --gg-accent-hover: #0D4AD6;
   --gg-heading-color: #37352F;
   --gg-code-block-bg: #F7F6F3;
   --gg-code-block-border: #E9E9E7;
@@ -180,7 +277,7 @@ body {
   --gg-popover-border: #E9E9E7;
   --gg-dialog-bg: #FFFFFF;
   --gg-dialog-shadow: rgba(0, 0, 0, 0.15);
-  --gg-accent-tint: rgba(21, 93, 255, 0.08);
+  --gg-accent-tint: color-mix(in srgb, var(--gg-accent) 8%, transparent);
 
   /* Surfaces */
   --background-primary: #FCFCFB;
@@ -191,7 +288,7 @@ body {
   --background-modifier-active-hover: #E8F4FE;
   --background-modifier-border: #E9E9E7;
   --background-modifier-border-hover: #D9D9D6;
-  --background-modifier-border-focus: #155DFF;
+  --background-modifier-border-focus: var(--gg-accent);
   --background-modifier-form-field: #FFFFFF;
   --background-modifier-error: #E53E3E;
   --background-modifier-error-hover: #C53030;
@@ -204,8 +301,8 @@ body {
   --text-muted: #787774;
   --text-faint: #B4B4B4;
   --text-on-accent: #FFFFFF;
-  --text-accent: #155DFF;
-  --text-accent-hover: #0D4AD6;
+  --text-accent: var(--gg-accent);
+  --text-accent-hover: var(--gg-accent-hover);
   --text-selection: #E8F4FE;
   --text-highlight-bg: #FEF3C7;
   --text-error: #E53E3E;
@@ -215,8 +312,8 @@ body {
   /* Interactive */
   --interactive-normal: #EBEBEA;
   --interactive-hover: #E2E2E0;
-  --interactive-accent: #155DFF;
-  --interactive-accent-hover: #0D4AD6;
+  --interactive-accent: var(--gg-accent);
+  --interactive-accent-hover: var(--gg-accent-hover);
 
   /* Dividers / icons */
   --divider-color: #E9E9E7;
@@ -243,23 +340,23 @@ body {
   --code-punctuation: #636C76;
 
   /* Links */
-  --link-color: #155DFF;
-  --link-color-hover: #0D4AD6;
-  --link-external-color: #155DFF;
-  --link-external-color-hover: #0D4AD6;
+  --link-color: var(--gg-accent);
+  --link-color-hover: var(--gg-accent-hover);
+  --link-external-color: var(--gg-accent);
+  --link-external-color-hover: var(--gg-accent-hover);
   --link-unresolved-color: #787774;
   --link-unresolved-opacity: 0.8;
 
   /* Lists / checkboxes */
-  --list-marker-color: #155DFF;
-  --checkbox-color: #155DFF;
-  --checkbox-color-hover: #0D4AD6;
+  --list-marker-color: var(--gg-accent);
+  --checkbox-color: var(--gg-accent);
+  --checkbox-color-hover: var(--gg-accent-hover);
   --checkbox-border-color: #B4B4B4;
   --checkbox-border-color-hover: #787774;
   --checkbox-marker-color: #FFFFFF;
 
   /* Blockquote */
-  --blockquote-border-color: #155DFF;
+  --blockquote-border-color: var(--gg-accent);
 
   /* Tables — white header on light, per theme.json */
   --table-border-color: #E9E9E7;
@@ -271,13 +368,13 @@ body {
 
   /* HR / embeds */
   --hr-color: #E9E9E7;
-  --embed-border-left: 2px solid #155DFF;
+  --embed-border-left: 2px solid var(--gg-accent);
 
   /* Tags — blue chip on blue-tinted bg */
-  --tag-color: #155DFF;
-  --tag-color-hover: #0D4AD6;
-  --tag-background: rgba(21, 93, 255, 0.08);
-  --tag-background-hover: rgba(21, 93, 255, 0.14);
+  --tag-color: var(--gg-accent);
+  --tag-color-hover: var(--gg-accent-hover);
+  --tag-background: color-mix(in srgb, var(--gg-accent) 8%, transparent);
+  --tag-background-hover: color-mix(in srgb, var(--gg-accent) 14%, transparent);
 
   /* Nav (file explorer) */
   --nav-item-color: #37352F;
@@ -359,6 +456,8 @@ body {
   --accent-l: 74%;
 
   /* gogoga tokens */
+  --gg-accent: #78A4FF;
+  --gg-accent-hover: #9BBEFF;
   --gg-heading-color: #F1ECE3;
   --gg-code-block-bg: #161616;
   --gg-code-block-border: transparent;
@@ -368,7 +467,7 @@ body {
   --gg-popover-border: #3A3832;
   --gg-dialog-bg: #272622;
   --gg-dialog-shadow: rgba(0, 0, 0, 0.42);
-  --gg-accent-tint: rgba(120, 164, 255, 0.16);
+  --gg-accent-tint: color-mix(in srgb, var(--gg-accent) 16%, transparent);
 
   /* Surfaces */
   --background-primary: #1F1E1B;
@@ -379,7 +478,7 @@ body {
   --background-modifier-active-hover: #1E344C;
   --background-modifier-border: #34322D;
   --background-modifier-border-hover: #46433B;
-  --background-modifier-border-focus: #78A4FF;
+  --background-modifier-border-focus: var(--gg-accent);
   --background-modifier-form-field: #1F1E1B;
   --background-modifier-error: #E53E3E;
   --background-modifier-error-hover: #C53030;
@@ -392,8 +491,8 @@ body {
   --text-muted: #B8B1A6;
   --text-faint: #7F776D;
   --text-on-accent: #151411;
-  --text-accent: #78A4FF;
-  --text-accent-hover: #9BBEFF;
+  --text-accent: var(--gg-accent);
+  --text-accent-hover: var(--gg-accent-hover);
   --text-selection: #1E344C;
   --text-highlight-bg: rgba(245, 195, 107, 0.16);
   --text-error: #FF8A86;
@@ -403,8 +502,8 @@ body {
   /* Interactive */
   --interactive-normal: #34322D;
   --interactive-hover: #3D3B35;
-  --interactive-accent: #78A4FF;
-  --interactive-accent-hover: #9BBEFF;
+  --interactive-accent: var(--gg-accent);
+  --interactive-accent-hover: var(--gg-accent-hover);
 
   /* Dividers / icons */
   --divider-color: #34322D;
@@ -431,23 +530,23 @@ body {
   --code-punctuation: #9C9488;
 
   /* Links */
-  --link-color: #78A4FF;
-  --link-color-hover: #9BBEFF;
-  --link-external-color: #78A4FF;
-  --link-external-color-hover: #9BBEFF;
+  --link-color: var(--gg-accent);
+  --link-color-hover: var(--gg-accent-hover);
+  --link-external-color: var(--gg-accent);
+  --link-external-color-hover: var(--gg-accent-hover);
   --link-unresolved-color: #B8B1A6;
   --link-unresolved-opacity: 0.8;
 
   /* Lists / checkboxes */
-  --list-marker-color: #78A4FF;
-  --checkbox-color: #78A4FF;
-  --checkbox-color-hover: #9BBEFF;
+  --list-marker-color: var(--gg-accent);
+  --checkbox-color: var(--gg-accent);
+  --checkbox-color-hover: var(--gg-accent-hover);
   --checkbox-border-color: #7F776D;
   --checkbox-border-color-hover: #9C9488;
   --checkbox-marker-color: #151411;
 
   /* Blockquote */
-  --blockquote-border-color: #78A4FF;
+  --blockquote-border-color: var(--gg-accent);
 
   /* Tables */
   --table-border-color: #34322D;
@@ -459,13 +558,13 @@ body {
 
   /* HR / embeds */
   --hr-color: #34322D;
-  --embed-border-left: 2px solid #78A4FF;
+  --embed-border-left: 2px solid var(--gg-accent);
 
   /* Tags */
-  --tag-color: #78A4FF;
-  --tag-color-hover: #9BBEFF;
-  --tag-background: rgba(120, 164, 255, 0.16);
-  --tag-background-hover: rgba(120, 164, 255, 0.24);
+  --tag-color: var(--gg-accent);
+  --tag-color-hover: var(--gg-accent-hover);
+  --tag-background: color-mix(in srgb, var(--gg-accent) 16%, transparent);
+  --tag-background-hover: color-mix(in srgb, var(--gg-accent) 24%, transparent);
 
   /* Nav (file explorer) */
   --nav-item-color: #E6E1D8;
@@ -881,7 +980,7 @@ input[type="password"]:focus,
 input[type="number"]:focus,
 textarea:focus {
   border-color: var(--background-modifier-border-focus);
-  box-shadow: 0 0 0 2px hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.15);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--gg-accent) 15%, transparent);
 }
 
 /* ------------------------------------------------------------
@@ -1068,4 +1167,28 @@ body {
    only — the nav pane keeps its default gutter. */
 .nn-list-pane {
   --nn-scroller-padding: 0px;
+}
+/* ------------------------------------------------------------
+   Style Settings toggles — each rule below only applies when the
+   plugin adds the corresponding opt-in class to <body>, so the
+   theme's defaults hold without the plugin installed.
+   ------------------------------------------------------------ */
+body.gogoga-hide-h1-divider .inline-title,
+body.gogoga-hide-h1-divider .markdown-rendered h1,
+body.gogoga-hide-h1-divider .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-1 {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+body.gogoga-uniform-bullets .markdown-source-view.mod-cm6 .cm-line[class*="HyperMD-list-line"] .list-bullet::after,
+body.gogoga-uniform-bullets .markdown-rendered ul ul > li > .list-bullet::after,
+body.gogoga-uniform-bullets .markdown-rendered ul ul ul > li > .list-bullet::after {
+  background-color: var(--list-marker-color);
+  border: none;
+  border-radius: 50%;
+}
+
+body.gogoga-subpixel-text {
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
 }

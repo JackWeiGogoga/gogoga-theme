@@ -24,6 +24,10 @@ list markers, and an H1-as-title layout with a divider.
   tag chips — via the plugin's `--nn-theme-*` API
 - **Companion plugin** [`gogoga-icons`](plugins/gogoga-icons/): swaps
   Obsidian's Lucide UI icons for Phosphor (the set Tolaria uses)
+- **Style Settings support**: accent and inline-code colors (per light/dark),
+  body font, text measure, table column floor, and opt-in toggles for the H1
+  divider, nested bullet shapes, and font smoothing. Every toggle is opt-in,
+  so the theme keeps its intended defaults without the plugin.
 
 ## Install
 
