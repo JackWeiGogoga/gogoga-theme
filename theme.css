@@ -156,7 +156,9 @@ body {
   --inline-title-margin-bottom: 12px;
 
   /* Emphasis */
-  --bold-weight: 700;
+  /* 600, not Tolaria's 700: CJK faces (PingFang) top out at Semibold,
+     so 700 makes Latin heavier than the Chinese beside it */
+  --bold-weight: 600;
 
   /* Lists — indent 24px @15px base, blue markers */
   --list-indent: 1.6em;
@@ -323,7 +325,7 @@ body {
   --icon-color-focused: #37352F;
 
   /* Emphasis colors */
-  --bold-color: #37352F;
+  --bold-color: var(--gg-heading-color);
   --italic-color: #37352F;
 
   /* Code — inline: dark red text on the subtle hover surface */
@@ -513,7 +515,7 @@ body {
   --icon-color-focused: #E6E1D8;
 
   /* Emphasis colors */
-  --bold-color: #E6E1D8;
+  --bold-color: var(--gg-heading-color);
   --italic-color: #E6E1D8;
 
   /* Code — inline: Tolaria's dark monospace red on the subtle surface */
@@ -877,7 +879,7 @@ body {
 }
 
 .workspace-tab-header-container {
-  border-bottom: 1px solid var(--divider-color);
+  border-bottom: none;
 }
 
 .view-header-title {
