@@ -1,0 +1,142 @@
+/* gogoga-outline — Codex-style heading rail with a dock wave.
+   At rest: identical short dashes. On hover the JS drives a gaussian
+   wave (inline width/height per dash); the short transitions below
+   give the motion its liquid trailing feel. */
+
+.gg-outline {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 12;
+  display: flex;
+  max-height: 76%;
+  pointer-events: none;
+}
+
+.gg-outline[data-side="right"] {
+  right: 6px;
+  flex-direction: row-reverse;
+}
+
+.gg-outline[data-side="left"] {
+  left: 6px;
+}
+
+.gg-outline-empty {
+  display: none;
+}
+
+.gg-outline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 6px;
+  pointer-events: auto;
+}
+
+/* Dashes anchor to the content edge, growing inward like Codex */
+.gg-outline[data-side="right"] .gg-outline-list { align-items: flex-end; }
+.gg-outline[data-side="left"] .gg-outline-list { align-items: flex-start; }
+
+/* Kill Obsidian's default <button> chrome explicitly; `all: unset`
+   alone loses to core's button selectors. */
+.gg-outline .gg-outline-item,
+.gg-outline .gg-outline-item:hover,
+.gg-outline .gg-outline-item:focus {
+  all: unset;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: 8px;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.gg-outline[data-side="right"] .gg-outline-item { justify-content: flex-end; }
+
+/* Uniform 12px dashes at rest; JS overrides width/height inline
+   while the wave is live. The transition is what makes the wave
+   feel liquid instead of jittery. */
+.gg-outline-tick {
+  flex: 0 0 auto;
+  width: 12px;
+  height: 2px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--text-faint) 75%, transparent);
+  transition: width 140ms ease-out, height 140ms ease-out,
+    background-color 160ms ease;
+}
+
+/* Current section keeps its accent color at rest and in the wave */
+.gg-outline-item.is-active .gg-outline-tick {
+  background: var(--text-accent);
+}
+
+/* The crest — the dash nearest the cursor — goes dark */
+.gg-outline-item.is-crest .gg-outline-tick {
+  background: var(--text-normal);
+}
+
+.gg-outline-item.is-active.is-crest .gg-outline-tick {
+  background: var(--text-accent);
+}
+
+/* ---------------- Preview card ---------------- */
+.gg-outline-preview {
+  position: absolute;
+  width: 300px;
+  padding: 12px 14px;
+  border: 1px solid var(--gg-popover-border, var(--background-modifier-border));
+  border-radius: var(--radius-l, 10px);
+  background: var(--gg-popover-bg, var(--background-primary));
+  box-shadow: var(--shadow-l, 0 8px 24px rgba(0, 0, 0, 0.14));
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-50%);
+  /* `top` transitions too, so the card slides along with the crest */
+  transition: opacity 150ms ease, visibility 150ms,
+    top 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.gg-outline[data-side="right"] .gg-outline-preview {
+  right: calc(100% + 12px);
+}
+
+.gg-outline[data-side="left"] .gg-outline-preview {
+  left: calc(100% + 12px);
+}
+
+.gg-outline-has-preview .gg-outline-preview {
+  opacity: 1;
+  visibility: visible;
+}
+
+.gg-outline-preview-title {
+  margin-bottom: 5px;
+  color: var(--text-normal);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.gg-outline-preview-body {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gg-outline-tick,
+  .gg-outline-preview {
+    transition: none;
+  }
+}

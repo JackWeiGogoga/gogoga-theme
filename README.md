@@ -22,8 +22,12 @@ list markers, and an H1-as-title layout with a divider.
   [Notebook Navigator](https://github.com/johansan/notebook-navigator)
   plugin's note list — edge-to-edge rows, Tolaria selection states, quiet
   tag chips — via the plugin's `--nn-theme-*` API
-- **Companion plugin** [`gogoga-icons`](plugins/gogoga-icons/): swaps
-  Obsidian's Lucide UI icons for Phosphor (the set Tolaria uses)
+- **Companion plugins**:
+  [`gogoga-icons`](plugins/gogoga-icons/) swaps Obsidian's Lucide UI icons
+  for Phosphor (the set Tolaria uses), and
+  [`gogoga-outline`](plugins/gogoga-outline/) pins a Codex-style heading rail
+  to the edge of the editor — dashes that rise in a dock-like wave under the
+  cursor, with section previews and click-to-scroll
 - **Style Settings support**: accent and inline-code colors (per light/dark),
   body font, text measure, table column floor, and opt-in toggles for the H1
   divider, nested bullet shapes, and font smoothing. Every toggle is opt-in,
