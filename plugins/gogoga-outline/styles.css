@@ -71,6 +71,20 @@
     background-color 160ms ease;
 }
 
+/* Names the dash for screen readers without an aria-label, which
+   Obsidian would turn into a tooltip */
+.gg-outline-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Current section keeps its accent color at rest and in the wave */
 .gg-outline-item.is-active .gg-outline-tick {
   background: var(--text-accent);
@@ -134,9 +148,120 @@
   line-height: 1.55;
 }
 
+/* ---------------- Global outline panel ----------------
+   Resting on the rail unfolds this beside it. Deliberately a plain
+   flyout: the rail does not move, so nothing shifts out from under
+   the cursor and a 50-heading note behaves like a 5-heading one. */
+.gg-outline-panel {
+  position: absolute;
+  top: 50%;
+  width: var(--gg-panel-width, 240px);
+  padding: 6px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 1px solid var(--gg-popover-border, var(--background-modifier-border));
+  border-radius: var(--radius-l, 10px);
+  background: var(--gg-popover-bg, var(--background-primary));
+  box-shadow: var(--shadow-l, 0 8px 24px rgba(0, 0, 0, 0.14));
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-50%) translateX(var(--gg-panel-slide, 8px));
+  transition: opacity 180ms ease, visibility 180ms,
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  outline: none;
+}
+
+/* Slides out of the rail toward the text, so the motion reads as the
+   panel coming from the dashes rather than arriving from off-screen */
+.gg-outline[data-side="right"] .gg-outline-panel {
+  right: calc(100% + 8px);
+  --gg-panel-slide: 8px;
+  --gg-row-slide: -4px;
+}
+
+.gg-outline[data-side="left"] .gg-outline-panel {
+  left: calc(100% + 8px);
+  --gg-panel-slide: -8px;
+  --gg-row-slide: 4px;
+}
+
+.gg-outline-is-expanded .gg-outline-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+  pointer-events: auto;
+}
+
+.gg-outline-panel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+/* Chrome reset only — the :hover/:focus copies are what beat core's
+   button selectors. Everything visual lives one notch more specific
+   below, so `all: unset` can never claw it back on hover. */
+.gg-outline-panel .gg-outline-row,
+.gg-outline-panel .gg-outline-row:hover,
+.gg-outline-panel .gg-outline-row:focus {
+  all: unset;
+}
+
+.gg-outline .gg-outline-panel .gg-outline-row {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 4px 8px;
+  border-radius: var(--radius-s, 4px);
+  color: var(--text-muted);
+  font-size: 12.5px;
+  line-height: 1.45;
+  text-align: start;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateX(var(--gg-row-slide, -4px));
+  transition: opacity 160ms ease, transform 160ms ease,
+    background-color 120ms ease, color 120ms ease;
+}
+
+/* Top-level headings read a shade stronger than their children —
+   the indent alone is thin evidence of hierarchy on one line */
+.gg-outline .gg-outline-panel .gg-outline-row[data-depth="0"] {
+  color: var(--text-normal);
+}
+
+/* Rows fade in from the top down; the cap keeps a long outline from
+   trailing off into a visibly slow reveal */
+.gg-outline-is-expanded .gg-outline-panel .gg-outline-row {
+  opacity: 1;
+  transform: none;
+  transition-delay: var(--gg-row-delay, 0ms);
+}
+
+/* Driven by JS, not :hover — the rail scrubs this same highlight
+   while the panel is open */
+.gg-outline .gg-outline-panel .gg-outline-row.is-focus {
+  background-color: var(--background-modifier-hover);
+  color: var(--text-normal);
+}
+
+.gg-outline .gg-outline-panel .gg-outline-row.is-active {
+  color: var(--text-accent);
+  font-weight: 500;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .gg-outline-tick,
-  .gg-outline-preview {
+  .gg-outline-preview,
+  .gg-outline-panel,
+  .gg-outline .gg-outline-panel .gg-outline-row {
     transition: none;
+  }
+  .gg-outline .gg-outline-panel .gg-outline-row {
+    transform: none;
   }
 }
