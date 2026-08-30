@@ -1049,6 +1049,55 @@ textarea:focus {
   background: var(--background-modifier-hover);
 }
 
+/* ------------------------------------------------------------
+   Properties as a side panel — Tolaria keeps a note's properties
+   in a dedicated panel instead of stacking them above the text.
+   Obsidian does the same once Settings -> Editor -> "Properties
+   in document" is set to Hidden and the "File properties" core
+   view is docked in the right sidebar.
+
+   Obsidian's own sidebar defaults square off every row and draw
+   a 1px hairline under each one; Tolaria's panel is a plain list
+   of rows with a quiet hover fill. Undo the hairlines, give the
+   rows their radius and rhythm back.
+   ------------------------------------------------------------ */
+.workspace-leaf-content[data-type="file-properties"] .metadata-container,
+.workspace-leaf-content[data-type="all-properties"] .metadata-container {
+  --metadata-divider-width: 0;
+  --metadata-property-radius: var(--radius-s);
+  --metadata-property-radius-hover: var(--radius-s);
+  --metadata-property-radius-focus: var(--radius-s);
+  --metadata-property-padding: 0 6px;
+  --metadata-label-width: 6.5em;
+  --metadata-input-height: 26px;
+  margin-block-end: 0;
+}
+/* Rows sit shoulder to shoulder in Tolaria; 1px keeps them from
+   touching without reopening Obsidian's default 3px ladder */
+.workspace-leaf-content[data-type="file-properties"] .metadata-properties,
+.workspace-leaf-content[data-type="all-properties"] .metadata-properties {
+  --metadata-gap: 1px;
+}
+/* Panel gutter. Kept tight so that the 6px of row padding above
+   can carry the hover fill a little past the label text, the way
+   Tolaria's does, without pushing the text off the sidebar's
+   own left rhythm */
+.workspace-leaf-content[data-type="file-properties"] .view-content {
+  padding: var(--size-4-1) var(--size-4-2);
+}
+/* The value column is the note's actual content — full-strength
+   text against the muted labels */
+.workspace-leaf-content[data-type="file-properties"] .metadata-property-value {
+  color: var(--text-normal);
+}
+/* "Add property" spans the panel as a quiet full-width row */
+.workspace-leaf-content[data-type="file-properties"] .metadata-add-button {
+  width: 100%;
+  justify-content: flex-start;
+  padding: 0 6px;
+  height: 26px;
+}
+
 /* Frontmatter source colors — Tolaria raw editor */
 .theme-light .cm-s-obsidian .cm-hmd-frontmatter.cm-atom,
 .theme-light .cm-s-obsidian .cm-hmd-frontmatter.cm-meta { color: #C9383E; }
