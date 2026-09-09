@@ -1201,11 +1201,26 @@ body {
 
 /* Tolaria has no leading icon column in the note list, so the 16px icon
    slot (+6px gap) the plugin reserves at the start of every row is dropped.
-   Rows that actually carry an icon (frontmatter `icon`, folder icons, …)
-   keep it, so mind maps and drawings stay recognisable without costing the
-   other 99% of rows their horizontal space. */
+   Rows that do carry an icon (frontmatter `icon`, folder icons, …) keep it,
+   but it moves to the end of the row: every title then starts at the same
+   left edge, and the icon reads as a trailing badge instead of pushing a
+   handful of rows out of line. */
 .nn-file-icon-slot:empty {
   display: none;
+}
+
+.nn-file-icon-slot:not(:empty) {
+  order: 9;
+  align-self: flex-start;
+  margin-inline-start: 8px;
+  /* the leading-column gap the plugin budgets for is not wanted here */
+  margin-inline-end: calc(-1 * var(--nn-file-icon-slot-gap, 0px));
+}
+
+/* .nn-quick-actions-panel is absolutely positioned in the same top-right
+   corner, so step out of its way while the row is hovered. */
+.nn-file:hover .nn-file-icon-slot:not(:empty) {
+  opacity: 0;
 }
 
 /* Section gaps inside a row, funded by the padding trim above —
