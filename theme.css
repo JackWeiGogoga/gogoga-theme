@@ -305,7 +305,7 @@ body {
   --text-on-accent: #FFFFFF;
   --text-accent: var(--gg-accent);
   --text-accent-hover: var(--gg-accent-hover);
-  --text-selection: #E8F4FE;
+  --text-selection: #B1D4FB;
   --text-highlight-bg: #FEF3C7;
   --text-error: #E53E3E;
   --text-success: #38A169;
@@ -1199,10 +1199,12 @@ body {
   font-size: 12px;
 }
 
-/* Tolaria has no leading icon column in the note list — drop the
-   16px icon slot (+6px gap) the plugin reserves at the start of
-   every row. Width-only: safe for the virtualized row heights. */
-.nn-file-icon-slot {
+/* Tolaria has no leading icon column in the note list, so the 16px icon
+   slot (+6px gap) the plugin reserves at the start of every row is dropped.
+   Rows that actually carry an icon (frontmatter `icon`, folder icons, …)
+   keep it, so mind maps and drawings stay recognisable without costing the
+   other 99% of rows their horizontal space. */
+.nn-file-icon-slot:empty {
   display: none;
 }
 
