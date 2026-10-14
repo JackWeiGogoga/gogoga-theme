@@ -12,7 +12,7 @@ cp "$VAULT/.obsidian/themes/gogoga/theme.css" \
 
 # Companion plugins: copy whatever the vault has, skipping any that
 # are not installed there.
-for name in gogoga-icons gogoga-outline; do
+for name in gogoga-icons gogoga-outline gogoga-youtube; do
   src="$VAULT/.obsidian/plugins/$name"
   [ -d "$src" ] || continue
   mkdir -p "$REPO/plugins/$name"

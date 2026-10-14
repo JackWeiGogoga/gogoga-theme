@@ -27,7 +27,10 @@ list markers, and an H1-as-title layout with a divider.
   for Phosphor (the set Tolaria uses), and
   [`gogoga-outline`](plugins/gogoga-outline/) pins a Codex-style heading rail
   to the edge of the editor — dashes that rise in a dock-like wave under the
-  cursor, with section previews and click-to-scroll
+  cursor, with section previews and click-to-scroll.
+  [`gogoga-youtube`](plugins/gogoga-youtube/) manages grouped YouTube channel
+  subscriptions, recent uploads, read state, and opt-in video notes using
+  public RSS feeds, with a generated native Bases view.
 - **Style Settings support**: accent and inline-code colors (per light/dark),
   body font, text measure, table column floor, and opt-in toggles for the H1
   divider, nested bullet shapes, and font smoothing. Every toggle is opt-in,

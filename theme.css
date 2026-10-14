@@ -992,8 +992,8 @@ textarea:focus {
    ------------------------------------------------------------ */
 /* Neutralize the global form-field styling inside the panel —
    Tolaria's key/value fields are borderless text */
-.metadata-container input,
-.metadata-container input:focus {
+.metadata-container input:not([type="checkbox"]),
+.metadata-container input:not([type="checkbox"]):focus {
   background: transparent;
   border: none;
   box-shadow: none;
