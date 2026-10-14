@@ -1,5 +1,7 @@
 # gogoga
 
+![gogoga in light and dark mode](screenshots/preview.png)
+
 An Obsidian theme that replicates the design language of
 [Tolaria](https://github.com/refactoringhq/tolaria): Notion-flavored light
 palette, warm charcoal dark palette, `#155DFF` accent, Inter typography, blue
@@ -23,12 +25,12 @@ list markers, and an H1-as-title layout with a divider.
   plugin's note list — edge-to-edge rows, Tolaria selection states, quiet
   tag chips — via the plugin's `--nn-theme-*` API
 - **Companion plugins**:
-  [`gogoga-icons`](plugins/gogoga-icons/) swaps Obsidian's Lucide UI icons
+  [`gogoga-icons`](https://github.com/JackWeiGogoga/gogoga-icons) swaps Obsidian's Lucide UI icons
   for Phosphor (the set Tolaria uses), and
-  [`gogoga-outline`](plugins/gogoga-outline/) pins a Codex-style heading rail
+  [`gogoga-outline`](https://github.com/JackWeiGogoga/gogoga-outline) pins a Codex-style heading rail
   to the edge of the editor — dashes that rise in a dock-like wave under the
   cursor, with section previews and click-to-scroll.
-  [`gogoga-youtube`](plugins/gogoga-youtube/) manages grouped YouTube channel
+  [`gogoga-youtube`](https://github.com/JackWeiGogoga/gogoga-youtube) manages grouped YouTube channel
   subscriptions, recent uploads, read state, and opt-in video notes using
   public RSS feeds, with a generated native Bases view.
 - **Style Settings support**: accent and inline-code colors (per light/dark),
@@ -51,7 +53,7 @@ Settings → Appearance → Themes.
 - Set the base font size to **15px** (Settings → Appearance) to match
   Tolaria's editor scale; heading sizes are relative to this base.
 - For the three-pane Tolaria layout, install Notebook Navigator and the
-  [gogoga-icons](plugins/gogoga-icons/) companion plugin.
+  [gogoga-icons](https://github.com/JackWeiGogoga/gogoga-icons) companion plugin.
 
 ### Full setup guide
 

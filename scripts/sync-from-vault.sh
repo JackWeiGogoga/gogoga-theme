@@ -4,6 +4,8 @@ set -euo pipefail
 
 VAULT="${1:?usage: sync-from-vault.sh <vault-path>}"
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
+# Companion plugins live in sibling repos under ../plugins/.
+PLUGINS="$(cd "$REPO/../plugins" && pwd)"
 
 [ -f "$VAULT/.obsidian/themes/gogoga/theme.css" ] || { echo "error: theme not found in $VAULT"; exit 1; }
 
@@ -15,9 +17,9 @@ cp "$VAULT/.obsidian/themes/gogoga/theme.css" \
 for name in gogoga-icons gogoga-outline gogoga-youtube; do
   src="$VAULT/.obsidian/plugins/$name"
   [ -d "$src" ] || continue
-  mkdir -p "$REPO/plugins/$name"
+  mkdir -p "$PLUGINS/$name"
   for f in main.js manifest.json styles.css gen-icons.mjs; do
-    [ -f "$src/$f" ] && cp "$src/$f" "$REPO/plugins/$name/"
+    [ -f "$src/$f" ] && cp "$src/$f" "$PLUGINS/$name/"
   done
 done
 
