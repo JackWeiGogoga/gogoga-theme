@@ -37,8 +37,8 @@ list markers, and an H1-as-title layout with a divider.
   body font, text measure, and table column floor, plus opt-in toggles to hide
   the H1 divider, use one bullet shape at every nesting level, and fall back to
   the system's font rendering. Every toggle is off by default, so the theme
-  keeps its intended look without the plugin. Option labels are in Simplified
-  Chinese, with English group names.
+  keeps its intended look without the plugin. Option labels follow Obsidian's
+  language: English, or Simplified Chinese when Obsidian is set to Chinese.
 
 ## Install
 

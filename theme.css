@@ -17,14 +17,17 @@ id: gogoga
 settings:
     -
         id: gg-colors
-        title: 配色 Colors
+        title: Colors
+        title.zh: 配色
         type: heading
         level: 2
         collapsed: true
     -
         id: gg-accent
-        title: 强调色 Accent
-        description: 链接、列表符号、复选框、引用块边栏等都跟随这个颜色
+        title: Accent color
+        title.zh: 强调色
+        description: Used by links, list markers, checkboxes, blockquote bars and more
+        description.zh: 链接、列表符号、复选框、引用块边栏等都跟随这个颜色
         type: variable-themed-color
         format: hex
         opacity: false
@@ -32,7 +35,8 @@ settings:
         default-dark: '#78A4FF'
     -
         id: gg-accent-hover
-        title: 强调色（悬停态）
+        title: Accent color (hover)
+        title.zh: 强调色（悬停态）
         type: variable-themed-color
         format: hex
         opacity: false
@@ -40,7 +44,8 @@ settings:
         default-dark: '#9BBEFF'
     -
         id: code-normal
-        title: 行内代码文字颜色
+        title: Inline code text color
+        title.zh: 行内代码文字颜色
         type: variable-themed-color
         format: hex
         opacity: false
@@ -48,53 +53,67 @@ settings:
         default-dark: '#FFA6A3'
     -
         id: gg-typography
-        title: 排版 Typography
+        title: Typography
+        title.zh: 排版
         type: heading
         level: 2
         collapsed: true
     -
         id: gg-font-text
-        title: 正文字体
-        description: 留空则使用 Inter。系统字体栈会自动作为后备，无需填写。
+        title: Body font
+        title.zh: 正文字体
+        description: Leave empty to use Inter. The system font stack is always added as a fallback.
+        description.zh: 留空则使用 Inter。系统字体栈会自动作为后备，无需填写。
         type: variable-text
         default: Inter
         quotes: true
     -
         id: file-line-width
-        title: 正文行宽
-        description: Tolaria 的编辑区测量宽度是 740px
+        title: Line width
+        title.zh: 正文行宽
+        description: Tolaria's editor measure is 740px
+        description.zh: Tolaria 的编辑区测量宽度是 740px
         type: variable-number
         default: 740
         format: px
     -
         id: table-column-min-width
-        title: 表格最小列宽
-        description: 调大让稀疏表格更舒展，调小让长内容更早占满行宽
+        title: Minimum table column width
+        title.zh: 表格最小列宽
+        description: Raise it to give sparse tables more room; lower it so long content fills the line sooner
+        description.zh: 调大让稀疏表格更舒展，调小让长内容更早占满行宽
         type: variable-number
         default: 100
         format: px
     -
         id: gg-features
-        title: 特性开关 Features
+        title: Features
+        title.zh: 特性开关
         type: heading
         level: 2
         collapsed: true
     -
         id: gogoga-hide-h1-divider
-        title: 隐藏一级标题下方的分隔线
-        description: Tolaria 在每个 H1 下画一条分隔线，把它当作笔记标题
+        title: Hide the divider under H1
+        title.zh: 隐藏一级标题下方的分隔线
+        description: Tolaria draws a divider under every H1 and treats it as the note title
+        description.zh: Tolaria 在每个 H1 下画一条分隔线，把它当作笔记标题
         type: class-toggle
         default: false
     -
         id: gogoga-uniform-bullets
-        title: 统一嵌套列表符号
-        description: 默认按 Tolaria 的实心点 / 空心圆 / 方块区分层级，开启后全部使用实心点
+        title: Same bullet at every level
+        title.zh: 统一嵌套列表符号
+        description: By default nested levels use Tolaria's dot / circle / square; turn on to use dots everywhere
+        description.zh: 默认按 Tolaria 的实心点 / 空心圆 / 方块区分层级，开启后全部使用实心点
         type: class-toggle
         default: false
     -
         id: gogoga-subpixel-text
-        title: 使用系统字体渲染
-        description: 默认使用灰度抗锯齿（与 Tolaria 一致，字重看起来更细），开启后回到系统默认的次像素渲染
+        title: Use the system's font rendering
+        title.zh: 使用系统字体渲染
+        description: By default text uses grayscale antialiasing (as in Tolaria, which looks lighter); turn on to use the system's subpixel rendering
+        description.zh: 默认使用灰度抗锯齿（与 Tolaria 一致，字重看起来更细），开启后回到系统默认的次像素渲染
         type: class-toggle
         default: false
 */
