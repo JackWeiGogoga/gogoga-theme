@@ -1,13 +1,13 @@
 # gogoga
 
-![gogoga in light and dark mode](screenshots/preview.png)
+**English** | [简体中文](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/README.zh-CN.md)
+
+![gogoga in light and dark mode](https://raw.githubusercontent.com/JackWeiGogoga/gogoga-theme/main/screenshots/preview.png)
 
 An Obsidian theme that replicates the design language of
 [Tolaria](https://github.com/refactoringhq/tolaria): Notion-flavored light
 palette, warm charcoal dark palette, `#155DFF` accent, Inter typography, blue
 list markers, and an H1-as-title layout with a divider.
-
-> Screenshots: coming soon (`screenshots/`).
 
 ## Features
 
@@ -34,9 +34,11 @@ list markers, and an H1-as-title layout with a divider.
   subscriptions, recent uploads, read state, and opt-in video notes using
   public RSS feeds, with a generated native Bases view.
 - **Style Settings support**: accent and inline-code colors (per light/dark),
-  body font, text measure, table column floor, and opt-in toggles for the H1
-  divider, nested bullet shapes, and font smoothing. Every toggle is opt-in,
-  so the theme keeps its intended defaults without the plugin.
+  body font, text measure, and table column floor, plus opt-in toggles to hide
+  the H1 divider, use one bullet shape at every nesting level, and fall back to
+  the system's font rendering. Every toggle is off by default, so the theme
+  keeps its intended look without the plugin. Option labels are in Simplified
+  Chinese, with English group names.
 
 ## Install
 
@@ -57,7 +59,7 @@ Settings → Appearance → Themes.
 
 ### Full setup guide
 
-[docs/setup.md](docs/setup.md) (Chinese) walks through building a whole vault
+[docs/setup.md](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/docs/setup.md) (Chinese) walks through building a whole vault
 around this theme from scratch: core-plugin choices, folder layout, Notebook
 Navigator settings, Templater automation for auto-populated properties, daily
 notes with date subfolders, plus the non-obvious gotchas found along the way.
@@ -78,7 +80,7 @@ scripts/sync-from-vault.sh <vault-path> # vault -> repo
 
 ## License and trademarks
 
-Distributed under **AGPL-3.0-or-later** (see [LICENSE](LICENSE)), as a
+Distributed under **AGPL-3.0-or-later** (see [LICENSE](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/LICENSE)), as a
 derivative of Tolaria's design system. This project is not affiliated with
 or endorsed by the Tolaria project; "Tolaria" is a trademark of its authors
 and is used here only to describe provenance.
