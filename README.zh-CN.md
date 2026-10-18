@@ -68,6 +68,10 @@ scripts/dev-install.sh <vault-path>    # repo -> vault
 scripts/sync-from-vault.sh <vault-path> # vault -> repo
 ```
 
+## 支持作者
+
+gogoga 系列全部免费开源。如果这个主题帮到了你，欢迎在 [爱发电](https://afdian.com/a/jackweigogoga) 支持一下，Obsidian 社区主题页面里也有赞助按钮。反馈 bug、提建议同样是很大的支持。
+
 ## 许可证与商标
 
 本项目作为 Tolaria 设计系统的衍生作品，以 **AGPL-3.0-or-later** 许可证发布（见

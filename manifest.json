@@ -1,7 +1,8 @@
 {
   "name": "gogoga",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "minAppVersion": "1.0.0",
   "author": "jackwei",
-  "authorUrl": "https://github.com/JackWeiGogoga"
+  "authorUrl": "https://github.com/JackWeiGogoga",
+  "fundingUrl": "https://afdian.com/a/jackweigogoga"
 }

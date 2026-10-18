@@ -78,6 +78,10 @@ scripts/dev-install.sh <vault-path>    # repo -> vault
 scripts/sync-from-vault.sh <vault-path> # vault -> repo
 ```
 
+## Support
+
+gogoga is free and open source. If this theme helps you, you can support its development on [afdian (爱发电)](https://afdian.com/a/jackweigogoga). Obsidian also shows a support button for it in the community directory. Bug reports and ideas help just as much.
+
 ## License and trademarks
 
 Distributed under **AGPL-3.0-or-later** (see [LICENSE](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/LICENSE)), as a
