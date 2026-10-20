@@ -26,8 +26,8 @@ settings:
         id: gg-accent
         title: Accent color
         title.zh: 强调色
-        description: Used by links, list markers, checkboxes, blockquote bars and more
-        description.zh: 链接、列表符号、复选框、引用块边栏等都跟随这个颜色
+        description: Used by links, list markers, checkboxes, blockquote bars and more. Without a value here it follows Settings → Appearance → Accent color
+        description.zh: 链接、列表符号、复选框、引用块边栏等都跟随这个颜色。这里不设时跟随「设置 → 外观 → 强调色」
         type: variable-themed-color
         format: hex
         opacity: false
@@ -281,14 +281,16 @@ body {
 .theme-light {
   color-scheme: light;
 
-  /* Accent: #155DFF */
+  /* Accent: #155DFF. Obsidian writes the user's Settings → Appearance → Accent
+     color onto <body> as --accent-h/s/l, which beats these defaults, so the
+     theme follows that setting. Style Settings can still override --gg-accent. */
   --accent-h: 222;
   --accent-s: 100%;
   --accent-l: 54%;
 
   /* gogoga tokens */
-  --gg-accent: #155DFF;
-  --gg-accent-hover: #0D4AD6;
+  --gg-accent: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
+  --gg-accent-hover: hsl(var(--accent-h), var(--accent-s), calc(var(--accent-l) - 9%));
   --gg-heading-color: #37352F;
   --gg-code-block-bg: #F7F6F3;
   --gg-code-block-border: #E9E9E7;
@@ -471,14 +473,15 @@ body {
 .theme-dark {
   color-scheme: dark;
 
-  /* Accent: #78A4FF */
+  /* Accent: #78A4FF. A user accent applies to both modes; on the dark
+     background it is lifted to at least 68% lightness so dark picks stay readable. */
   --accent-h: 220;
   --accent-s: 100%;
   --accent-l: 74%;
 
   /* gogoga tokens */
-  --gg-accent: #78A4FF;
-  --gg-accent-hover: #9BBEFF;
+  --gg-accent: hsl(var(--accent-h), var(--accent-s), max(var(--accent-l), 68%));
+  --gg-accent-hover: hsl(var(--accent-h), var(--accent-s), calc(max(var(--accent-l), 68%) + 8%));
   --gg-heading-color: #F1ECE3;
   --gg-code-block-bg: #161616;
   --gg-code-block-border: transparent;

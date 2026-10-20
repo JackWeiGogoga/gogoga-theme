@@ -13,7 +13,8 @@ list markers, and an H1-as-title layout with a divider.
 
 - **Two palettes** ported from Tolaria's design tokens: light
   (`#37352F` on white, `#F7F6F3` sidebar) and warm dark
-  (`#E6E1D8` on `#1F1E1B`), accent `#155DFF` / `#78A4FF`
+  (`#E6E1D8` on `#1F1E1B`), accent `#155DFF` / `#78A4FF`. The accent follows
+  Settings → Appearance → Accent color, so you can change it without any plugin
 - **Editor typography**: Inter, 15px/1.5 scale, 740px measure, Tolaria's
   heading ladder (32/27/20/17) with negative letter-spacing, H1 and inline
   titles underlined by a divider
