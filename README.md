@@ -36,8 +36,10 @@ list markers, and an H1-as-title layout with a divider.
   public RSS feeds, with a generated native Bases view.
 - **Style Settings support**: accent and inline-code colors (per light/dark),
   body font, text measure, and table column floor, plus opt-in toggles to hide
-  the H1 divider, use one bullet shape at every nesting level, and fall back to
-  the system's font rendering. Every toggle is off by default, so the theme
+  the H1 divider, use one bullet shape at every nesting level, fall back to
+  the system's font rendering, highlight the line under the mouse, and a focus
+  mode that fades everything but the paragraph you're writing (in reading view,
+  the one under the mouse). Every toggle is off by default, so the theme
   keeps its intended look without the plugin. Option labels follow Obsidian's
   language: English, or Simplified Chinese when Obsidian is set to Chinese.
 

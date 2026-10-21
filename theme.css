@@ -109,6 +109,22 @@ settings:
         type: class-toggle
         default: false
     -
+        id: gogoga-hover-highlight
+        title: Highlight the line under the mouse
+        title.zh: 悬停行强调
+        description: A light accent-tinted background on the line or paragraph under the mouse, in both editing and reading views
+        description.zh: 鼠标所在的行（段落）带一层淡淡的强调色底，编辑和阅读视图都生效
+        type: class-toggle
+        default: false
+    -
+        id: gogoga-focus-mode
+        title: Focus mode
+        title.zh: 聚焦模式
+        description: While typing, everything except the current line (paragraph) fades out; in reading view the block under the mouse stays bright
+        description.zh: 写作时只有光标所在的行（段落）保持清晰，其余内容变淡；阅读视图里跟随鼠标所在的段落
+        type: class-toggle
+        default: false
+    -
         id: gogoga-subpixel-text
         title: Use the system's font rendering
         title.zh: 使用系统字体渲染
@@ -1281,4 +1297,30 @@ body.gogoga-uniform-bullets .markdown-rendered ul ul ul > li > .list-bullet::aft
 body.gogoga-subpixel-text {
   -webkit-font-smoothing: auto;
   -moz-osx-font-smoothing: auto;
+}
+
+/* 悬停行强调：编辑区按 CodeMirror 的行（一个段落就是一行），阅读视图按块。
+   列表项只亮最里面那一层，不然鼠标停在子项上整棵列表都会亮 */
+body.gogoga-hover-highlight {
+  --gg-line-hover: color-mix(in srgb, var(--gg-accent) 7%, transparent);
+}
+body.gogoga-hover-highlight .markdown-source-view.mod-cm6 .cm-content > .cm-line:hover,
+body.gogoga-hover-highlight .markdown-rendered :is(p, h1, h2, h3, h4, h5, h6, tr):hover,
+body.gogoga-hover-highlight .markdown-rendered li:hover:not(:has(li:hover)) {
+  background-color: var(--gg-line-hover);
+  border-radius: var(--radius-s);
+}
+
+/* 聚焦模式：编辑区获得焦点时，光标所在行以外的内容变淡；
+   阅读视图没有光标，鼠标停在哪个段落哪个就亮 */
+body.gogoga-focus-mode {
+  --gg-focus-dim: 0.3;
+}
+body.gogoga-focus-mode .markdown-source-view.mod-cm6 .cm-content > *,
+body.gogoga-focus-mode .markdown-preview-sizer > div {
+  transition: opacity 0.2s ease;
+}
+body.gogoga-focus-mode .markdown-source-view.mod-cm6 .cm-editor.cm-focused .cm-content > :not(.cm-active),
+body.gogoga-focus-mode .markdown-preview-sizer:hover > div:not(:hover) {
+  opacity: var(--gg-focus-dim);
 }
