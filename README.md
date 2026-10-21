@@ -42,6 +42,9 @@ list markers, and an H1-as-title layout with a divider.
   the one under the mouse). Every toggle is off by default, so the theme
   keeps its intended look without the plugin. Option labels follow Obsidian's
   language: English, or Simplified Chinese when Obsidian is set to Chinese.
+- **Focus mode and hover highlight without plugins**: besides the Style
+  Settings toggles, both also switch on with Obsidian's own features — see
+  [below](#focus-mode-and-hover-highlight).
 
 ## Install
 
@@ -59,6 +62,34 @@ Settings → Appearance → Themes.
   Tolaria's editor scale; heading sizes are relative to this base.
 - For the three-pane Tolaria layout, install Notebook Navigator and the
   [gogoga-icons](https://github.com/JackWeiGogoga/gogoga-icons) companion plugin.
+
+### Focus mode and hover highlight
+
+- **Focus mode**: while typing, only the paragraph with the cursor stays
+  bright and the rest fades; in reading view the block under the mouse
+  stays bright.
+- **Hover highlight**: a light accent tint on the line or paragraph under the
+  mouse.
+
+Three ways to switch them on; the first two need no plugin:
+
+1. **Per note**: add the built-in `cssclasses` property to a note, e.g. to
+   focus only on long-form drafts:
+
+   ```yaml
+   ---
+   cssclasses: [gogoga-focus, gogoga-hover]
+   ---
+   ```
+
+2. **Every note**: copy
+   [`snippets/gogoga-focus-mode.css`](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/snippets/gogoga-focus-mode.css)
+   and/or
+   [`snippets/gogoga-hover-highlight.css`](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/snippets/gogoga-hover-highlight.css)
+   into `<vault>/.obsidian/snippets/`, then turn them on in
+   Settings → Appearance → CSS snippets.
+3. **Style Settings**: gogoga → Features → 悬停行强调 (Highlight the line under
+   the mouse) / 聚焦模式 (Focus mode).
 
 ### Full setup guide
 

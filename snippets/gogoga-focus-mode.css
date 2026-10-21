@@ -1,0 +1,7 @@
+/* gogoga focus mode for every note: only the paragraph you're writing stays
+   bright (in reading view, the one under the mouse). Needs the gogoga theme.
+   Copy into <vault>/.obsidian/snippets/ and enable it in
+   Settings → Appearance → CSS snippets. */
+body {
+  --gogoga-focus-mode: on;
+}

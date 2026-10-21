@@ -31,6 +31,8 @@ Inter 字体、蓝色列表符号，以及把 H1 当作标题、下方带分隔�
 - **支持 Style Settings**：可调强调色和行内代码颜色（浅色/深色分别设置）、正文字体、
   正文行宽、表格最小列宽，以及「隐藏一级标题下方的分隔线」「统一嵌套列表符号」
   「使用系统字体渲染」「悬停行强调」「聚焦模式」五个可选开关。聚焦模式下写作时只有光标所在的段落保持清晰，其余内容变淡；阅读视图里跟随鼠标所在的段落。所有开关默认关闭，所以不装该插件时主题也保持预期的默认效果。选项文字跟随 Obsidian 的语言设置，支持简体中文和英文。
+- **聚焦模式和悬停行强调不装插件也能用**：除了 Style Settings 开关，也可以用
+  Obsidian 自带的功能开启，见[下文](#聚焦模式和悬停行强调)。
 
 ## 安装
 
@@ -47,6 +49,28 @@ Inter 字体、蓝色列表符号，以及把 H1 当作标题、下方带分隔�
   标题字号都是相对这个基础字号计算的。
 - 想要 Tolaria 的三栏布局，请安装 Notebook Navigator 和配套插件
   [gogoga-icons](https://github.com/JackWeiGogoga/gogoga-icons)。
+
+### 聚焦模式和悬停行强调
+
+- **聚焦模式**：写作时只有光标所在的段落保持清晰，其余内容变淡；阅读视图里跟随鼠标所在的段落。
+- **悬停行强调**：鼠标所在的行（段落）带一层淡淡的强调色底。
+
+有三种开启方式，前两种不需要任何插件：
+
+1. **按篇开启**：在笔记属性里加上 Obsidian 自带的 `cssclasses`，比如只在写长文时聚焦：
+
+   ```yaml
+   ---
+   cssclasses: [gogoga-focus, gogoga-hover]
+   ---
+   ```
+
+2. **全局开启**：把
+   [`snippets/gogoga-focus-mode.css`](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/snippets/gogoga-focus-mode.css)
+   和（或）
+   [`snippets/gogoga-hover-highlight.css`](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/snippets/gogoga-hover-highlight.css)
+   复制到 `<vault>/.obsidian/snippets/`，然后在 设置 → 外观 → CSS 代码片段 里打开。
+3. **Style Settings**：gogoga → 特性开关 → 悬停行强调 / 聚焦模式。
 
 ### 完整配置指南
 

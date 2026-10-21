@@ -1,0 +1,7 @@
+/* gogoga hover highlight for every note: a light accent tint on the line
+   under the mouse. Needs the gogoga theme.
+   Copy into <vault>/.obsidian/snippets/ and enable it in
+   Settings → Appearance → CSS snippets. */
+body {
+  --gogoga-hover-highlight: on;
+}

@@ -1299,28 +1299,43 @@ body.gogoga-subpixel-text {
   -moz-osx-font-smoothing: auto;
 }
 
-/* 悬停行强调：编辑区按 CodeMirror 的行（一个段落就是一行），阅读视图按块。
-   列表项只亮最里面那一层，不然鼠标停在子项上整棵列表都会亮 */
-body.gogoga-hover-highlight {
-  --gg-line-hover: color-mix(in srgb, var(--gg-accent) 7%, transparent);
+/* Hover highlight and focus mode. Three ways to switch each one on,
+   none of which needs a plugin except the first:
+     - Style Settings toggles (body.gogoga-hover-highlight / body.gogoga-focus-mode)
+     - per note via the built-in `cssclasses` property (gogoga-hover / gogoga-focus)
+     - globally via the CSS snippets in snippets/, which only set the variable
+   All three just set a custom property; the rules live once, behind a
+   container style query on it. */
+body.gogoga-hover-highlight,
+.gogoga-hover {
+  --gogoga-hover-highlight: on;
 }
-body.gogoga-hover-highlight .markdown-source-view.mod-cm6 .cm-content > .cm-line:hover,
-body.gogoga-hover-highlight .markdown-rendered :is(p, h1, h2, h3, h4, h5, h6, tr):hover,
-body.gogoga-hover-highlight .markdown-rendered li:hover:not(:has(li:hover)) {
-  background-color: var(--gg-line-hover);
-  border-radius: var(--radius-s);
+body.gogoga-focus-mode,
+.gogoga-focus {
+  --gogoga-focus-mode: on;
 }
 
-/* 聚焦模式：编辑区获得焦点时，光标所在行以外的内容变淡；
-   阅读视图没有光标，鼠标停在哪个段落哪个就亮 */
-body.gogoga-focus-mode {
-  --gg-focus-dim: 0.3;
+/* Editor rows are CodeMirror lines (a paragraph is one line); reading view
+   uses blocks. Only the innermost list item lights up, otherwise hovering a
+   child would light the whole list */
+@container style(--gogoga-hover-highlight: on) {
+  .cm-content > .cm-line:hover,
+  .markdown-rendered :is(p, h1, h2, h3, h4, h5, h6, tr):hover,
+  .markdown-rendered li:hover:not(:has(li:hover)) {
+    background-color: color-mix(in srgb, var(--gg-accent) 7%, transparent);
+    border-radius: var(--radius-s);
+  }
 }
-body.gogoga-focus-mode .markdown-source-view.mod-cm6 .cm-content > *,
-body.gogoga-focus-mode .markdown-preview-sizer > div {
-  transition: opacity 0.2s ease;
-}
-body.gogoga-focus-mode .markdown-source-view.mod-cm6 .cm-editor.cm-focused .cm-content > :not(.cm-active),
-body.gogoga-focus-mode .markdown-preview-sizer:hover > div:not(:hover) {
-  opacity: var(--gg-focus-dim);
+
+/* While the editor has focus, everything but the cursor's line fades.
+   Reading view has no cursor, so the block under the mouse stays bright */
+@container style(--gogoga-focus-mode: on) {
+  .cm-content > *,
+  .markdown-preview-sizer > div {
+    transition: opacity 0.2s ease;
+  }
+  .cm-editor.cm-focused .cm-content > :not(.cm-active),
+  .markdown-preview-sizer:hover > div:not(:hover) {
+    opacity: 0.3;
+  }
 }
