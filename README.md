@@ -71,7 +71,7 @@ Settings → Appearance → Themes.
 - **Hover highlight**: a light accent tint on the line or paragraph under the
   mouse.
 
-Three ways to switch them on; the first two need no plugin:
+Ways to switch them on; the first two need no plugin:
 
 1. **Per note**: add the built-in `cssclasses` property to a note, e.g. to
    focus only on long-form drafts:
@@ -90,6 +90,10 @@ Three ways to switch them on; the first two need no plugin:
    Settings → Appearance → CSS snippets.
 3. **Style Settings**: gogoga → Features → 悬停行强调 (Highlight the line under
    the mouse) / 聚焦模式 (Focus mode).
+4. **Hotkey**: the companion plugin
+   [gogoga-outline](https://github.com/JackWeiGogoga/gogoga-outline) adds
+   `Toggle focus mode` and `Toggle hover line highlight` commands; bind them in
+   Settings → Hotkeys.
 
 ### Full setup guide
 

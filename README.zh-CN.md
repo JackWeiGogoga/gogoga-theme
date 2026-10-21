@@ -55,7 +55,7 @@ Inter 字体、蓝色列表符号，以及把 H1 当作标题、下方带分隔�
 - **聚焦模式**：写作时只有光标所在的段落保持清晰，其余内容变淡；阅读视图里跟随鼠标所在的段落。
 - **悬停行强调**：鼠标所在的行（段落）带一层淡淡的强调色底。
 
-有三种开启方式，前两种不需要任何插件：
+开启方式如下，前两种不需要任何插件：
 
 1. **按篇开启**：在笔记属性里加上 Obsidian 自带的 `cssclasses`，比如只在写长文时聚焦：
 
@@ -71,6 +71,8 @@ Inter 字体、蓝色列表符号，以及把 H1 当作标题、下方带分隔�
    [`snippets/gogoga-hover-highlight.css`](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/snippets/gogoga-hover-highlight.css)
    复制到 `<vault>/.obsidian/snippets/`，然后在 设置 → 外观 → CSS 代码片段 里打开。
 3. **Style Settings**：gogoga → 特性开关 → 悬停行强调 / 聚焦模式。
+4. **快捷键**：配套插件 [gogoga-outline](https://github.com/JackWeiGogoga/gogoga-outline)
+   提供「切换聚焦模式」「切换悬停行强调」两个命令，可以在 设置 → 快捷键 里绑定。
 
 ### 完整配置指南
 
