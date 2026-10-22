@@ -1,0 +1,7 @@
+/* gogoga heading level markers for every note: a small H1–H6 tag in the
+   margin left of each heading. Needs the gogoga theme.
+   Copy into <vault>/.obsidian/snippets/ and enable it in
+   Settings → Appearance → CSS snippets. */
+body {
+  --gogoga-heading-level: on;
+}

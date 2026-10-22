@@ -35,16 +35,20 @@ list markers, and an H1-as-title layout with a divider.
   subscriptions, recent uploads, read state, and opt-in video notes using
   public RSS feeds, with a generated native Bases view.
 - **Style Settings support**: accent and inline-code colors (per light/dark),
-  body font, text measure, and table column floor, plus opt-in toggles to hide
+  body font and body text weight, text measure, and table column floor, plus opt-in toggles to hide
   the H1 divider, use one bullet shape at every nesting level, fall back to
-  the system's font rendering, highlight the line under the mouse, and a focus
+  the system's font rendering (macOS only), highlight the line under the mouse
+  (with its own color), show H1–H6 heading level markers, and a focus
   mode that fades everything but the paragraph you're writing (in reading view,
   the one under the mouse). Every toggle is off by default, so the theme
   keeps its intended look without the plugin. Option labels follow Obsidian's
   language: English, or Simplified Chinese when Obsidian is set to Chinese.
-- **Focus mode and hover highlight without plugins**: besides the Style
-  Settings toggles, both also switch on with Obsidian's own features — see
-  [below](#focus-mode-and-hover-highlight).
+- **Writing aids without plugins**: focus mode, hover highlight and heading
+  level markers also switch on with Obsidian's own features — see
+  [below](#writing-aids).
+- **Built-in file explorer in Tolaria's style**: folder icons instead of
+  chevrons, Tolaria's row size and indent, and a connector line under each
+  open folder — so the theme looks right without Notebook Navigator too.
 
 ## Install
 
@@ -63,13 +67,15 @@ Settings → Appearance → Themes.
 - For the three-pane Tolaria layout, install Notebook Navigator and the
   [gogoga-icons](https://github.com/JackWeiGogoga/gogoga-icons) companion plugin.
 
-### Focus mode and hover highlight
+### Writing aids
 
 - **Focus mode**: while typing, only the paragraph with the cursor stays
   bright and the rest fades; in reading view the block under the mouse
   stays bright.
 - **Hover highlight**: a light accent tint on the line or paragraph under the
   mouse.
+- **Heading level markers**: a small H1–H6 tag in the margin left of each
+  heading.
 
 Ways to switch them on; the first two need no plugin:
 
@@ -78,18 +84,18 @@ Ways to switch them on; the first two need no plugin:
 
    ```yaml
    ---
-   cssclasses: [gogoga-focus, gogoga-hover]
+   cssclasses: [gogoga-focus, gogoga-hover, gogoga-heading-level]
    ---
    ```
 
-2. **Every note**: copy
-   [`snippets/gogoga-focus-mode.css`](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/snippets/gogoga-focus-mode.css)
-   and/or
-   [`snippets/gogoga-hover-highlight.css`](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/snippets/gogoga-hover-highlight.css)
+2. **Every note**: copy any of
+   [`snippets/gogoga-focus-mode.css`](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/snippets/gogoga-focus-mode.css),
+   [`snippets/gogoga-hover-highlight.css`](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/snippets/gogoga-hover-highlight.css),
+   [`snippets/gogoga-heading-level.css`](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/snippets/gogoga-heading-level.css)
    into `<vault>/.obsidian/snippets/`, then turn them on in
    Settings → Appearance → CSS snippets.
 3. **Style Settings**: gogoga → Features → 悬停行强调 (Highlight the line under
-   the mouse) / 聚焦模式 (Focus mode).
+   the mouse) / 标题等级标记 (Heading level markers) / 聚焦模式 (Focus mode).
 4. **Hotkey**: the companion plugin
    [gogoga-outline](https://github.com/JackWeiGogoga/gogoga-outline) adds
    `Toggle focus mode` and `Toggle hover line highlight` commands; bind them in

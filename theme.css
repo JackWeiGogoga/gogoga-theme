@@ -37,6 +37,8 @@ settings:
         id: gg-accent-hover
         title: Accent color (hover)
         title.zh: 强调色（悬停态）
+        description: Links, buttons and tags while the mouse is over them. The hover line highlight has its own color under Features
+        description.zh: 鼠标停在链接、按钮、标签上时的颜色。悬停行强调的底色在「特性开关」里单独设置
         type: variable-themed-color
         format: hex
         opacity: false
@@ -67,6 +69,17 @@ settings:
         type: variable-text
         default: Inter
         quotes: true
+    -
+        id: gg-text-weight
+        title: Body text weight
+        title.zh: 正文字重
+        description: 400 is regular. Raise it if the text looks too thin; bold text stays heavier than body text
+        description.zh: 400 为常规。觉得字太细可以调高，粗体会始终比正文粗一档
+        type: variable-number-slider
+        default: 400
+        min: 300
+        max: 600
+        step: 50
     -
         id: file-line-width
         title: Line width
@@ -117,6 +130,25 @@ settings:
         type: class-toggle
         default: false
     -
+        id: gg-line-hover
+        title: Hover highlight color
+        title.zh: 悬停行强调的底色
+        description: Leave unset to use a light tint of the accent color. Keep the opacity low so text stays readable
+        description.zh: 不设时用强调色的淡色。建议透明度调低一些，免得盖住文字
+        type: variable-themed-color
+        format: hex
+        opacity: true
+        default-light: '#155DFF12'
+        default-dark: '#78A4FF1F'
+    -
+        id: gogoga-heading-level
+        title: Heading level markers
+        title.zh: 标题等级标记
+        description: A small H1–H6 label in the margin left of each heading
+        description.zh: 在每个标题左侧的空白处显示一个小小的 H1–H6 标记
+        type: class-toggle
+        default: false
+    -
         id: gogoga-focus-mode
         title: Focus mode
         title.zh: 聚焦模式
@@ -128,8 +160,8 @@ settings:
         id: gogoga-subpixel-text
         title: Use the system's font rendering
         title.zh: 使用系统字体渲染
-        description: By default text uses grayscale antialiasing (as in Tolaria, which looks lighter); turn on to use the system's subpixel rendering
-        description.zh: 默认使用灰度抗锯齿（与 Tolaria 一致，字重看起来更细），开启后回到系统默认的次像素渲染
+        description: By default text uses grayscale antialiasing (as in Tolaria, which looks lighter); turn on to use the system's subpixel rendering. macOS only — on Windows use Body text weight instead
+        description.zh: 默认使用灰度抗锯齿（与 Tolaria 一致，字重看起来更细），开启后回到系统默认的次像素渲染。仅 macOS 有效，Windows 上请用「正文字重」调粗
         type: class-toggle
         default: false
 */
@@ -712,17 +744,18 @@ body {
    heading as a real ~22px line — so these values are Tolaria's
    margins minus one blank line, keeping the VISUAL gap equal to
    reading mode (32/28/24/20). */
-.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-1 { padding-top: 2px; }
-.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-2 { padding-top: 6px; }
-.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-3 { padding-top: 2px; }
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-1 { --gg-heading-pad-top: 2px; }
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-2 { --gg-heading-pad-top: 6px; }
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-3 { --gg-heading-pad-top: 2px; }
 .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-4,
 .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-5,
-.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-6 { padding-top: 0px; }
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-header-6 { --gg-heading-pad-top: 0px; }
+.markdown-source-view.mod-cm6 .cm-line[class*="HyperMD-header-"] { padding-top: var(--gg-heading-pad-top); }
 
 /* An H1 at the very top of the note (right below the properties panel /
    inline title) drops its block spacing — Tolaria's Title sits flush */
 .markdown-source-view.mod-cm6 .cm-content > .cm-line.HyperMD-header-1:first-child {
-  padding-top: 0;
+  --gg-heading-pad-top: 0px;
 }
 .markdown-preview-section > .mod-header + div h1,
 .markdown-preview-section > .metadata-container + div h1 {
@@ -744,7 +777,7 @@ body {
    the properties widget and the .cm-widgetBuffer elements CodeMirror
    inserts around it (those broke a plain adjacent-sibling selector) */
 .markdown-source-view.mod-cm6 .cm-content > .cm-line.HyperMD-header-1:nth-child(1 of .cm-line) {
-  padding-top: 4px;
+  --gg-heading-pad-top: 4px;
 }
 .markdown-reading-view .markdown-preview-sizer > div:first-child > h1,
 .markdown-reading-view .markdown-preview-sizer > .metadata-container + div > h1,
@@ -1302,13 +1335,18 @@ body.gogoga-subpixel-text {
 /* Hover highlight and focus mode. Three ways to switch each one on,
    none of which needs a plugin except the first:
      - Style Settings toggles (body.gogoga-hover-highlight / body.gogoga-focus-mode)
-     - per note via the built-in `cssclasses` property (gogoga-hover / gogoga-focus)
+     - per note via the built-in `cssclasses` property (gogoga-hover / gogoga-focus /
+       gogoga-heading-level)
      - globally via the CSS snippets in snippets/, which only set the variable
    All three just set a custom property; the rules live once, behind a
    container style query on it. */
 body.gogoga-hover-highlight,
 .gogoga-hover {
   --gogoga-hover-highlight: on;
+}
+body.gogoga-heading-level,
+.gogoga-heading-level {
+  --gogoga-heading-level: on;
 }
 body.gogoga-focus-mode,
 .gogoga-focus {
@@ -1322,7 +1360,7 @@ body.gogoga-focus-mode,
   .cm-content > .cm-line:hover,
   .markdown-rendered :is(p, h1, h2, h3, h4, h5, h6, tr):hover,
   .markdown-rendered li:hover:not(:has(li:hover)) {
-    background-color: color-mix(in srgb, var(--gg-accent) 7%, transparent);
+    background-color: var(--gg-line-hover, color-mix(in srgb, var(--gg-accent) 7%, transparent));
     border-radius: var(--radius-s);
   }
 }
@@ -1338,4 +1376,118 @@ body.gogoga-focus-mode,
   .markdown-preview-sizer:hover > div:not(:hover) {
     opacity: 0.3;
   }
+}
+
+/* Heading level markers (Maple-style): a small H1–H6 tag hanging in the
+   margin left of each heading, in the editor and in reading view.
+   The tag is centred on the heading's first line. `lh` inside the tag would
+   mean the tag's own small line height, so the heading's line height is
+   resolved to px on the heading through a registered <length> property */
+@property --gg-heading-line {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+@container style(--gogoga-heading-level: on) {
+  .markdown-source-view.mod-cm6 .cm-line[class*="HyperMD-header-"],
+  .markdown-rendered :is(h1, h2, h3, h4, h5, h6) {
+    position: relative;
+    --gg-heading-line: 1lh;
+  }
+  .markdown-source-view.mod-cm6 .cm-line[class*="HyperMD-header-"]::before,
+  .markdown-rendered :is(h1, h2, h3, h4, h5, h6)::before {
+    position: absolute;
+    /* clear of the heading fold arrow, which also lives in this margin */
+    inset-inline-end: calc(100% + 26px);
+    top: calc(var(--gg-heading-pad-top, 0px) + var(--gg-heading-line) / 2);
+    white-space: nowrap;
+    transform: translateY(-50%);
+    font-family: var(--font-interface);
+    font-size: 10px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: 0;
+    color: var(--text-faint);
+    pointer-events: none;
+  }
+  .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-1::before,
+  .markdown-rendered h1::before { content: "H1"; }
+  .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-2::before,
+  .markdown-rendered h2::before { content: "H2"; }
+  .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-3::before,
+  .markdown-rendered h3::before { content: "H3"; }
+  .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-4::before,
+  .markdown-rendered h4::before { content: "H4"; }
+  .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-5::before,
+  .markdown-rendered h5::before { content: "H5"; }
+  .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-6::before,
+  .markdown-rendered h6::before { content: "H6"; }
+}
+
+/* Body text weight (Style Settings). Body text uses --font-normal, so set
+   the weight on the note content directly. Obsidian computes bold as
+   --font-weight + --bold-modifier and headings set their own --font-weight,
+   so bold follows along and headings are untouched */
+.markdown-source-view.mod-cm6 .cm-content,
+.markdown-rendered {
+  --font-weight: var(--gg-text-weight, var(--font-normal));
+  font-weight: var(--font-weight);
+}
+
+/* ------------------------------------------------------------
+   Built-in file explorer — Tolaria's folder tree (folder-tree/*.tsx):
+   a 17px folder icon instead of a chevron (open folder when expanded),
+   13px medium rows with 6px vertical padding, 25px per level, and a 1px
+   connector under the parent folder's icon. Notebook Navigator users
+   never see this pane, so it only matters without that plugin.
+   ------------------------------------------------------------ */
+.nav-files-container {
+  --gg-folder-icon: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22%3E%3Cpath d=%22M216,72H131.31L104,44.69A15.86,15.86,0,0,0,92.69,40H40A16,16,0,0,0,24,56V200.62A15.4,15.4,0,0,0,39.38,216H216.89A15.13,15.13,0,0,0,232,200.89V88A16,16,0,0,0,216,72ZM40,56H92.69l16,16H40ZM216,200H40V88H216Z%22/%3E%3C/svg%3E");
+  --gg-folder-open-icon: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22%3E%3Cpath d=%22M245,110.64A16,16,0,0,0,232,104H216V88a16,16,0,0,0-16-16H130.67L102.94,51.2a16.14,16.14,0,0,0-9.6-3.2H40A16,16,0,0,0,24,64V208h0a8,8,0,0,0,8,8H211.1a8,8,0,0,0,7.59-5.47l28.49-85.47A16.05,16.05,0,0,0,245,110.64ZM93.34,64,123.2,86.4A8,8,0,0,0,128,88h72v16H69.77a16,16,0,0,0-15.18,10.94L40,158.7V64Zm112,136H43.1l26.67-80H232Z%22/%3E%3C/svg%3E");
+  /* 12px inset + half the 17px icon puts the guide under the icon's center;
+     margin + 1px guide + padding = Tolaria's 25px per level */
+  --nav-item-children-margin-start: 20px;
+  --nav-item-children-padding-start: 4px;
+}
+/* Obsidian hangs the chevron in the gutter (absolute, negative margin);
+   the folder icon sits in the row instead, before the name */
+.nav-files-container .nav-folder-title .collapse-icon {
+  position: static;
+  flex: none;
+  width: 17px;
+  height: 17px;
+  margin-inline-start: 0;
+  margin-inline-end: 8px;
+  padding: 0;
+  align-self: center;
+  color: inherit;
+}
+.nav-files-container .nav-folder-title .collapse-icon svg {
+  display: none;
+}
+.nav-files-container .nav-folder-title .collapse-icon::before {
+  content: "";
+  display: block;
+  width: 17px;
+  height: 17px;
+  background-color: currentColor;
+  -webkit-mask: var(--gg-folder-icon) center / contain no-repeat;
+  mask: var(--gg-folder-icon) center / contain no-repeat;
+}
+.nav-files-container .nav-folder:not(.is-collapsed) > .nav-folder-title .collapse-icon::before {
+  -webkit-mask-image: var(--gg-folder-open-icon);
+  mask-image: var(--gg-folder-open-icon);
+}
+/* Files line their text up with folder names (icon + gap) */
+.nav-files-container .nav-file-title-content {
+  padding-inline-start: 25px;
+}
+.nav-files-container .nav-file-title.is-active,
+.nav-files-container .nav-folder-title.is-active {
+  background-color: color-mix(in srgb, var(--gg-accent) 10%, transparent);
+  color: var(--gg-accent);
+}
+.nav-files-container .nav-file-title.is-active .nav-file-tag {
+  color: var(--gg-accent);
 }

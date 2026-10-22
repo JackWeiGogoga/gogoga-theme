@@ -28,11 +28,13 @@ Inter 字体、蓝色列表符号，以及把 H1 当作标题、下方带分隔�
   [`gogoga-youtube`](https://github.com/JackWeiGogoga/gogoga-youtube) 基于公开 RSS
   订阅源管理分组的 YouTube 频道订阅、最新上传、已读状态和可选的视频笔记，并自动生成原生
   Bases 视图。
-- **支持 Style Settings**：可调强调色和行内代码颜色（浅色/深色分别设置）、正文字体、
+- **支持 Style Settings**：可调强调色和行内代码颜色（浅色/深色分别设置）、正文字体、正文字重、
   正文行宽、表格最小列宽，以及「隐藏一级标题下方的分隔线」「统一嵌套列表符号」
-  「使用系统字体渲染」「悬停行强调」「聚焦模式」五个可选开关。聚焦模式下写作时只有光标所在的段落保持清晰，其余内容变淡；阅读视图里跟随鼠标所在的段落。所有开关默认关闭，所以不装该插件时主题也保持预期的默认效果。选项文字跟随 Obsidian 的语言设置，支持简体中文和英文。
-- **聚焦模式和悬停行强调不装插件也能用**：除了 Style Settings 开关，也可以用
-  Obsidian 自带的功能开启，见[下文](#聚焦模式和悬停行强调)。
+  「使用系统字体渲染」（仅 macOS）「悬停行强调」（可单独设底色）「标题等级标记」「聚焦模式」六个可选开关。聚焦模式下写作时只有光标所在的段落保持清晰，其余内容变淡；阅读视图里跟随鼠标所在的段落。所有开关默认关闭，所以不装该插件时主题也保持预期的默认效果。选项文字跟随 Obsidian 的语言设置，支持简体中文和英文。
+- **写作辅助不装插件也能用**：聚焦模式、悬停行强调、标题等级标记除了 Style Settings 开关，
+  也可以用 Obsidian 自带的功能开启，见[下文](#写作辅助)。
+- **原生文件管理器也是 Tolaria 风格**：用文件夹图标代替折叠箭头，行高、缩进和 Tolaria 一致，
+  展开的文件夹下有一条对准图标的连接线，不装 Notebook Navigator 也好看。
 
 ## 安装
 
@@ -50,10 +52,11 @@ Inter 字体、蓝色列表符号，以及把 H1 当作标题、下方带分隔�
 - 想要 Tolaria 的三栏布局，请安装 Notebook Navigator 和配套插件
   [gogoga-icons](https://github.com/JackWeiGogoga/gogoga-icons)。
 
-### 聚焦模式和悬停行强调
+### 写作辅助
 
 - **聚焦模式**：写作时只有光标所在的段落保持清晰，其余内容变淡；阅读视图里跟随鼠标所在的段落。
 - **悬停行强调**：鼠标所在的行（段落）带一层淡淡的强调色底。
+- **标题等级标记**：在每个标题左侧的空白处显示一个小小的 H1–H6 标记。
 
 开启方式如下，前两种不需要任何插件：
 
@@ -61,16 +64,16 @@ Inter 字体、蓝色列表符号，以及把 H1 当作标题、下方带分隔�
 
    ```yaml
    ---
-   cssclasses: [gogoga-focus, gogoga-hover]
+   cssclasses: [gogoga-focus, gogoga-hover, gogoga-heading-level]
    ---
    ```
 
 2. **全局开启**：把
-   [`snippets/gogoga-focus-mode.css`](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/snippets/gogoga-focus-mode.css)
-   和（或）
-   [`snippets/gogoga-hover-highlight.css`](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/snippets/gogoga-hover-highlight.css)
-   复制到 `<vault>/.obsidian/snippets/`，然后在 设置 → 外观 → CSS 代码片段 里打开。
-3. **Style Settings**：gogoga → 特性开关 → 悬停行强调 / 聚焦模式。
+   [`snippets/gogoga-focus-mode.css`](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/snippets/gogoga-focus-mode.css)、
+   [`snippets/gogoga-hover-highlight.css`](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/snippets/gogoga-hover-highlight.css)、
+   [`snippets/gogoga-heading-level.css`](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/snippets/gogoga-heading-level.css)
+   中需要的复制到 `<vault>/.obsidian/snippets/`，然后在 设置 → 外观 → CSS 代码片段 里打开。
+3. **Style Settings**：gogoga → 特性开关 → 悬停行强调 / 标题等级标记 / 聚焦模式。
 4. **快捷键**：配套插件 [gogoga-outline](https://github.com/JackWeiGogoga/gogoga-outline)
    提供「切换聚焦模式」「切换悬停行强调」两个命令，可以在 设置 → 快捷键 里绑定。
 
