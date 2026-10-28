@@ -34,7 +34,7 @@ list markers, and an H1-as-title layout with a divider.
   [`gogoga-youtube`](https://github.com/JackWeiGogoga/gogoga-youtube) manages grouped YouTube channel
   subscriptions, recent uploads, read state, and opt-in video notes using
   public RSS feeds, with a generated native Bases view.
-- **Style Settings support**: accent and inline-code colors (per light/dark),
+- **Style Settings support**: accent, inline-code, heading and italic colors (per light/dark),
   body font and body text weight, bold text style (classic, accent color or highlighter, with
   custom bold color, weight and stroke), text measure, and table column floor, plus opt-in toggles to hide
   the H1 divider, use one bullet shape at every nesting level, fall back to

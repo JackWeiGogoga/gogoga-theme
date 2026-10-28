@@ -54,6 +54,26 @@ settings:
         default-light: '#8E2726'
         default-dark: '#FFA6A3'
     -
+        id: gg-heading-text-color
+        title: Heading color
+        title.zh: 标题颜色
+        description: Applies to H1–H6
+        description.zh: 对一到六级标题都生效
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#37352F'
+        default-dark: '#F1ECE3'
+    -
+        id: gg-italic-color
+        title: Italic text color
+        title.zh: 斜体颜色
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#37352F'
+        default-dark: '#E6E1D8'
+    -
         id: gg-typography
         title: Typography
         title.zh: 排版
@@ -448,7 +468,7 @@ body {
 
   /* Emphasis colors */
   --bold-color: var(--gg-bold-color, var(--gg-heading-color));
-  --italic-color: #37352F;
+  --italic-color: var(--gg-italic-color, #37352F);
 
   /* Code — inline: dark red text on the subtle hover surface */
   --code-normal: #8E2726;
@@ -639,7 +659,7 @@ body {
 
   /* Emphasis colors */
   --bold-color: var(--gg-bold-color, var(--gg-heading-color));
-  --italic-color: #E6E1D8;
+  --italic-color: var(--gg-italic-color, #E6E1D8);
 
   /* Code — inline: Tolaria's dark monospace red on the subtle surface */
   --code-normal: #FFA6A3;
@@ -769,7 +789,7 @@ body {
 .markdown-rendered h5,
 .markdown-rendered h6,
 .markdown-source-view.mod-cm6 .cm-line[class*="HyperMD-header"] {
-  color: var(--gg-heading-color);
+  color: var(--gg-heading-text-color, var(--gg-heading-color));
 }
 
 .markdown-rendered h1,
