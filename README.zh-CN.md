@@ -101,6 +101,10 @@ scripts/sync-from-vault.sh <vault-path> # vault -> repo
 
 gogoga 系列全部免费开源。如果这个主题帮到了你，欢迎在 [爱发电](https://afdian.com/a/jackweigogoga) 支持一下，Obsidian 社区主题页面里也有赞助按钮。反馈 bug、提建议同样是很大的支持。
 
+## 更新日志
+
+每个版本的变化见 [CHANGELOG.zh-CN.md](CHANGELOG.zh-CN.md)（[English](CHANGELOG.md)）。发版前先写好新版本的条目：Release 说明从这里取，没写时发布会失败。
+
 ## 许可证与商标
 
 本项目作为 Tolaria 设计系统的衍生作品，以 **AGPL-3.0-or-later** 许可证发布（见
