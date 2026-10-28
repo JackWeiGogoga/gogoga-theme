@@ -35,7 +35,8 @@ list markers, and an H1-as-title layout with a divider.
   subscriptions, recent uploads, read state, and opt-in video notes using
   public RSS feeds, with a generated native Bases view.
 - **Style Settings support**: accent and inline-code colors (per light/dark),
-  body font and body text weight, text measure, and table column floor, plus opt-in toggles to hide
+  body font and body text weight, bold text style (classic, accent color or highlighter, with
+  custom bold color, weight and stroke), text measure, and table column floor, plus opt-in toggles to hide
   the H1 divider, use one bullet shape at every nesting level, fall back to
   the system's font rendering (macOS only), highlight the line under the mouse
   (with its own color), show H1–H6 heading level markers, and a focus

@@ -81,6 +81,59 @@ settings:
         max: 600
         step: 50
     -
+        id: gogoga-bold-style
+        title: Bold text style
+        title.zh: 加粗样式
+        description: Classic keeps bold the same color as body text. Accent color tints it, highlighter adds a light marker stroke under it
+        description.zh: 「经典」是默认样子，加粗和正文同色；「强调色」给加粗上强调色；「荧光笔」在加粗文字下半部分加一道淡色底
+        type: class-select
+        allowEmpty: false
+        default: gogoga-bold-classic
+        options:
+            -
+                label: Classic
+                value: gogoga-bold-classic
+            -
+                label: Accent color
+                value: gogoga-bold-accent
+            -
+                label: Highlighter
+                value: gogoga-bold-marker
+    -
+        id: gg-bold-color
+        title: Bold text color
+        title.zh: 加粗颜色
+        description: Leave unset to follow the style above. Takes priority over it once set
+        description.zh: 不设时跟随上面的加粗样式；设了以后优先用这个颜色
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#37352F'
+        default-dark: '#F1ECE3'
+    -
+        id: bold-modifier
+        title: How much heavier bold is
+        title.zh: 加粗比正文粗多少
+        description: Added to the body text weight; 200 turns 400 into 600. Chinese fonts on macOS (PingFang) stop at 600, so higher values only make Latin letters heavier; use the stroke below to thicken Chinese
+        description.zh: 在正文字重上加多少，200 就是 400 → 600。macOS 的中文字体（苹方）最粗只到 600，调得更高只有英文会变粗；中文想更粗请用下面的笔画加粗
+        type: variable-number-slider
+        default: 200
+        min: 100
+        max: 500
+        step: 100
+    -
+        id: gg-bold-stroke
+        title: Thicken bold strokes
+        title.zh: 加粗笔画加粗
+        description: Adds a hairline outline in the text color to bold text, which makes Chinese heavier too. 0 turns it off; 0.15–0.3 is usually enough
+        description.zh: 给加粗文字描一圈同色细边，中文也会跟着变粗。0 为关闭，一般 0.15–0.3 就够
+        type: variable-number-slider
+        default: 0
+        min: 0
+        max: 0.6
+        step: 0.05
+        format: px
+    -
         id: file-line-width
         title: Line width
         title.zh: 正文行宽
@@ -394,7 +447,7 @@ body {
   --icon-color-focused: #37352F;
 
   /* Emphasis colors */
-  --bold-color: var(--gg-heading-color);
+  --bold-color: var(--gg-bold-color, var(--gg-heading-color));
   --italic-color: #37352F;
 
   /* Code — inline: dark red text on the subtle hover surface */
@@ -585,7 +638,7 @@ body {
   --icon-color-focused: #E6E1D8;
 
   /* Emphasis colors */
-  --bold-color: var(--gg-heading-color);
+  --bold-color: var(--gg-bold-color, var(--gg-heading-color));
   --italic-color: #E6E1D8;
 
   /* Code — inline: Tolaria's dark monospace red on the subtle surface */
@@ -1325,6 +1378,25 @@ body.gogoga-uniform-bullets .markdown-rendered ul ul ul > li > .list-bullet::aft
   background-color: var(--list-marker-color);
   border: none;
   border-radius: 50%;
+}
+
+/* Bold text options (Style Settings → Typography). The default is the classic
+   look; a custom bold color wins over the style. The stroke is a hairline in
+   the text color: CJK faces on macOS stop at Semibold, so a bigger
+   --bold-modifier only changes Latin letters, while the stroke thickens both.
+   Headings are bold already and are left alone */
+body.gogoga-bold-accent.theme-light,
+body.gogoga-bold-accent.theme-dark {
+  --bold-color: var(--gg-bold-color, var(--gg-accent));
+}
+body.gogoga-bold-marker :is(.markdown-rendered strong, .markdown-rendered b, .cm-strong) {
+  background: linear-gradient(transparent 62%, color-mix(in srgb, var(--gg-accent) 22%, transparent) 62%);
+}
+:is(.markdown-rendered strong, .markdown-rendered b, .cm-strong) {
+  -webkit-text-stroke: var(--gg-bold-stroke, 0) currentColor;
+}
+:is(.markdown-rendered :is(h1, h2, h3, h4, h5, h6) :is(strong, b), .cm-header.cm-strong) {
+  -webkit-text-stroke: 0;
 }
 
 body.gogoga-subpixel-text {
