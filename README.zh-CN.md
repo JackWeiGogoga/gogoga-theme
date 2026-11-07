@@ -38,11 +38,19 @@ Inter 字体、蓝色列表符号，以及把 H1 当作标题、下方带分隔�
 
 ## 安装
 
-### 主题（手动）
+### 主题市场（推荐）
 
-把 `theme.css` 和 `manifest.json` 复制到
-`<vault>/.obsidian/themes/gogoga/`，然后在
-设置 → 外观 → 主题 中选择 **gogoga**。
+设置 → 外观 → 主题 旁边点「管理」，搜索 **gogoga**，安装后点「使用」。以后有新版本也在这里更新。
+
+### 手动安装
+
+不能联网（比如公司内网）、或者想装指定版本时用：
+
+1. 打开 [Releases 页面](https://github.com/JackWeiGogoga/gogoga-theme/releases/latest)，在 **Assets** 里下载 `theme.css`、`manifest.json` 这两个文件。**不要下载 Source code 压缩包**：那是源码，Obsidian 用不了。
+2. 打开你的库（vault）所在文件夹，进到 `.obsidian/themes/`（没有就新建），新建一个叫 `gogoga` 的文件夹，把两个文件放进去，最后是 `<库>/.obsidian/themes/gogoga/theme.css` 这样的路径。
+   - `.obsidian` 是隐藏文件夹：macOS 在访达里按 `⌘ ⇧ .` 显示；Windows 在资源管理器的「查看」里勾选「隐藏的项目」。
+3. 重启 Obsidian，在 设置 → 外观 → 主题 里选 **gogoga**。
+
 
 ### 推荐配置
 

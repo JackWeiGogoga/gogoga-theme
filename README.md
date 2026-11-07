@@ -53,11 +53,19 @@ list markers, and an H1-as-title layout with a divider.
 
 ## Install
 
-### Theme (manual)
+### Theme browser (recommended)
 
-Copy `theme.css` and `manifest.json` into
-`<vault>/.obsidian/themes/gogoga/`, then select **gogoga** under
-Settings → Appearance → Themes.
+Settings → Appearance → click **Manage** next to Themes, search for **gogoga**, install it, then click **Use**. Updates show up there too.
+
+### Manual install
+
+For offline machines (such as a company network) or to pin a specific version:
+
+1. Open the [Releases page](https://github.com/JackWeiGogoga/gogoga-theme/releases/latest) and download the two files `theme.css` and `manifest.json` under **Assets**. **Don't download the Source code archives**: they are the source code, which Obsidian can't load.
+2. In your vault's folder, go to `.obsidian/themes/` (create it if missing), create a folder named `gogoga`, and put both files in it, so you end up with `<vault>/.obsidian/themes/gogoga/theme.css`.
+   - `.obsidian` is a hidden folder: press `⌘ ⇧ .` in Finder on macOS; on Windows, tick **Hidden items** under **View** in File Explorer.
+3. Restart Obsidian, then select **gogoga** under Settings → Appearance → Themes.
+
 
 ### Recommended setup
 
