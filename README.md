@@ -44,6 +44,7 @@ list markers, and an H1-as-title layout with a divider.
   the one under the mouse). Every toggle is off by default, so the theme
   keeps its intended look without the plugin. Option labels follow Obsidian's
   language: English, or Simplified Chinese when Obsidian is set to Chinese.
+- **Highlighter notes** (Style Settings → gogoga → 荧光笔记 Highlighter notes, each item off by default): the title and H1 on a solid marker block, a highlighter stroke across the lower half of H2 and H3, `==highlights==` with slanted ends like a real highlighter, `<u>underline</u>` as a thick marker line, and strikethrough as a red line. Turn each on separately and pick your own highlighter color; works in dark mode too.
 - **Writing aids without plugins**: focus mode, hover highlight and heading
   level markers also switch on with Obsidian's own features — see
   [below](#writing-aids).

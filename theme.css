@@ -237,6 +237,66 @@ settings:
         description.zh: 默认使用灰度抗锯齿（与 Tolaria 一致，字重看起来更细），开启后回到系统默认的次像素渲染。仅 macOS 有效，Windows 上请用「正文字重」调粗
         type: class-toggle
         default: false
+    -
+        id: gg-marker-style
+        title: Highlighter notes
+        title.zh: 荧光笔记
+        description: Headings and key points look like they were marked with a highlighter. Every item is off by default
+        description.zh: 标题和重点像用荧光笔划过。每一项默认都关着
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: gg-marker
+        title: Highlighter color
+        title.zh: 荧光笔颜色
+        description: Used by every item below
+        description.zh: 下面几项都用这个颜色
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#FFD60A'
+        default-dark: '#F5C800'
+    -
+        id: gogoga-marker-h1
+        title: H1 on a marker block
+        title.zh: 一级标题马克笔色块
+        description: The note title and H1 sit on a solid block of the highlighter color, as if colored in with a thick marker. Replaces the divider under H1
+        description.zh: 笔记标题和一级标题压在一块实心色块上，像用粗马克笔涂过。打开后不再显示一级标题下方的分隔线
+        type: class-toggle
+        default: false
+    -
+        id: gogoga-marker-headings
+        title: Highlighter stroke on H2 and H3
+        title.zh: 二三级标题荧光笔
+        description: A highlighter stroke across the lower half of H2 and H3
+        description.zh: 二、三级标题的下半截刷一道荧光笔
+        type: class-toggle
+        default: false
+    -
+        id: gogoga-marker-highlight
+        title: Highlights drawn with a highlighter
+        title.zh: 高亮像荧光笔划过
+        description: ==Highlights== get slanted ends like a real highlighter stroke. Colored highlights keep their own colors
+        description.zh: ==高亮== 两头斜着收尾，像真的荧光笔划出来。带颜色的高亮保持原来的颜色
+        type: class-toggle
+        default: false
+    -
+        id: gogoga-marker-underline
+        title: Marker underline
+        title.zh: 下划线像记号笔
+        description: <u>Underlined</u> text gets a thick highlighter line across its lower part instead of a thin line
+        description.zh: <u>下划线</u> 换成压在文字下半部的一道粗记号笔线
+        type: class-toggle
+        default: false
+    -
+        id: gogoga-marker-strike
+        title: Red strikethrough
+        title.zh: 删除线红色划掉
+        description: Struck-through text turns gray with a red line through it
+        description.zh: 删除线的文字变灰，用一道红线划掉
+        type: class-toggle
+        default: false
 */
 
 /* ------------------------------------------------------------
@@ -1582,4 +1642,112 @@ body.gogoga-focus-mode,
 }
 .nav-files-container .nav-file-title.is-active .nav-file-tag {
   color: var(--gg-accent);
+}
+
+/* ------------------------------------------------------------
+   荧光笔记 (Highlighter notes) — opt-in through Style Settings:
+   each item is a body class, all off by default. One color
+   (--gg-marker) drives every item; light and dark share the
+   same yellow, only the translucent strokes get lighter in dark.
+   ------------------------------------------------------------ */
+body {
+  --gg-marker: #FFD60A;
+  /* Translucent stroke for headings / underline: lets the text keep its own color */
+  --gg-marker-stroke: color-mix(in srgb, var(--gg-marker) 72%, transparent);
+  /* Text placed on the solid marker (H1 block, highlights) stays dark in both modes */
+  --gg-marker-ink: #1F1E1B;
+  --gg-strike-color: #E5484D;
+}
+.theme-dark {
+  --gg-marker: #F5C800;
+  --gg-marker-stroke: color-mix(in srgb, var(--gg-marker) 42%, transparent);
+}
+
+/* 1. H1 on a marker block — the note title, reading-view h1 and the
+      heading text in Live Preview (the "# " stays plain while editing) */
+body.gogoga-marker-h1 .inline-title,
+body.gogoga-marker-h1 .markdown-rendered h1 {
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.04em 0.28em 0.08em;
+  border-bottom: none;
+  background-color: var(--gg-marker);
+  color: var(--gg-marker-ink);
+  /* Slightly uneven corners read as hand-colored rather than a UI badge */
+  border-radius: 2px 5px 3px 6px / 5px 2px 6px 3px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+body.gogoga-marker-h1 .markdown-rendered h1 { margin-bottom: 16px; }
+body.gogoga-marker-h1 .inline-title { margin-bottom: 20px; }
+body.gogoga-marker-h1 .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-1 {
+  padding-bottom: 8px;
+  border-bottom: none;
+}
+body.gogoga-marker-h1 .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-1 .cm-header-1:not(.cm-formatting) {
+  padding: 0.04em 0.28em 0.08em;
+  background-color: var(--gg-marker);
+  color: var(--gg-marker-ink);
+  border-radius: 2px 5px 3px 6px / 5px 2px 6px 3px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* 2. H2 / H3: a highlighter stroke across the lower half of the text */
+body.gogoga-marker-headings .markdown-rendered h2,
+body.gogoga-marker-headings .markdown-rendered h3 {
+  width: fit-content;
+  max-width: 100%;
+}
+body.gogoga-marker-headings .markdown-rendered h2,
+body.gogoga-marker-headings .markdown-rendered h3,
+body.gogoga-marker-headings .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-2 .cm-header-2:not(.cm-formatting),
+body.gogoga-marker-headings .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-3 .cm-header-3:not(.cm-formatting) {
+  padding: 0 0.18em;
+  margin-left: -0.18em;
+  background-image: linear-gradient(176deg, transparent 52%, var(--gg-marker-stroke) 52%, var(--gg-marker-stroke) 90%, transparent 90%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+/* Live Preview spans sit next to each other (bold, links inside a heading):
+   only the first one shifts left, or the pieces would overlap */
+body.gogoga-marker-headings .markdown-source-view.mod-cm6 .cm-line[class*="HyperMD-header-"] .cm-header:not(.cm-formatting) + .cm-header:not(.cm-formatting) {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+/* 3. ==Highlight== with slanted ends, like a highlighter stroke.
+      Colored highlights (Obsidian's ==🔴…== / <mark style>) keep their colors.
+      Obsidian 1.15+ puts an empty data-highlight="" on plain highlights too */
+body.gogoga-marker-highlight .markdown-rendered mark:not([style]):is(:not([data-highlight]), [data-highlight=""]),
+body.gogoga-marker-highlight .cm-s-obsidian .cm-highlight {
+  padding: 0.02em 0.3em;
+  border-radius: 0;
+  color: var(--gg-marker-ink);
+  background-color: transparent;
+  background-image: linear-gradient(100deg, transparent 0.12em, var(--gg-marker) 0.28em, var(--gg-marker) calc(100% - 0.28em), transparent calc(100% - 0.12em));
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* 4. <u>Underline</u> as a thick marker line across the lower part */
+body.gogoga-marker-underline .markdown-rendered u,
+body.gogoga-marker-underline .markdown-source-view.mod-cm6 u,
+body.gogoga-marker-underline .markdown-source-view .mm-note-u,
+body.gogoga-marker-underline .mm-label u {
+  text-decoration: none;
+  padding: 0 0.06em;
+  background-image: linear-gradient(transparent 64%, var(--gg-marker-stroke) 64%, var(--gg-marker-stroke) 94%, transparent 94%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* 5. Strikethrough: gray text, red line */
+body.gogoga-marker-strike .markdown-rendered del,
+body.gogoga-marker-strike .markdown-rendered s,
+body.gogoga-marker-strike .cm-s-obsidian .cm-strikethrough {
+  color: var(--text-muted);
+  text-decoration-line: line-through;
+  text-decoration-color: var(--gg-strike-color);
+  text-decoration-thickness: 2px;
 }

@@ -2,6 +2,11 @@
 
 gogoga 主题 每个版本的主要变化都记在这里。格式参照 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本号遵循[语义化版本](https://semver.org/lang/zh-CN/)。English: [CHANGELOG.md](CHANGELOG.md).
 
+## [0.2.0] - 2026-11-09
+
+### 新增
+- Style Settings 里新增「荧光笔记」一组（每项默认关）：笔记标题和一级标题压在马克笔色块上；二三级标题下半截刷一道荧光笔；`==高亮==` 两头斜着收尾，像真的荧光笔划过（带颜色的高亮保持原色）；`<u>下划线</u>` 换成粗记号笔线，gogoga 脑图节点里的下划线也一样；删除线变成灰字加红线。另有一个「荧光笔颜色」统一调，浅色、深色都适用。
+
 ## [0.1.7] - 2026-10-28
 
 ### 新增
@@ -55,6 +60,7 @@ gogoga 主题 每个版本的主要变化都记在这里。格式参照 [Keep a 
 - Notebook Navigator 和属性侧栏的配套样式。
 - Style Settings：强调色和行内代码颜色、正文字体、行宽、表格最小列宽，以及「隐藏一级标题分隔线」「统一列表符号」「使用系统字体渲染」三个可选开关。
 
+[0.2.0]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.1.7...0.2.0
 [0.1.7]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.1.5...0.1.6
 [0.1.5]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.1.4...0.1.5
