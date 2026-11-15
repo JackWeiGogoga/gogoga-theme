@@ -106,6 +106,10 @@ scripts/dev-install.sh <vault-path>    # repo -> vault
 scripts/sync-from-vault.sh <vault-path> # vault -> repo
 ```
 
+## 交流
+
+用法问题、建议可以加微信 `JackWeiGogoga`（备注「gogoga」），我拉你进交流群，二维码在[官网交流页](https://obsidian.gogoga.top/community/)。bug 和功能建议请在本仓库的 [Issues](https://github.com/JackWeiGogoga/gogoga-theme/issues) 里提，附上截图或录屏和版本号。
+
 ## 支持作者
 
 gogoga 系列全部免费开源。如果这个主题帮到了你，欢迎在 [爱发电](https://afdian.com/a/jackweigogoga) 支持一下，Obsidian 社区主题页面里也有赞助按钮。反馈 bug、提建议同样是很大的支持。

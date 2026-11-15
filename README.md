@@ -132,6 +132,10 @@ scripts/dev-install.sh <vault-path>    # repo -> vault
 scripts/sync-from-vault.sh <vault-path> # vault -> repo
 ```
 
+## Community
+
+Bugs and feature requests: please open an [issue](https://github.com/JackWeiGogoga/gogoga-theme/issues) with a screenshot or recording and the version. Chinese-speaking users can also join the WeChat group: add `JackWeiGogoga` with the note “gogoga”, or scan the QR code on the [community page](https://obsidian.gogoga.top/en/community/).
+
 ## Support
 
 gogoga is free and open source. If this theme helps you, you can support its development on [afdian (爱发电)](https://afdian.com/a/jackweigogoga). Obsidian also shows a support button for it in the community directory. Bug reports and ideas help just as much.
