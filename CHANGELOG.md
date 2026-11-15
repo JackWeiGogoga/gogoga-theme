@@ -2,6 +2,11 @@
 
 All notable changes to gogoga theme are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/). 中文版见 [CHANGELOG.zh-CN.md](CHANGELOG.zh-CN.md).
 
+## [0.2.1] - 2026-11-15
+
+### Fixed
+- Task checkboxes in a side pane are no longer cut off on the left. At the smaller side-pane font size the box stuck out past the list edge, and inside a live-preview query block (Tasks, Dataview) its left border was clipped. Task items now always leave room for the checkbox; the main editor looks the same.
+
 ## [0.2.0] - 2026-11-09
 
 ### Added
@@ -60,6 +65,7 @@ First public release.
 - Matching styles for Notebook Navigator and the properties side panel.
 - Style Settings: accent and inline code colors, body font, line width, table column floor, and opt-in toggles to hide the H1 divider, use one bullet shape, and use the system font rendering.
 
+[0.2.1]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.1.7...0.2.0
 [0.1.7]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.1.5...0.1.6

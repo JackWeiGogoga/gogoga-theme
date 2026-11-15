@@ -2,6 +2,11 @@
 
 gogoga 主题 每个版本的主要变化都记在这里。格式参照 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本号遵循[语义化版本](https://semver.org/lang/zh-CN/)。English: [CHANGELOG.md](CHANGELOG.md).
 
+## [0.2.1] - 2026-11-15
+
+### 修复
+- 侧栏里的任务框左边不再被裁掉。侧栏字号小，任务框会伸出列表左边，在实时预览的查询块（Tasks、Dataview）里左边框被裁掉。现在任务项总会给复选框留够位置；主编辑区样子不变。
+
 ## [0.2.0] - 2026-11-09
 
 ### 新增
@@ -60,6 +65,7 @@ gogoga 主题 每个版本的主要变化都记在这里。格式参照 [Keep a 
 - Notebook Navigator 和属性侧栏的配套样式。
 - Style Settings：强调色和行内代码颜色、正文字体、行宽、表格最小列宽，以及「隐藏一级标题分隔线」「统一列表符号」「使用系统字体渲染」三个可选开关。
 
+[0.2.1]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.1.7...0.2.0
 [0.1.7]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.1.6...0.1.7
 [0.1.6]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.1.5...0.1.6
