@@ -949,6 +949,15 @@ body {
   border-radius: 0;
 }
 
+/* Rendered task items indent 3ch, but the checkbox hangs back 1.5× its size
+   (27px). At small sizes (side panes, ~13.5px) 3ch is narrower than that, so
+   the box pokes past the list's edge — and inside a live-preview embed
+   (a Tasks / Dataview query block, `contain: paint`) its left edge is cut off.
+   Give task items at least the room the checkbox needs. */
+.markdown-rendered ul > li.task-list-item:not(.ggt-content li) {
+  margin-inline-start: max(3ch, calc(var(--checkbox-size) * 1.5));
+}
+
 /* ------------------------------------------------------------
    Inline code + code blocks
    Tolaria: inline = subtle gray chip; block = sidebar-tinted panel
