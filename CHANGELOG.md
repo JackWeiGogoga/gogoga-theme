@@ -4,6 +4,8 @@ All notable changes to gogoga theme are listed here. The format follows [Keep a 
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-16
+
 ### Added (#2, suggested by pinery-sls; all in Style Settings, off by default)
 - **Heading colors**: a "Heading palette" (Rainbow, Ocean, Forest, Sunset) gives each heading level its own color, with a matching set for dark mode; a color set for a single level wins over the palette.
 - **Colorful emphasis**: italic and bold italic get their own text colors, and highlights that are also italic, bold or both get their own backgrounds (pink, green, blue). All five colors can be changed; the italic color under Colors wins when set.
@@ -82,7 +84,8 @@ First public release.
 - Matching styles for Notebook Navigator and the properties side panel.
 - Style Settings: accent and inline code colors, body font, line width, table column floor, and opt-in toggles to hide the H1 divider, use one bullet shape, and use the system font rendering.
 
-[Unreleased]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.2.1...HEAD
+[Unreleased]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.3.0...HEAD
+[0.3.0]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.2.1...0.3.0
 [0.2.1]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.1.7...0.2.0
 [0.1.7]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.1.6...0.1.7

@@ -4,6 +4,8 @@ gogoga 主题 每个版本的主要变化都记在这里。格式参照 [Keep a 
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-16
+
 ### 新增（#2，pinery-sls 的建议；都在 Style Settings 里，默认关）
 - **标题配色**：「标题配色方案」可选彩虹、海洋、森林、暮色，一到六级标题各用一种颜色，深色模式有对应的一套；也可以单独给某一级设颜色，单独设的优先。
 - **多彩强调**：斜体、粗斜体各用一种文字颜色；高亮里再加斜体、加粗、粗斜体，各用一种底色（粉、绿、蓝）。五个颜色都能改，「配色 → 斜体颜色」设过的话以它为准。
@@ -82,7 +84,8 @@ gogoga 主题 每个版本的主要变化都记在这里。格式参照 [Keep a 
 - Notebook Navigator 和属性侧栏的配套样式。
 - Style Settings：强调色和行内代码颜色、正文字体、行宽、表格最小列宽，以及「隐藏一级标题分隔线」「统一列表符号」「使用系统字体渲染」三个可选开关。
 
-[Unreleased]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.2.1...HEAD
+[Unreleased]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.3.0...HEAD
+[0.3.0]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.2.1...0.3.0
 [0.2.1]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.1.7...0.2.0
 [0.1.7]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.1.6...0.1.7
