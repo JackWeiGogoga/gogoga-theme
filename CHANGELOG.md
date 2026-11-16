@@ -2,6 +2,23 @@
 
 All notable changes to gogoga theme are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/). 中文版见 [CHANGELOG.zh-CN.md](CHANGELOG.zh-CN.md).
 
+## [Unreleased]
+
+### Added (#2, suggested by pinery-sls; all in Style Settings, off by default)
+- **Heading colors**: a "Heading palette" (Rainbow, Ocean, Forest, Sunset) gives each heading level its own color, with a matching set for dark mode; a color set for a single level wins over the palette.
+- **Colorful emphasis**: italic and bold italic get their own text colors, and highlights that are also italic, bold or both get their own backgrounds (pink, green, blue). All five colors can be changed; the italic color under Colors wins when set.
+- **Tasks and lists**:
+  - "Checkbox shape": square or round.
+  - "More task states": 21 markers such as `- [>]` `- [<]` `- [!]` `- [-]` `- [/]` `- [?]` `- [*]` each show their own icon and color (Phosphor icons) instead of a plain check; `- [-]` is struck through like `- [x]`, the others aren't.
+  - "Rainbow indent lines": each nesting level of a list draws its guide line in its own color.
+- **File explorer** (Obsidian's own file explorer only):
+  - "File type icons" for notes, images, PDF, audio, video, canvas, Bases, code and archives.
+  - "Folder icon color": gray, accent color, or rainbow (top-level folders take turns, subfolders follow their parent).
+- **Properties text size** (under Typography) for property names, values and "Add property"; 12px by default as before.
+
+### Fixed
+- With both heading level markers and editor line numbers on, the H1/H2 tags sat on top of the line numbers (#2). With line numbers on, the tag now sits between the numbers and the text, and gives way to the fold arrow when the mouse is over the heading.
+
 ## [0.2.1] - 2026-11-15
 
 ### Fixed
@@ -65,6 +82,7 @@ First public release.
 - Matching styles for Notebook Navigator and the properties side panel.
 - Style Settings: accent and inline code colors, body font, line width, table column floor, and opt-in toggles to hide the H1 divider, use one bullet shape, and use the system font rendering.
 
+[Unreleased]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.2.1...HEAD
 [0.2.1]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.1.7...0.2.0
 [0.1.7]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.1.6...0.1.7

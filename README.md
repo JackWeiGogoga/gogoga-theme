@@ -45,6 +45,12 @@ list markers, and an H1-as-title layout with a divider.
   keeps its intended look without the plugin. Option labels follow Obsidian's
   language: English, or Simplified Chinese when Obsidian is set to Chinese.
 - **Highlighter notes** (Style Settings → gogoga → 荧光笔记 Highlighter notes, each item off by default): the title and H1 on a solid marker block, a highlighter stroke across the lower half of H2 and H3, `==highlights==` with slanted ends like a real highlighter, `<u>underline</u>` as a thick marker line, and strikethrough as a red line. Turn each on separately and pick your own highlighter color; works in dark mode too.
+- **More looks** (Style Settings → gogoga, each off by default):
+  - Heading colors: Rainbow, Ocean, Forest and Sunset palettes, or a color for any single level.
+  - Colorful emphasis: own colors for italic and bold italic, own backgrounds for italic, bold and bold italic highlights.
+  - Tasks and lists: round checkboxes; icons and colors for 21 task states such as `- [>]` `- [!]` `- [?]`; rainbow indent lines.
+  - File explorer: icons by file type; folder icons in the accent color or a rainbow.
+  - Adjustable properties text size.
 - **Writing aids without plugins**: focus mode, hover highlight and heading
   level markers also switch on with Obsidian's own features — see
   [below](#writing-aids).

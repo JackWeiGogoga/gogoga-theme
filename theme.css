@@ -172,6 +172,18 @@ settings:
         default: 100
         format: px
     -
+        id: gg-properties-font-size
+        title: Properties text size
+        title.zh: 笔记属性字号
+        description: Names and values in the properties block at the top of a note. 12px follows Tolaria
+        description.zh: 笔记顶部属性区里属性名和值的字号。12px 和 Tolaria 一致
+        type: variable-number-slider
+        default: 12
+        min: 11
+        max: 18
+        step: 1
+        format: px
+    -
         id: gg-features
         title: Features
         title.zh: 特性开关
@@ -237,6 +249,229 @@ settings:
         description.zh: 默认使用灰度抗锯齿（与 Tolaria 一致，字重看起来更细），开启后回到系统默认的次像素渲染。仅 macOS 有效，Windows 上请用「正文字重」调粗
         type: class-toggle
         default: false
+    -
+        id: gg-heading-colors
+        title: Heading colors
+        title.zh: 标题配色
+        description: A palette colors each heading level differently. A color set for one level below wins over the palette
+        description.zh: 选一套配色，让每一级标题各用一种颜色。下面给某一级单独设了颜色时，以单独设的为准
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: gogoga-heading-palette
+        title: Heading palette
+        title.zh: 标题配色方案
+        description: Default keeps every heading in the heading color under Colors
+        description.zh: 「默认」是所有标题都用「配色 → 标题颜色」
+        type: class-select
+        allowEmpty: false
+        default: gogoga-heading-palette-none
+        options:
+            -
+                label: Default
+                value: gogoga-heading-palette-none
+            -
+                label: Rainbow
+                value: gogoga-heading-palette-rainbow
+            -
+                label: Ocean
+                value: gogoga-heading-palette-ocean
+            -
+                label: Forest
+                value: gogoga-heading-palette-forest
+            -
+                label: Sunset
+                value: gogoga-heading-palette-sunset
+    -
+        id: gg-h1-color
+        title: H1 color
+        title.zh: 一级标题颜色
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#37352F'
+        default-dark: '#F1ECE3'
+    -
+        id: gg-h2-color
+        title: H2 color
+        title.zh: 二级标题颜色
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#37352F'
+        default-dark: '#F1ECE3'
+    -
+        id: gg-h3-color
+        title: H3 color
+        title.zh: 三级标题颜色
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#37352F'
+        default-dark: '#F1ECE3'
+    -
+        id: gg-h4-color
+        title: H4 color
+        title.zh: 四级标题颜色
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#37352F'
+        default-dark: '#F1ECE3'
+    -
+        id: gg-h5-color
+        title: H5 color
+        title.zh: 五级标题颜色
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#37352F'
+        default-dark: '#F1ECE3'
+    -
+        id: gg-h6-color
+        title: H6 color
+        title.zh: 六级标题颜色
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#37352F'
+        default-dark: '#F1ECE3'
+    -
+        id: gg-emphasis
+        title: Colorful emphasis
+        title.zh: 多彩强调
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: gogoga-rich-emphasis
+        title: Colorful emphasis
+        title.zh: 多彩强调
+        description: Italic and bold italic text get their own colors, and highlights that are also italic, bold or both get their own backgrounds, so each kind of emphasis looks different
+        description.zh: 斜体、粗斜体各用一种文字颜色；高亮里再加斜体、加粗、粗斜体，各用一种底色，几种强调一眼能分开
+        type: class-toggle
+        default: false
+    -
+        id: gg-rich-italic
+        title: Italic text color
+        title.zh: 斜体颜色
+        description: Only with colorful emphasis on. The italic color under Colors wins when set
+        description.zh: 打开多彩强调时才生效。「配色 → 斜体颜色」设过的话以那个为准
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#0F9D74'
+        default-dark: '#5FD3AA'
+    -
+        id: gg-bold-italic-color
+        title: Bold italic text color
+        title.zh: 粗斜体颜色
+        type: variable-themed-color
+        format: hex
+        opacity: false
+        default-light: '#1C6FD6'
+        default-dark: '#6FB2FF'
+    -
+        id: gg-hl-italic
+        title: Italic highlight background
+        title.zh: 斜体高亮底色
+        type: variable-themed-color
+        format: hex
+        opacity: true
+        default-light: '#FFD6D6'
+        default-dark: '#FF6B6B47'
+    -
+        id: gg-hl-bold
+        title: Bold highlight background
+        title.zh: 加粗高亮底色
+        type: variable-themed-color
+        format: hex
+        opacity: true
+        default-light: '#CFF0D2'
+        default-dark: '#51CF6647'
+    -
+        id: gg-hl-bold-italic
+        title: Bold italic highlight background
+        title.zh: 粗斜体高亮底色
+        type: variable-themed-color
+        format: hex
+        opacity: true
+        default-light: '#D3E4FF'
+        default-dark: '#4DABF74D'
+    -
+        id: gg-lists
+        title: Tasks and lists
+        title.zh: 任务与列表
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: gogoga-checkbox-shape
+        title: Checkbox shape
+        title.zh: 复选框形状
+        type: class-select
+        allowEmpty: false
+        default: gogoga-checkbox-square
+        options:
+            -
+                label: Square
+                value: gogoga-checkbox-square
+            -
+                label: Round
+                value: gogoga-checkbox-round
+    -
+        id: gogoga-alt-checkbox
+        title: More task states
+        title.zh: 扩展任务状态
+        description: '- [>] - [<] - [!] - [-] - [/] - [?] - [*] - ["] - [n] - [l] - [i] - [I] - [S] - [p] - [c] - [b] - [f] - [k] - [w] - [u] - [d] each get their own icon and color instead of a plain check. Only - [x] and - [-] are struck through'
+        description.zh: '- [>] - [<] - [!] - [-] - [/] - [?] - [*] - ["] - [n] - [l] - [i] - [I] - [S] - [p] - [c] - [b] - [f] - [k] - [w] - [u] - [d] 各显示成自己的图标和颜色，不再都是一个对勾。只有 - [x] 和 - [-] 带删除线'
+        type: class-toggle
+        default: false
+    -
+        id: gogoga-rainbow-indent
+        title: Rainbow indent lines
+        title.zh: 彩虹缩进线
+        description: Nested lists get a vertical line per level, each level in its own color. Needs Settings → Editor → Indentation guides on
+        description.zh: 嵌套列表每一级显示一条竖线，每级一种颜色。需要打开「设置 → 编辑器 → 显示缩进参考线」
+        type: class-toggle
+        default: false
+    -
+        id: gg-files
+        title: File explorer
+        title.zh: 文件列表
+        description: Only affects Obsidian's own file explorer, not Notebook Navigator
+        description.zh: 只对 Obsidian 自带的文件列表生效，Notebook Navigator 不受影响
+        type: heading
+        level: 2
+        collapsed: true
+    -
+        id: gogoga-file-icons
+        title: File type icons
+        title.zh: 文件类型图标
+        description: An icon before each file by type, such as notes, images, PDF, audio, video and canvas
+        description.zh: 每个文件前面按类型显示一个图标：笔记、图片、PDF、音频、视频、白板等
+        type: class-toggle
+        default: false
+    -
+        id: gogoga-folder-color
+        title: Folder icon color
+        title.zh: 文件夹图标颜色
+        description: Rainbow gives each top-level folder its own color in turn, and its subfolders follow it
+        description.zh: 「彩虹」让顶层文件夹依次换颜色，子文件夹跟着上级
+        type: class-select
+        allowEmpty: false
+        default: gogoga-folder-gray
+        options:
+            -
+                label: Gray
+                value: gogoga-folder-gray
+            -
+                label: Accent color
+                value: gogoga-folder-accent
+            -
+                label: Rainbow
+                value: gogoga-folder-rainbow
     -
         id: gg-marker-style
         title: Highlighter notes
@@ -417,9 +652,9 @@ body {
   --status-bar-font-size: 12px;
 
   /* Properties panel — Tolaria: 12px labels/values, compact rows */
-  --metadata-label-font-size: 12px;
+  --metadata-label-font-size: var(--gg-properties-font-size, 12px);
   --metadata-label-font-weight: 400;
-  --metadata-input-font-size: 12px;
+  --metadata-input-font-size: var(--gg-properties-font-size, 12px);
   --metadata-property-radius: 4px;
   --metadata-property-padding: 2px 6px;
   --metadata-input-height: 24px;
@@ -842,15 +1077,25 @@ body {
 /* ------------------------------------------------------------
    Headings — Tolaria margins, letter-spacing, and the H1 divider
    ------------------------------------------------------------ */
-.markdown-rendered h1,
-.markdown-rendered h2,
-.markdown-rendered h3,
-.markdown-rendered h4,
-.markdown-rendered h5,
-.markdown-rendered h6,
-.markdown-source-view.mod-cm6 .cm-line[class*="HyperMD-header"] {
-  color: var(--gg-heading-text-color, var(--gg-heading-color));
+/* Each level resolves its color in this order: the level's own color
+   (Style Settings), the chosen heading palette, the single heading color,
+   then the theme default. Written into Obsidian's --hN-color so anything
+   that reads those (e.g. the outline plugin) follows along */
+body {
+  --gg-heading-base: var(--gg-heading-text-color, var(--gg-heading-color));
+  --h1-color: var(--gg-h1-color, var(--gg-hp-1, var(--gg-heading-base)));
+  --h2-color: var(--gg-h2-color, var(--gg-hp-2, var(--gg-heading-base)));
+  --h3-color: var(--gg-h3-color, var(--gg-hp-3, var(--gg-heading-base)));
+  --h4-color: var(--gg-h4-color, var(--gg-hp-4, var(--gg-heading-base)));
+  --h5-color: var(--gg-h5-color, var(--gg-hp-5, var(--gg-heading-base)));
+  --h6-color: var(--gg-h6-color, var(--gg-hp-6, var(--gg-heading-base)));
 }
+.markdown-rendered h1, .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-1 { color: var(--h1-color); }
+.markdown-rendered h2, .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-2 { color: var(--h2-color); }
+.markdown-rendered h3, .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-3 { color: var(--h3-color); }
+.markdown-rendered h4, .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-4 { color: var(--h4-color); }
+.markdown-rendered h5, .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-5 { color: var(--h5-color); }
+.markdown-rendered h6, .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-6 { color: var(--h6-color); }
 
 .markdown-rendered h1,
 .markdown-source-view.mod-cm6 .HyperMD-header-1,
@@ -1214,7 +1459,7 @@ textarea:focus {
 
 /* "Properties" heading — Tolaria's 11px medium section label */
 .metadata-properties-heading .metadata-properties-title {
-  font-size: 11px;
+  font-size: calc(var(--gg-properties-font-size, 12px) - 1px);
   font-weight: 500;
   color: var(--text-muted);
 }
@@ -1251,7 +1496,7 @@ textarea:focus {
 
 /* Add property — quiet 12px text button */
 .metadata-add-button {
-  font-size: 12px;
+  font-size: var(--gg-properties-font-size, 12px);
   color: var(--text-muted);
   background: transparent;
   box-shadow: none;
@@ -1584,6 +1829,16 @@ body.gogoga-focus-mode,
   .markdown-rendered h5::before { content: "H5"; }
   .markdown-source-view.mod-cm6 .cm-line.HyperMD-header-6::before,
   .markdown-rendered h6::before { content: "H6"; }
+  /* With line numbers on, the margin above is where the numbers are. The
+     tag moves into the gap between the numbers and the text instead, and
+     gives way to the fold arrow, which shows up there on hover or while
+     the heading is folded */
+  .markdown-source-view.mod-cm6:has(.cm-lineNumbers) .cm-line[class*="HyperMD-header-"]::before {
+    inset-inline-end: calc(100% + 6px);
+  }
+  .markdown-source-view.mod-cm6:has(.cm-lineNumbers) .cm-line[class*="HyperMD-header-"]:is(:hover, :has(.is-collapsed))::before {
+    opacity: 0;
+  }
 }
 
 /* Body text weight (Style Settings). Body text uses --font-normal, so set
@@ -1622,7 +1877,8 @@ body.gogoga-focus-mode,
   margin-inline-end: 8px;
   padding: 0;
   align-self: center;
-  color: inherit;
+  /* Style Settings → Folder icon color */
+  color: var(--gg-folder-tint, inherit);
 }
 .nav-files-container .nav-folder-title .collapse-icon svg {
   display: none;
@@ -1760,3 +2016,259 @@ body.gogoga-marker-strike .cm-s-obsidian .cm-strikethrough {
   text-decoration-color: var(--gg-strike-color);
   text-decoration-thickness: 2px;
 }
+
+/* ------------------------------------------------------------
+   Heading palettes (Style Settings → Heading colors). Each palette
+   only fills --gg-hp-N; a level's own color still wins (see Headings)
+   ------------------------------------------------------------ */
+body.gogoga-heading-palette-rainbow {
+  --gg-hp-1: #D9363E; --gg-hp-2: #D9730D; --gg-hp-3: #B98900;
+  --gg-hp-4: #2B8A3E; --gg-hp-5: #1C6FD6; --gg-hp-6: #7048E8;
+}
+body.gogoga-heading-palette-ocean {
+  --gg-hp-1: #0B4F8A; --gg-hp-2: #1565C0; --gg-hp-3: #1A7FA8;
+  --gg-hp-4: #10858A; --gg-hp-5: #3B7EA1; --gg-hp-6: #5A7891;
+}
+body.gogoga-heading-palette-forest {
+  --gg-hp-1: #1F5F35; --gg-hp-2: #2F7D46; --gg-hp-3: #4F8A2B;
+  --gg-hp-4: #6E7F24; --gg-hp-5: #5F7A55; --gg-hp-6: #74846A;
+}
+body.gogoga-heading-palette-sunset {
+  --gg-hp-1: #A12A6E; --gg-hp-2: #C23361; --gg-hp-3: #D2493F;
+  --gg-hp-4: #D06A1F; --gg-hp-5: #A87A0C; --gg-hp-6: #8A6D3B;
+}
+body.gogoga-heading-palette-rainbow.theme-dark {
+  --gg-hp-1: #FF7B80; --gg-hp-2: #FFA557; --gg-hp-3: #F2CC4F;
+  --gg-hp-4: #6FD68A; --gg-hp-5: #6FB2FF; --gg-hp-6: #B79CFF;
+}
+body.gogoga-heading-palette-ocean.theme-dark {
+  --gg-hp-1: #7DB8F0; --gg-hp-2: #8EC5FF; --gg-hp-3: #74CBE8;
+  --gg-hp-4: #6ED2D2; --gg-hp-5: #9CC3DA; --gg-hp-6: #A9BDCC;
+}
+body.gogoga-heading-palette-forest.theme-dark {
+  --gg-hp-1: #7FD49A; --gg-hp-2: #95D9A4; --gg-hp-3: #A8D27F;
+  --gg-hp-4: #C2CC78; --gg-hp-5: #A9C39F; --gg-hp-6: #B4C0AA;
+}
+body.gogoga-heading-palette-sunset.theme-dark {
+  --gg-hp-1: #F28BC4; --gg-hp-2: #FF8FAE; --gg-hp-3: #FF9A8F;
+  --gg-hp-4: #FFB070; --gg-hp-5: #E8C25A; --gg-hp-6: #D2B88A;
+}
+
+/* ------------------------------------------------------------
+   Colorful emphasis (Style Settings, off by default): italic and
+   bold italic get their own text colors; highlights that are also
+   italic / bold / both get their own backgrounds
+   ------------------------------------------------------------ */
+body.gogoga-rich-emphasis {
+  --gg-d-rich-italic: #0F9D74;
+  --gg-d-bold-italic-color: #1C6FD6;
+  --gg-d-hl-italic: #FFD6D6;
+  --gg-d-hl-bold: #CFF0D2;
+  --gg-d-hl-bold-italic: #D3E4FF;
+}
+body.gogoga-rich-emphasis.theme-dark {
+  --gg-d-rich-italic: #5FD3AA;
+  --gg-d-bold-italic-color: #6FB2FF;
+  --gg-d-hl-italic: #FF6B6B47;
+  --gg-d-hl-bold: #51CF6647;
+  --gg-d-hl-bold-italic: #4DABF74D;
+}
+body.gogoga-rich-emphasis.theme-light,
+body.gogoga-rich-emphasis.theme-dark {
+  --italic-color: var(--gg-italic-color, var(--gg-rich-italic, var(--gg-d-rich-italic)));
+}
+body.gogoga-rich-emphasis :is(.markdown-rendered :is(em, i) :is(strong, b), .markdown-rendered :is(strong, b) :is(em, i), .cm-em.cm-strong) {
+  color: var(--gg-bold-italic-color, var(--gg-d-bold-italic-color));
+}
+/* Highlight + italic / bold / both. In reading view the background goes on
+   the inner element, whichever way round the markers were nested */
+body.gogoga-rich-emphasis :is(.markdown-rendered mark :is(em, i), .markdown-rendered :is(em, i) mark, .cm-highlight.cm-em) {
+  background-color: var(--gg-hl-italic, var(--gg-d-hl-italic));
+  color: var(--text-normal);
+}
+body.gogoga-rich-emphasis :is(.markdown-rendered mark :is(strong, b), .markdown-rendered :is(strong, b) mark, .cm-highlight.cm-strong) {
+  background-color: var(--gg-hl-bold, var(--gg-d-hl-bold));
+  color: var(--text-normal);
+}
+body.gogoga-rich-emphasis :is(
+    .markdown-rendered mark :is(em, i) :is(strong, b),
+    .markdown-rendered mark :is(strong, b) :is(em, i),
+    .markdown-rendered :is(em, i) :is(strong, b) mark,
+    .markdown-rendered :is(strong, b) :is(em, i) mark,
+    .markdown-rendered :is(em, i) mark :is(strong, b),
+    .markdown-rendered :is(strong, b) mark :is(em, i),
+    .cm-highlight.cm-em.cm-strong) {
+  background-color: var(--gg-hl-bold-italic, var(--gg-d-hl-bold-italic));
+  color: var(--text-normal);
+}
+
+/* ------------------------------------------------------------
+   Tasks and lists (Style Settings)
+   ------------------------------------------------------------ */
+body.gogoga-checkbox-round {
+  --checkbox-radius: 50%;
+}
+
+/* More task states: - [>] - [!] … each get an icon (Phosphor, bold) on a
+   colored box instead of the check. The variables sit on the task line
+   (Live Preview) or list item (reading view); only that item's own
+   checkbox uses them, so nested tasks keep their own look */
+body {
+  --gg-cb-fwd: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M184.49,136.49l-80,80a12,12,0,0,1-17-17L159,128,87.51,56.49a12,12,0,1,1,17-17l80,80A12,12,0,0,1,184.49,136.49Z%22/%3E%3C/svg%3E");
+  --gg-cb-sched: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M208,28H188V24a12,12,0,0,0-24,0v4H92V24a12,12,0,0,0-24,0v4H48A20,20,0,0,0,28,48V208a20,20,0,0,0,20,20H208a20,20,0,0,0,20-20V48A20,20,0,0,0,208,28ZM68,52a12,12,0,0,0,24,0h72a12,12,0,0,0,24,0h16V76H52V52ZM52,204V100H204V204Z%22/%3E%3C/svg%3E");
+  --gg-cb-imp: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M148,200a20,20,0,1,1-20-20A20,20,0,0,1,148,200Zm-20-40a12,12,0,0,0,12-12V48a12,12,0,0,0-24,0V148A12,12,0,0,0,128,160Z%22/%3E%3C/svg%3E");
+  --gg-cb-cancel: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M228,128a12,12,0,0,1-12,12H40a12,12,0,0,1,0-24H216A12,12,0,0,1,228,128Z%22/%3E%3C/svg%3E");
+  --gg-cb-prog: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M128,20A108,108,0,1,0,236,128,108.12,108.12,0,0,0,128,20Zm12,24.87a83.53,83.53,0,0,1,24,7.25V203.88a83.53,83.53,0,0,1-24,7.25ZM44,128a84.12,84.12,0,0,1,72-83.13V211.13A84.12,84.12,0,0,1,44,128Zm144,58.71V69.29a83.81,83.81,0,0,1,0,117.42Z%22/%3E%3C/svg%3E");
+  --gg-cb-q: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M196,96c0,29.47-24.21,54.05-56,59.06V156a12,12,0,0,1-24,0V144a12,12,0,0,1,12-12c24.26,0,44-16.15,44-36s-19.74-36-44-36S84,76.15,84,96a12,12,0,0,1-24,0c0-33.08,30.5-60,68-60S196,62.92,196,96Zm-68,92a20,20,0,1,0,20,20A20,20,0,0,0,128,188Z%22/%3E%3C/svg%3E");
+  --gg-cb-star: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M243,96a20.33,20.33,0,0,0-17.74-14l-56.59-4.57L146.83,24.62a20.36,20.36,0,0,0-37.66,0L87.35,77.44,30.76,82A20.45,20.45,0,0,0,19.1,117.88l43.18,37.24-13.2,55.7A20.37,20.37,0,0,0,79.57,233L128,203.19,176.43,233a20.39,20.39,0,0,0,30.49-22.15l-13.2-55.7,43.18-37.24A20.43,20.43,0,0,0,243,96ZM172.53,141.7a12,12,0,0,0-3.84,11.86L181.58,208l-47.29-29.08a12,12,0,0,0-12.58,0L74.42,208l12.89-54.4a12,12,0,0,0-3.84-11.86L41.2,105.24l55.4-4.47a12,12,0,0,0,10.13-7.38L128,41.89l21.27,51.5a12,12,0,0,0,10.13,7.38l55.4,4.47Z%22/%3E%3C/svg%3E");
+  --gg-cb-quote: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M100,52H40A20,20,0,0,0,20,72v64a20,20,0,0,0,20,20H96v4a28,28,0,0,1-28,28,12,12,0,0,0,0,24,52.06,52.06,0,0,0,52-52V72A20,20,0,0,0,100,52Zm-4,80H44V76H96ZM216,52H156a20,20,0,0,0-20,20v64a20,20,0,0,0,20,20h56v4a28,28,0,0,1-28,28,12,12,0,0,0,0,24,52.06,52.06,0,0,0,52-52V72A20,20,0,0,0,216,52Zm-4,80H160V76h52Z%22/%3E%3C/svg%3E");
+  --gg-cb-note: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M238.15,78.54,177.46,17.86a20,20,0,0,0-28.3,0L97.2,70c-12.43-3.33-36.68-5.72-61.74,14.5a20,20,0,0,0-1.6,29.73l45.46,45.47-39.8,39.8a12,12,0,0,0,17,17l39.8-39.81,45.47,45.46A20,20,0,0,0,155.91,228c.46,0,.93,0,1.4-.05A20,20,0,0,0,171.87,220c4.69-6.23,11-16.13,14.44-28s3.45-22.88.16-33.4l51.7-51.87A20,20,0,0,0,238.15,78.54Zm-74.26,68.79a12,12,0,0,0-2.23,13.84c3.43,6.86,6.9,21-6.28,40.65L54.08,100.53c21.09-14.59,39.53-6.64,41-6a11.67,11.67,0,0,0,13.81-2.29l54.43-54.61,55,55Z%22/%3E%3C/svg%3E");
+  --gg-cb-loc: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M128,60a44,44,0,1,0,44,44A44.05,44.05,0,0,0,128,60Zm0,64a20,20,0,1,1,20-20A20,20,0,0,1,128,124Zm0-112a92.1,92.1,0,0,0-92,92c0,77.36,81.64,135.4,85.12,137.83a12,12,0,0,0,13.76,0,259,259,0,0,0,42.18-39C205.15,170.57,220,136.37,220,104A92.1,92.1,0,0,0,128,12Zm31.3,174.71A249.35,249.35,0,0,1,128,216.89a249.35,249.35,0,0,1-31.3-30.18C80,167.37,60,137.31,60,104a68,68,0,0,1,136,0C196,137.31,176,167.37,159.3,186.71Z%22/%3E%3C/svg%3E");
+  --gg-cb-info: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M108,84a16,16,0,1,1,16,16A16,16,0,0,1,108,84Zm128,44A108,108,0,1,1,128,20,108.12,108.12,0,0,1,236,128Zm-24,0a84,84,0,1,0-84,84A84.09,84.09,0,0,0,212,128Zm-72,36.68V132a20,20,0,0,0-20-20,12,12,0,0,0-4,23.32V168a20,20,0,0,0,20,20,12,12,0,0,0,4-23.32Z%22/%3E%3C/svg%3E");
+  --gg-cb-idea: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M180,232a12,12,0,0,1-12,12H88a12,12,0,0,1,0-24h80A12,12,0,0,1,180,232Zm40-128a91.51,91.51,0,0,1-35.17,72.35A12.26,12.26,0,0,0,180,186v2a20,20,0,0,1-20,20H96a20,20,0,0,1-20-20v-2a12,12,0,0,0-4.7-9.51A91.57,91.57,0,0,1,36,104.52C35.73,54.69,76,13.2,125.79,12A92,92,0,0,1,220,104Zm-24,0a68,68,0,0,0-69.65-68C89.56,36.88,59.8,67.55,60,104.38a67.71,67.71,0,0,0,26.1,53.19A35.87,35.87,0,0,1,100,184h56.1A36.13,36.13,0,0,1,170,157.49,67.68,67.68,0,0,0,196,104Zm-20.07-5.32a48.5,48.5,0,0,0-31.91-40,12,12,0,0,0-8,22.62,24.31,24.31,0,0,1,16.09,20,12,12,0,0,0,23.86-2.64Z%22/%3E%3C/svg%3E");
+  --gg-cb-amount: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M152,116H140V60h4a28,28,0,0,1,28,28,12,12,0,0,0,24,0,52.06,52.06,0,0,0-52-52h-4V24a12,12,0,0,0-24,0V36h-4a52,52,0,0,0,0,104h4v56H104a28,28,0,0,1-28-28,12,12,0,0,0-24,0,52.06,52.06,0,0,0,52,52h12v12a12,12,0,0,0,24,0V220h12a52,52,0,0,0,0-104Zm-40,0a28,28,0,0,1,0-56h4v56Zm40,80H140V140h12a28,28,0,0,1,0,56Z%22/%3E%3C/svg%3E");
+  --gg-cb-pro: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M237,77.47A28,28,0,0,0,216,68H164V56a44.05,44.05,0,0,0-44-44,12,12,0,0,0-10.73,6.63L72.58,92H32a20,20,0,0,0-20,20v88a20,20,0,0,0,20,20H204a28,28,0,0,0,27.78-24.53l12-96A28,28,0,0,0,237,77.47ZM36,116H68v80H36ZM220,96.5l-12,96a4,4,0,0,1-4,3.5H92V106.83L126.82,37.2A20,20,0,0,1,140,56V80a12,12,0,0,0,12,12h64a4,4,0,0,1,4,4.5Z%22/%3E%3C/svg%3E");
+  --gg-cb-con: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M243.78,156.53l-12-96A28,28,0,0,0,204,36H32A20,20,0,0,0,12,56v88a20,20,0,0,0,20,20H72.58l36.69,73.37A12,12,0,0,0,120,244a44.05,44.05,0,0,0,44-44V188h52a28,28,0,0,0,27.78-31.47ZM68,140H36V60H68Zm151,22.65a4,4,0,0,1-3,1.35H152a12,12,0,0,0-12,12v24a20,20,0,0,1-13.18,18.8L92,149.17V60H204a4,4,0,0,1,4,3.5l12,96A4,4,0,0,1,219,162.65Z%22/%3E%3C/svg%3E");
+  --gg-cb-bookmark: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M184,28H72A20,20,0,0,0,52,48V224a12,12,0,0,0,18.36,10.18l57.63-36,57.65,36A12,12,0,0,0,204,224V48A20,20,0,0,0,184,28Zm-4,174.35-45.65-28.53a12,12,0,0,0-12.72,0L76,202.35V52H180Z%22/%3E%3C/svg%3E");
+  --gg-cb-fire: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M177.62,159.6a52,52,0,0,1-34,34,12.2,12.2,0,0,1-3.6.55,12,12,0,0,1-3.6-23.45,28,28,0,0,0,18.32-18.32,12,12,0,0,1,22.9,7.2ZM220,144a92,92,0,0,1-184,0c0-28.81,11.27-58.18,33.48-87.28a12,12,0,0,1,17.9-1.33L107.07,74.5,127,19.89a12,12,0,0,1,18.94-5.12C168.2,33.25,220,82.85,220,144Zm-24,0c0-41.71-30.61-78.39-52.52-99.29l-20.21,55.4a12,12,0,0,1-19.63,4.5L80.71,82.36C67,103.38,60,124.06,60,144a68,68,0,0,0,136,0Z%22/%3E%3C/svg%3E");
+  --gg-cb-key: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M196,76a16,16,0,1,1-16-16A16,16,0,0,1,196,76Zm48,22.74A84.3,84.3,0,0,1,160.11,180H160a83.52,83.52,0,0,1-23.65-3.38l-7.86,7.87A12,12,0,0,1,120,188H108v12a12,12,0,0,1-12,12H84v12a12,12,0,0,1-12,12H40a20,20,0,0,1-20-20V187.31a19.86,19.86,0,0,1,5.86-14.14l53.52-53.52A84,84,0,1,1,244,98.74ZM202.43,53.57A59.48,59.48,0,0,0,158,36c-32,1-58,27.89-58,59.89a59.69,59.69,0,0,0,4.2,22.19,12,12,0,0,1-2.55,13.21L44,189v23H60V200a12,12,0,0,1,12-12H84V176a12,12,0,0,1,12-12h19l9.65-9.65a12,12,0,0,1,13.22-2.55A59.58,59.58,0,0,0,160,156h.08c32,0,58.87-26.07,59.89-58A59.55,59.55,0,0,0,202.43,53.57Z%22/%3E%3C/svg%3E");
+  --gg-cb-win: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M232,60H212V48a12,12,0,0,0-12-12H56A12,12,0,0,0,44,48V60H24A20,20,0,0,0,4,80V96a44.05,44.05,0,0,0,44,44h.77A84.18,84.18,0,0,0,116,195.15V212H96a12,12,0,0,0,0,24h64a12,12,0,0,0,0-24H140V195.11c30.94-4.51,56.53-26.2,67-55.11h1a44.05,44.05,0,0,0,44-44V80A20,20,0,0,0,232,60ZM28,96V84H44v28c0,1.21,0,2.41.09,3.61A20,20,0,0,1,28,96Zm160,15.1c0,33.33-26.71,60.65-59.54,60.9A60,60,0,0,1,68,112V60H188ZM228,96a20,20,0,0,1-16.12,19.62c.08-1.5.12-3,.12-4.52V84h16Z%22/%3E%3C/svg%3E");
+  --gg-cb-up: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M244,56v64a12,12,0,0,1-24,0V85l-75.51,75.52a12,12,0,0,1-17,0L96,129,32.49,192.49a12,12,0,0,1-17-17l72-72a12,12,0,0,1,17,0L136,135l67-67H168a12,12,0,0,1,0-24h64A12,12,0,0,1,244,56Z%22/%3E%3C/svg%3E");
+  --gg-cb-down: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M244,128v64a12,12,0,0,1-12,12H168a12,12,0,0,1,0-24h35l-67-67-31.51,31.52a12,12,0,0,1-17,0l-72-72a12,12,0,0,1,17-17L96,119l31.51-31.52a12,12,0,0,1,17,0L220,163V128a12,12,0,0,1,24,0Z%22/%3E%3C/svg%3E");
+}
+:is(li, .cm-line)[data-task=">"] { --gg-task-icon: var(--gg-cb-fwd); --gg-task-color: #C98A04; }
+:is(li, .cm-line)[data-task="<"] { --gg-task-icon: var(--gg-cb-sched); --gg-task-color: #2F9E44; }
+:is(li, .cm-line)[data-task="!"] { --gg-task-icon: var(--gg-cb-imp); --gg-task-color: #E8590C; }
+:is(li, .cm-line)[data-task="-"] { --gg-task-icon: var(--gg-cb-cancel); --gg-task-color: #868E96; }
+:is(li, .cm-line)[data-task="/"] { --gg-task-icon: var(--gg-cb-prog); --gg-task-color: #5C7CFA; }
+:is(li, .cm-line)[data-task="?"] { --gg-task-icon: var(--gg-cb-q); --gg-task-color: #E03131; }
+:is(li, .cm-line)[data-task="*"] { --gg-task-icon: var(--gg-cb-star); --gg-task-color: #F59F00; }
+:is(li, .cm-line)[data-task='"'] { --gg-task-icon: var(--gg-cb-quote); --gg-task-color: #74B816; }
+:is(li, .cm-line)[data-task="n"] { --gg-task-icon: var(--gg-cb-note); --gg-task-color: #4C6EF5; }
+:is(li, .cm-line)[data-task="l"] { --gg-task-icon: var(--gg-cb-loc); --gg-task-color: #C2255C; }
+:is(li, .cm-line)[data-task="i"] { --gg-task-icon: var(--gg-cb-info); --gg-task-color: #1C7ED6; }
+:is(li, .cm-line)[data-task="I"] { --gg-task-icon: var(--gg-cb-idea); --gg-task-color: #F0A000; }
+:is(li, .cm-line)[data-task="S"] { --gg-task-icon: var(--gg-cb-amount); --gg-task-color: #2B8A3E; }
+:is(li, .cm-line)[data-task="p"] { --gg-task-icon: var(--gg-cb-pro); --gg-task-color: #37B24D; }
+:is(li, .cm-line)[data-task="c"] { --gg-task-icon: var(--gg-cb-con); --gg-task-color: #F03E3E; }
+:is(li, .cm-line)[data-task="b"] { --gg-task-icon: var(--gg-cb-bookmark); --gg-task-color: #1C7ED6; }
+:is(li, .cm-line)[data-task="f"] { --gg-task-icon: var(--gg-cb-fire); --gg-task-color: #F76707; }
+:is(li, .cm-line)[data-task="k"] { --gg-task-icon: var(--gg-cb-key); --gg-task-color: #AE3EC9; }
+:is(li, .cm-line)[data-task="w"] { --gg-task-icon: var(--gg-cb-win); --gg-task-color: #E67700; }
+:is(li, .cm-line)[data-task="u"] { --gg-task-icon: var(--gg-cb-up); --gg-task-color: #37B24D; }
+:is(li, .cm-line)[data-task="d"] { --gg-task-icon: var(--gg-cb-down); --gg-task-color: #F03E3E; }
+
+body.gogoga-alt-checkbox :is(li, .cm-line):is([data-task=">"], [data-task="<"], [data-task="!"], [data-task="-"], [data-task="/"], [data-task="?"], [data-task="*"], [data-task='"'], [data-task="n"], [data-task="l"], [data-task="i"], [data-task="I"], [data-task="S"], [data-task="p"], [data-task="c"], [data-task="b"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > input.task-list-item-checkbox:checked,
+body.gogoga-alt-checkbox :is(li, .cm-line):is([data-task=">"], [data-task="<"], [data-task="!"], [data-task="-"], [data-task="/"], [data-task="?"], [data-task="*"], [data-task='"'], [data-task="n"], [data-task="l"], [data-task="i"], [data-task="I"], [data-task="S"], [data-task="p"], [data-task="c"], [data-task="b"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > p > input.task-list-item-checkbox:checked,
+body.gogoga-alt-checkbox :is(li, .cm-line):is([data-task=">"], [data-task="<"], [data-task="!"], [data-task="-"], [data-task="/"], [data-task="?"], [data-task="*"], [data-task='"'], [data-task="n"], [data-task="l"], [data-task="i"], [data-task="I"], [data-task="S"], [data-task="p"], [data-task="c"], [data-task="b"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > .task-list-label > input.task-list-item-checkbox:checked {
+  background-color: var(--gg-task-color);
+  border-color: var(--gg-task-color);
+}
+body.gogoga-alt-checkbox :is(li, .cm-line):is([data-task=">"], [data-task="<"], [data-task="!"], [data-task="-"], [data-task="/"], [data-task="?"], [data-task="*"], [data-task='"'], [data-task="n"], [data-task="l"], [data-task="i"], [data-task="I"], [data-task="S"], [data-task="p"], [data-task="c"], [data-task="b"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > input.task-list-item-checkbox:checked::after,
+body.gogoga-alt-checkbox :is(li, .cm-line):is([data-task=">"], [data-task="<"], [data-task="!"], [data-task="-"], [data-task="/"], [data-task="?"], [data-task="*"], [data-task='"'], [data-task="n"], [data-task="l"], [data-task="i"], [data-task="I"], [data-task="S"], [data-task="p"], [data-task="c"], [data-task="b"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > p > input.task-list-item-checkbox:checked::after,
+body.gogoga-alt-checkbox :is(li, .cm-line):is([data-task=">"], [data-task="<"], [data-task="!"], [data-task="-"], [data-task="/"], [data-task="?"], [data-task="*"], [data-task='"'], [data-task="n"], [data-task="l"], [data-task="i"], [data-task="I"], [data-task="S"], [data-task="p"], [data-task="c"], [data-task="b"], [data-task="f"], [data-task="k"], [data-task="w"], [data-task="u"], [data-task="d"]) > .task-list-label > input.task-list-item-checkbox:checked::after {
+  background-color: #FFFFFF;
+  -webkit-mask-image: var(--gg-task-icon);
+  mask-image: var(--gg-task-icon);
+  -webkit-mask-size: 68%;
+  mask-size: 68%;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+/* Obsidian only strikes through done (x) items; cancelled (-) gets the
+   same done look, every other state stays plain text */
+body.gogoga-alt-checkbox .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task="-"],
+body.gogoga-alt-checkbox .markdown-rendered li.task-list-item[data-task="-"] {
+  text-decoration: var(--checklist-done-decoration);
+  color: var(--checklist-done-color);
+}
+
+/* Rainbow indent lines: each nesting level of a list draws its guide in
+   its own color. Live Preview draws one .cm-indent per level on every
+   line (so nth-child cycles), reading view draws the guide on the nested
+   list (so it goes by depth; levels past six keep the sixth color) */
+body.gogoga-rainbow-indent {
+  --gg-rb-1: #F08C8C; --gg-rb-2: #F5B971; --gg-rb-3: #E3C95A;
+  --gg-rb-4: #86C98E; --gg-rb-5: #86B2F2; --gg-rb-6: #BFA2F2;
+  --indentation-guide-width-active: 2px;
+}
+body.gogoga-rainbow-indent .cm-hmd-list-indent > .cm-indent:nth-child(6n+1) { --indentation-guide-color: var(--gg-rb-1); }
+body.gogoga-rainbow-indent .cm-hmd-list-indent > .cm-indent:nth-child(6n+2) { --indentation-guide-color: var(--gg-rb-2); }
+body.gogoga-rainbow-indent .cm-hmd-list-indent > .cm-indent:nth-child(6n+3) { --indentation-guide-color: var(--gg-rb-3); }
+body.gogoga-rainbow-indent .cm-hmd-list-indent > .cm-indent:nth-child(6n+4) { --indentation-guide-color: var(--gg-rb-4); }
+body.gogoga-rainbow-indent .cm-hmd-list-indent > .cm-indent:nth-child(6n+5) { --indentation-guide-color: var(--gg-rb-5); }
+body.gogoga-rainbow-indent .cm-hmd-list-indent > .cm-indent:nth-child(6n+6) { --indentation-guide-color: var(--gg-rb-6); }
+body.gogoga-rainbow-indent .markdown-rendered li > :is(ul, ol) { --indentation-guide-color: var(--gg-rb-1); }
+body.gogoga-rainbow-indent .markdown-rendered li li > :is(ul, ol) { --indentation-guide-color: var(--gg-rb-2); }
+body.gogoga-rainbow-indent .markdown-rendered li li li > :is(ul, ol) { --indentation-guide-color: var(--gg-rb-3); }
+body.gogoga-rainbow-indent .markdown-rendered li li li li > :is(ul, ol) { --indentation-guide-color: var(--gg-rb-4); }
+body.gogoga-rainbow-indent .markdown-rendered li li li li li > :is(ul, ol) { --indentation-guide-color: var(--gg-rb-5); }
+body.gogoga-rainbow-indent .markdown-rendered li li li li li li > :is(ul, ol) { --indentation-guide-color: var(--gg-rb-6); }
+body.gogoga-rainbow-indent :is(.cm-hmd-list-indent > .cm-indent, .markdown-rendered li > :is(ul, ol)) {
+  --indentation-guide-color-active: var(--indentation-guide-color);
+}
+
+/* ------------------------------------------------------------
+   File explorer options (Style Settings)
+   ------------------------------------------------------------ */
+/* File type icons (Phosphor, regular — same family as the folder icon),
+   drawn in the 25px slot that lines file names up with folder names */
+.nav-files-container {
+  --gg-fi-file: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Z%22/%3E%3C/svg%3E");
+  --gg-fi-file-text: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40V216a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V88A8,8,0,0,0,213.66,82.34ZM160,51.31,188.69,80H160ZM200,216H56V40h88V88a8,8,0,0,0,8,8h48V216Zm-32-80a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,136Zm0,32a8,8,0,0,1-8,8H96a8,8,0,0,1,0-16h64A8,8,0,0,1,168,168Z%22/%3E%3C/svg%3E");
+  --gg-fi-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,16V158.75l-26.07-26.06a16,16,0,0,0-22.63,0l-20,20-44-44a16,16,0,0,0-22.62,0L40,149.37V56ZM40,172l52-52,80,80H40Zm176,28H194.63l-36-36,20-20L216,181.38V200ZM144,100a12,12,0,1,1,12,12A12,12,0,0,1,144,100Z%22/%3E%3C/svg%3E");
+  --gg-fi-file-pdf: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M224,152a8,8,0,0,1-8,8H192v16h16a8,8,0,0,1,0,16H192v16a8,8,0,0,1-16,0V152a8,8,0,0,1,8-8h32A8,8,0,0,1,224,152ZM92,172a28,28,0,0,1-28,28H56v8a8,8,0,0,1-16,0V152a8,8,0,0,1,8-8H64A28,28,0,0,1,92,172Zm-16,0a12,12,0,0,0-12-12H56v24h8A12,12,0,0,0,76,172Zm88,8a36,36,0,0,1-36,36H112a8,8,0,0,1-8-8V152a8,8,0,0,1,8-8h16A36,36,0,0,1,164,180Zm-16,0a20,20,0,0,0-20-20h-8v40h8A20,20,0,0,0,148,180ZM40,112V40A16,16,0,0,1,56,24h96a8,8,0,0,1,5.66,2.34l56,56A8,8,0,0,1,216,88v24a8,8,0,0,1-16,0V96H152a8,8,0,0,1-8-8V40H56v72a8,8,0,0,1-16,0ZM160,80h28.69L160,51.31Z%22/%3E%3C/svg%3E");
+  --gg-fi-audio: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M212.92,17.69a8,8,0,0,0-6.86-1.45l-128,32A8,8,0,0,0,72,56V166.08A36,36,0,1,0,88,196V110.25l112-28v51.83A36,36,0,1,0,216,164V24A8,8,0,0,0,212.92,17.69ZM52,216a20,20,0,1,1,20-20A20,20,0,0,1,52,216ZM88,93.75V62.25l112-28v31.5ZM180,184a20,20,0,1,1,20-20A20,20,0,0,1,180,184Z%22/%3E%3C/svg%3E");
+  --gg-fi-video: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM40,88h80v80H40Zm96-16V56h32V72Zm-16,0H88V56h32Zm0,112v16H88V184Zm16,0h32v16H136Zm0-16V88h80v80Zm80-96H184V56h32ZM72,56V72H40V56ZM40,184H72v16H40Zm176,16H184V184h32v16Z%22/%3E%3C/svg%3E");
+  --gg-fi-canvas: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M104,40H56A16,16,0,0,0,40,56v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,104,40Zm0,64H56V56h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V56A16,16,0,0,0,200,40Zm0,64H152V56h48v48Zm-96,32H56a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,104,136Zm0,64H56V152h48v48Zm96-64H152a16,16,0,0,0-16,16v48a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V152A16,16,0,0,0,200,136Zm0,64H152V152h48v48Z%22/%3E%3C/svg%3E");
+  --gg-fi-base: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM40,112H80v32H40Zm56,0H216v32H96ZM216,64V96H40V64ZM40,160H80v32H40Zm176,32H96V160H216v32Z%22/%3E%3C/svg%3E");
+  --gg-fi-draw: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M227.32,73.37,182.63,28.69a16,16,0,0,0-22.63,0L36.69,152A15.86,15.86,0,0,0,32,163.31V208a16,16,0,0,0,16,16H216a8,8,0,0,0,0-16H115.32l112-112A16,16,0,0,0,227.32,73.37ZM92.69,208H48V163.31l88-88L180.69,120ZM192,108.69,147.32,64l24-24L216,84.69Z%22/%3E%3C/svg%3E");
+  --gg-fi-code: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M181.66,146.34a8,8,0,0,1,0,11.32l-24,24a8,8,0,0,1-11.32-11.32L164.69,152l-18.35-18.34a8,8,0,0,1,11.32-11.32Zm-72-24a8,8,0,0,0-11.32,0l-24,24a8,8,0,0,0,0,11.32l24,24a8,8,0,0,0,11.32-11.32L91.31,152l18.35-18.34A8,8,0,0,0,109.66,122.34ZM216,88V216a16,16,0,0,1-16,16H56a16,16,0,0,1-16-16V40A16,16,0,0,1,56,24h96a8,8,0,0,1,5.66,2.34l56,56A8,8,0,0,1,216,88Zm-56-8h28.69L160,51.31Zm40,136V96H152a8,8,0,0,1-8-8V40H56V216H200Z%22/%3E%3C/svg%3E");
+  --gg-fi-archive: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 256 256%22 %3E%3Cpath d=%22M184,144H168a8,8,0,0,0-8,8v56a8,8,0,0,0,16,0v-8h8a28,28,0,0,0,0-56Zm0,40h-8V160h8a12,12,0,0,1,0,24Zm-48-32v56a8,8,0,0,1-16,0V152a8,8,0,0,1,16,0ZM96,208a8,8,0,0,1-8,8H56a8,8,0,0,1-7-12l25.16-44H56a8,8,0,0,1,0-16H88a8,8,0,0,1,7,12L69.79,200H88A8,8,0,0,1,96,208ZM213.66,82.34l-56-56A8,8,0,0,0,152,24H56A16,16,0,0,0,40,40v72a8,8,0,0,0,16,0V40h88V88a8,8,0,0,0,8,8h48v16a8,8,0,0,0,16,0V88A8,8,0,0,0,213.66,82.34ZM160,80V51.31L188.69,80Z%22/%3E%3C/svg%3E");
+}
+.nav-files-container .nav-file-title { --gg-file-icon: var(--gg-fi-file); }
+.nav-files-container .nav-file-title:is([data-path$=".md" i], [data-path$=".txt" i]) { --gg-file-icon: var(--gg-fi-file-text); }
+.nav-files-container .nav-file-title:is([data-path$=".png" i], [data-path$=".jpg" i], [data-path$=".jpeg" i], [data-path$=".gif" i], [data-path$=".webp" i], [data-path$=".svg" i], [data-path$=".bmp" i], [data-path$=".avif" i], [data-path$=".heic" i]) { --gg-file-icon: var(--gg-fi-image); }
+.nav-files-container .nav-file-title[data-path$=".pdf" i] { --gg-file-icon: var(--gg-fi-file-pdf); }
+.nav-files-container .nav-file-title:is([data-path$=".mp3" i], [data-path$=".wav" i], [data-path$=".m4a" i], [data-path$=".ogg" i], [data-path$=".flac" i], [data-path$=".webm" i][data-path*="audio" i], [data-path$=".3gp" i]) { --gg-file-icon: var(--gg-fi-audio); }
+.nav-files-container .nav-file-title:is([data-path$=".mp4" i], [data-path$=".mov" i], [data-path$=".mkv" i], [data-path$=".webm" i], [data-path$=".ogv" i]) { --gg-file-icon: var(--gg-fi-video); }
+.nav-files-container .nav-file-title[data-path$=".canvas" i] { --gg-file-icon: var(--gg-fi-canvas); }
+.nav-files-container .nav-file-title[data-path$=".base" i] { --gg-file-icon: var(--gg-fi-base); }
+.nav-files-container .nav-file-title:is([data-path$=".excalidraw" i], [data-path$=".excalidraw.md" i]) { --gg-file-icon: var(--gg-fi-draw); }
+.nav-files-container .nav-file-title:is([data-path$=".js" i], [data-path$=".ts" i], [data-path$=".css" i], [data-path$=".json" i], [data-path$=".html" i], [data-path$=".py" i], [data-path$=".sh" i]) { --gg-file-icon: var(--gg-fi-code); }
+.nav-files-container .nav-file-title:is([data-path$=".zip" i], [data-path$=".7z" i], [data-path$=".rar" i], [data-path$=".gz" i]) { --gg-file-icon: var(--gg-fi-archive); }
+body.gogoga-file-icons .nav-files-container .nav-file-title-content {
+  position: relative;
+}
+body.gogoga-file-icons .nav-files-container .nav-file-title-content::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0.5px;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%);
+  background-color: currentColor;
+  -webkit-mask: var(--gg-file-icon) center / contain no-repeat;
+  mask: var(--gg-file-icon) center / contain no-repeat;
+}
+
+/* Folder icon color: accent, or a rainbow that steps through the top-level
+   folders; subfolders inherit their top folder's color */
+body.gogoga-folder-accent .nav-files-container {
+  --gg-folder-tint: var(--gg-accent);
+}
+body.gogoga-folder-rainbow .nav-files-container {
+  --gg-fr-1: #E5484D; --gg-fr-2: #F76B15; --gg-fr-3: #D9A400;
+  --gg-fr-4: #30A46C; --gg-fr-5: #0090FF; --gg-fr-6: #8E4EC6;
+}
+body.gogoga-folder-rainbow.theme-dark .nav-files-container {
+  --gg-fr-1: #FF6369; --gg-fr-2: #FF8B3E; --gg-fr-3: #F5C542;
+  --gg-fr-4: #3DD68C; --gg-fr-5: #52A9FF; --gg-fr-6: #BF7AF0;
+}
+body.gogoga-folder-rainbow :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) > .nav-folder:nth-child(6n+1 of .nav-folder) { --gg-folder-tint: var(--gg-fr-1); }
+body.gogoga-folder-rainbow :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) > .nav-folder:nth-child(6n+2 of .nav-folder) { --gg-folder-tint: var(--gg-fr-2); }
+body.gogoga-folder-rainbow :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) > .nav-folder:nth-child(6n+3 of .nav-folder) { --gg-folder-tint: var(--gg-fr-3); }
+body.gogoga-folder-rainbow :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) > .nav-folder:nth-child(6n+4 of .nav-folder) { --gg-folder-tint: var(--gg-fr-4); }
+body.gogoga-folder-rainbow :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) > .nav-folder:nth-child(6n+5 of .nav-folder) { --gg-folder-tint: var(--gg-fr-5); }
+body.gogoga-folder-rainbow :is(.nav-files-container > div, .nav-folder.mod-root > .nav-folder-children) > .nav-folder:nth-child(6n+6 of .nav-folder) { --gg-folder-tint: var(--gg-fr-6); }
