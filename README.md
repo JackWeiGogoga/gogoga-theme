@@ -2,6 +2,8 @@
 
 **English** | [简体中文](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/README.zh-CN.md)
 
+**Website:** [obsidian.gogoga.top](https://obsidian.gogoga.top/en/theme/) — screenshots, a live demo you can click around in, and downloads.
+
 ![gogoga in light and dark mode](https://raw.githubusercontent.com/JackWeiGogoga/gogoga-theme/main/screenshots/preview.png)
 
 An Obsidian theme that replicates the design language of

@@ -2,6 +2,8 @@
 
 [English](https://github.com/JackWeiGogoga/gogoga-theme/blob/main/README.md) | **简体中文**
 
+**官网：**[obsidian.gogoga.top](https://obsidian.gogoga.top/theme/)，截图、可以直接上手点的在线体验和下载。
+
 ![gogoga 的浅色与深色模式](https://raw.githubusercontent.com/JackWeiGogoga/gogoga-theme/main/screenshots/preview.png)
 
 一款复刻 [Tolaria](https://github.com/refactoringhq/tolaria) 设计语言的
