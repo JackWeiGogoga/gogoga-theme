@@ -437,6 +437,14 @@ settings:
         type: class-toggle
         default: false
     -
+        id: gogoga-indent-path
+        title: Hover path for nested lists
+        title.zh: 悬停显示层级路径
+        description: Hovering a list item draws a stepped colored line from the top-level item down to it, so you can see which branch it belongs to
+        description.zh: 鼠标移到列表项上时，从最外层一路画出阶梯状的彩色线连到这一项，一眼看出它属于哪一支
+        type: class-toggle
+        default: false
+    -
         id: gg-files
         title: File explorer
         title.zh: 文件列表
@@ -2188,8 +2196,6 @@ body.gogoga-alt-checkbox .markdown-rendered li.task-list-item[data-task="-"] {
    line (so nth-child cycles), reading view draws the guide on the nested
    list (so it goes by depth; levels past six keep the sixth color) */
 body.gogoga-rainbow-indent {
-  --gg-rb-1: #F08C8C; --gg-rb-2: #F5B971; --gg-rb-3: #E3C95A;
-  --gg-rb-4: #86C98E; --gg-rb-5: #86B2F2; --gg-rb-6: #BFA2F2;
   --indentation-guide-width-active: 2px;
 }
 body.gogoga-rainbow-indent .cm-hmd-list-indent > .cm-indent:nth-child(6n+1) { --indentation-guide-color: var(--gg-rb-1); }
@@ -2206,6 +2212,102 @@ body.gogoga-rainbow-indent .markdown-rendered li li li li li > :is(ul, ol) { --i
 body.gogoga-rainbow-indent .markdown-rendered li li li li li li > :is(ul, ol) { --indentation-guide-color: var(--gg-rb-6); }
 body.gogoga-rainbow-indent :is(.cm-hmd-list-indent > .cm-indent, .markdown-rendered li > :is(ul, ol)) {
   --indentation-guide-color-active: var(--indentation-guide-color);
+}
+
+/* Hover path for nested lists (#3): hovering a list item draws the stepped
+   line from the top-level item down to it, each level in its rainbow color.
+   Live Preview: every list line is a sibling .cm-line with one .cm-indent
+   per level, so for each line before the hovered one the column to draw is
+   decided by the lowest level between it and the hovered line (:has(~ … ~
+   :hover)); the hovered item and its ancestors get the elbow into their
+   bullet. A line that isn't a list line ends the path. Reading view nests
+   the list, so the hovered item and its earlier siblings carry the path */
+body:is(.gogoga-rainbow-indent, .gogoga-indent-path) {
+  --gg-rb-1: #F08C8C; --gg-rb-2: #F5B971; --gg-rb-3: #E3C95A;
+  --gg-rb-4: #86C98E; --gg-rb-5: #86B2F2; --gg-rb-6: #BFA2F2;
+}
+body.gogoga-indent-path {
+  --gg-ip-width: 2px;
+  --gg-ip-mid: calc(0.5lh + var(--list-spacing, 4px));
+  /* segments reach up into the line above so the path starts at the parent's bullet */
+  --gg-ip-lift: calc(var(--gg-ip-mid) - 3px);
+}
+body.gogoga-indent-path .cm-hmd-list-indent > .cm-indent:nth-child(6n+1) { --gg-ip-c: var(--gg-rb-1); }
+body.gogoga-indent-path .cm-hmd-list-indent > .cm-indent:nth-child(6n+2) { --gg-ip-c: var(--gg-rb-2); }
+body.gogoga-indent-path .cm-hmd-list-indent > .cm-indent:nth-child(6n+3) { --gg-ip-c: var(--gg-rb-3); }
+body.gogoga-indent-path .cm-hmd-list-indent > .cm-indent:nth-child(6n+4) { --gg-ip-c: var(--gg-rb-4); }
+body.gogoga-indent-path .cm-hmd-list-indent > .cm-indent:nth-child(6n+5) { --gg-ip-c: var(--gg-rb-5); }
+body.gogoga-indent-path .cm-hmd-list-indent > .cm-indent:nth-child(6n+6) { --gg-ip-c: var(--gg-rb-6); }
+body.gogoga-indent-path .cm-content > .HyperMD-list-line:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2):hover):not(:has(~ :is(.HyperMD-list-line-1, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(1),
+body.gogoga-indent-path .cm-content > .HyperMD-list-line:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3):hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(2),
+body.gogoga-indent-path .cm-content > .HyperMD-list-line:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4):hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(3),
+body.gogoga-indent-path .cm-content > .HyperMD-list-line:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5):hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(4),
+body.gogoga-indent-path .cm-content > .HyperMD-list-line:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6):hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(5),
+body.gogoga-indent-path .cm-content > .HyperMD-list-line:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, .HyperMD-list-line-7, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, .HyperMD-list-line-7):hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(6),
+body.gogoga-indent-path .cm-content > .HyperMD-list-line:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, .HyperMD-list-line-7, .HyperMD-list-line-8, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, .HyperMD-list-line-7, .HyperMD-list-line-8):hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, .HyperMD-list-line-7, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, .HyperMD-list-line-7):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(7) {
+  --indentation-guide-color: var(--gg-ip-c);
+  --indentation-guide-color-active: var(--gg-ip-c);
+  --indentation-guide-width: var(--gg-ip-width);
+  --indentation-guide-width-active: var(--gg-ip-width);
+}
+body.gogoga-indent-path .cm-content > .HyperMD-list-line:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2):hover):not(:has(~ :is(.HyperMD-list-line-1, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(1)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3):hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(2)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4):hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(3)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5):hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(4)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6):hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(5)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, .HyperMD-list-line-7, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, .HyperMD-list-line-7):hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(6)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, .HyperMD-list-line-7, .HyperMD-list-line-8, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, .HyperMD-list-line-7, .HyperMD-list-line-8):hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, .HyperMD-list-line-7, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, .HyperMD-list-line-7):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(7)::before {
+  top: calc(-1 * var(--gg-ip-lift));
+}
+body.gogoga-indent-path .cm-content > .HyperMD-list-line-2:hover > .cm-hmd-list-indent > .cm-indent:nth-child(1)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line-2:has(~ .HyperMD-list-line:hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(1)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line-3:hover > .cm-hmd-list-indent > .cm-indent:nth-child(2)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line-3:has(~ .HyperMD-list-line:hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(2)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line-4:hover > .cm-hmd-list-indent > .cm-indent:nth-child(3)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line-4:has(~ .HyperMD-list-line:hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(3)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line-5:hover > .cm-hmd-list-indent > .cm-indent:nth-child(4)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line-5:has(~ .HyperMD-list-line:hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(4)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line-6:hover > .cm-hmd-list-indent > .cm-indent:nth-child(5)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line-6:has(~ .HyperMD-list-line:hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(5)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line-7:hover > .cm-hmd-list-indent > .cm-indent:nth-child(6)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line-7:has(~ .HyperMD-list-line:hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, .HyperMD-list-line-7, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, .HyperMD-list-line-7):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(6)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line-8:hover > .cm-hmd-list-indent > .cm-indent:nth-child(7)::before,
+body.gogoga-indent-path .cm-content > .HyperMD-list-line-8:has(~ .HyperMD-list-line:hover):not(:has(~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, .HyperMD-list-line-7, .HyperMD-list-line-8, :not(.HyperMD-list-line)) ~ .HyperMD-list-line:hover, ~ :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4, .HyperMD-list-line-5, .HyperMD-list-line-6, .HyperMD-list-line-7, .HyperMD-list-line-8):hover)) > .cm-hmd-list-indent > .cm-indent:nth-child(7)::before {
+  top: calc(-1 * var(--gg-ip-lift));
+  bottom: auto;
+  /* the plain guide is a 1px box with its border on the end side; start the
+     elbow's border where that line is so the path doesn't kink */
+  margin-inline-start: calc(var(--indentation-guide-editing-indent, 0px) + 1px);
+  width: calc(var(--list-indent) - 4px);
+  height: calc(var(--gg-ip-mid) + var(--gg-ip-lift));
+  border-inline-end: none;
+  border-inline-start: var(--gg-ip-width) solid var(--gg-ip-c);
+  border-block-end: var(--gg-ip-width) solid var(--gg-ip-c);
+  border-end-start-radius: 4px;
+  box-sizing: border-box;
+}
+body.gogoga-indent-path .markdown-rendered li > :is(ul, ol) { --gg-ip-c: var(--gg-rb-1); }
+body.gogoga-indent-path .markdown-rendered li li > :is(ul, ol) { --gg-ip-c: var(--gg-rb-2); }
+body.gogoga-indent-path .markdown-rendered li li li > :is(ul, ol) { --gg-ip-c: var(--gg-rb-3); }
+body.gogoga-indent-path .markdown-rendered li li li li > :is(ul, ol) { --gg-ip-c: var(--gg-rb-4); }
+body.gogoga-indent-path .markdown-rendered li li li li li > :is(ul, ol) { --gg-ip-c: var(--gg-rb-5); }
+body.gogoga-indent-path .markdown-rendered li li li li li li > :is(ul, ol) { --gg-ip-c: var(--gg-rb-6); }
+body.gogoga-indent-path .markdown-rendered li > :is(ul, ol) > li:is(:hover, :has(~ li:hover)) { position: relative; }
+body.gogoga-indent-path .markdown-rendered li > :is(ul, ol) > li:is(:hover, :has(~ li:hover))::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: calc(var(--indentation-guide-reading-indent) - var(--list-indent));
+  top: calc(5px - var(--gg-ip-lift));
+  bottom: 0;
+  border-inline-start: var(--gg-ip-width) solid var(--gg-ip-c);
+  pointer-events: none;
+}
+body.gogoga-indent-path .markdown-rendered li > :is(ul, ol) > li:hover::before {
+  bottom: auto;
+  width: calc(var(--list-indent) + var(--indentation-guide-reading-indent) + 6px);
+  height: calc(var(--gg-ip-mid) + var(--gg-ip-lift) - 5px);
+  border-block-end: var(--gg-ip-width) solid var(--gg-ip-c);
+  border-end-start-radius: 4px;
 }
 
 /* ------------------------------------------------------------

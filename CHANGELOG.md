@@ -4,6 +4,11 @@ All notable changes to gogoga theme are listed here. The format follows [Keep a 
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-22
+
+### Added
+- **Hover path for nested lists** (#3, suggested by pinery-sls; in Style Settings under Tasks and lists, off by default): hovering a list item draws a stepped line from the top-level item down to it, each level in its own color, so you can see which branch it belongs to. Works in Live Preview and reading view; Live Preview needs Settings → Editor → Indentation guides on.
+
 ## [0.3.0] - 2026-11-16
 
 ### Added (#2, suggested by pinery-sls; all in Style Settings, off by default)
@@ -84,7 +89,8 @@ First public release.
 - Matching styles for Notebook Navigator and the properties side panel.
 - Style Settings: accent and inline code colors, body font, line width, table column floor, and opt-in toggles to hide the H1 divider, use one bullet shape, and use the system font rendering.
 
-[Unreleased]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.3.0...HEAD
+[Unreleased]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.4.0...HEAD
+[0.4.0]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.2.1...0.3.0
 [0.2.1]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.1.7...0.2.0

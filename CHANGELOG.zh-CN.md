@@ -4,6 +4,11 @@ gogoga 主题 每个版本的主要变化都记在这里。格式参照 [Keep a 
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-11-22
+
+### 新增
+- **悬停显示层级路径**（#3，pinery-sls 的建议；在 Style Settings 的「任务与列表」里，默认关）：鼠标移到列表项上，从最外层一路画出阶梯状的彩色线连到这一项，每一级一种颜色，一眼看出它属于哪一支。编辑模式和阅读视图都支持。编辑模式需要打开「设置 → 编辑器 → 显示缩进参考线」。
+
 ## [0.3.0] - 2026-11-16
 
 ### 新增（#2，pinery-sls 的建议；都在 Style Settings 里，默认关）
@@ -84,7 +89,8 @@ gogoga 主题 每个版本的主要变化都记在这里。格式参照 [Keep a 
 - Notebook Navigator 和属性侧栏的配套样式。
 - Style Settings：强调色和行内代码颜色、正文字体、行宽、表格最小列宽，以及「隐藏一级标题分隔线」「统一列表符号」「使用系统字体渲染」三个可选开关。
 
-[Unreleased]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.3.0...HEAD
+[Unreleased]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.4.0...HEAD
+[0.4.0]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.2.1...0.3.0
 [0.2.1]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/JackWeiGogoga/gogoga-theme/compare/0.1.7...0.2.0
